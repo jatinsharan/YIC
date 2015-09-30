@@ -6,17 +6,15 @@
 //  Copyright (c) 2015 Dotsquares. All rights reserved.
 //
 
-#import "OTPassViewController.h"
-#import "HomeViewController.h"
+#import "UnlockViewController.h"
 
 
-@implementation OTPassViewController
+@implementation UnlockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
+   /* UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
     [nextTextField1 becomeFirstResponder];
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -26,7 +24,12 @@
     self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
     
-   /* UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
+  
+    
+    timeCount=60;
+    timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(increaseTimer:) userInfo:nil repeats:YES];
+    [timer fire];
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
     [self.pageScroll addGestureRecognizer:tap];*/
 }
 
@@ -95,8 +98,6 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
-    HomeViewController  *objHomeViewController=[HomeViewController new];
-    [self.navigationController pushViewController:objHomeViewController animated:YES];
 }
 
 #pragma Text Field Delegate
@@ -122,8 +123,6 @@
     
     nextStr=string;
     
-    NSLog(@"%d",nextTag);
-    
     if (range.length==1 )
     {
         nextTag = textField.tag;
@@ -140,7 +139,7 @@
     else   if ([textField.text length]==1)
     {
         nextTag = textField.tag;
-        if (nextTag<=7) {
+        if (nextTag<=9) {
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
             

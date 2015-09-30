@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "YICRoundsViewController.h"
+#import "UnlockViewController.h"
 
 @interface HomeViewController ()
 
@@ -46,13 +47,10 @@
 
 - (IBAction)Click_TakeTest:(id)sender {
     
+    UnlockViewController *obj_UnlockViewController=[UnlockViewController new];
+    [self.navigationController pushViewController:obj_UnlockViewController animated:YES];
     
-UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CL-YIC"
-                                                    message:@"Coming Soon in your collage.Contact nearest CL centre for Date  and Venue"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+
 }
 
 - (IBAction)Click_Share:(id)sender {

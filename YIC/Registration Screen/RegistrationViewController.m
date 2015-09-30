@@ -148,16 +148,7 @@
     {
         if(isSuccessNumber)
         {
-            PPPinPadViewController * pinViewController = [[PPPinPadViewController alloc] init];
-            pinViewController.delegate = self;
-            pinViewController.pinTitle = @"Enter Passcode";
-            pinViewController.errorTitle = @"Passcode is not correct";
-            pinViewController.cancelButtonHidden = NO; //default is False
-            pinViewController.backgroundImage = [UIImage imageNamed:@"pinViewImage"]; //if you need remove the background set a empty UIImage ([UIImage new]) or set a background color
-            //    pinViewController.backgroundColor = [UIColor blueColor]; //default is a darkGrayColor
-            
-            [self.navigationController pushViewController:pinViewController animated:YES];
-            
+                        
         }
     
     
