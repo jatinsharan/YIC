@@ -125,6 +125,8 @@
 		1D4A62741BBC43AB00A15717 /* TestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4A62721BBC43AB00A15717 /* TestDetailViewController.xib */; };
 		1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A62761BBC43C000A15717 /* QuestionViewController.m */; };
 		1D4A62791BBC43C000A15717 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4A62771BBC43C000A15717 /* QuestionViewController.xib */; };
+		F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */; };
+		F96837D21BBC6D6000BD58D6 /* QuestionYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +296,10 @@
 		1D4A62751BBC43C000A15717 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
 		1D4A62761BBC43C000A15717 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		1D4A62771BBC43C000A15717 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
+		F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerYIC.h; sourceTree = "<group>"; };
+		F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerYIC.m; sourceTree = "<group>"; };
+		F96837D01BBC6D6000BD58D6 /* QuestionYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionYIC.h; sourceTree = "<group>"; };
+		F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionYIC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +412,10 @@
 		1D4574AD1BBC2EB6002BCDF8 /* Global Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F96837D01BBC6D6000BD58D6 /* QuestionYIC.h */,
+				F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */,
+				F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */,
+				F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */,
 				1D4574AE1BBC2EB6002BCDF8 /* GlobalDataPersistence.h */,
 				1D4574AF1BBC2EB6002BCDF8 /* GlobalDataPersistence.m */,
 			);
@@ -840,6 +850,7 @@
 				1D4574901BBC2BBE002BCDF8 /* ViewController.m in Sources */,
 				1D4575871BBC2EB6002BCDF8 /* ASIDataCompressor.m in Sources */,
 				1D4575851BBC2EB6002BCDF8 /* ALUtilityClass.m in Sources */,
+				F96837D21BBC6D6000BD58D6 /* QuestionYIC.m in Sources */,
 				1D45757C1BBC2EB6002BCDF8 /* PPCircleButton.m in Sources */,
 				1D4575921BBC2EB6002BCDF8 /* WebCommunicationClass.m in Sources */,
 				1D45758A1BBC2EB6002BCDF8 /* ASIFormDataRequest.m in Sources */,
@@ -857,6 +868,7 @@
 				1D4575791BBC2EB6002BCDF8 /* OTPassViewController.m in Sources */,
 				1D4575891BBC2EB6002BCDF8 /* ASIDownloadCache.m in Sources */,
 				1D4A62731BBC43AB00A15717 /* TestDetailViewController.m in Sources */,
+				F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */,
 				1D45758E1BBC2EB6002BCDF8 /* Reachability.m in Sources */,
 				1D4575361BBC2EB6002BCDF8 /* HomeViewController.m in Sources */,
 				1D45758B1BBC2EB6002BCDF8 /* ASIHTTPRequest.m in Sources */,

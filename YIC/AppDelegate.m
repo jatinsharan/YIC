@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "Config.h"
 #import "ALUtilityClass.h"
+#import "DBManagerYIC.h"
+
 @interface AppDelegate ()
 
 @end
@@ -18,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    DBManagerYIC *dbM = [DBManagerYIC new];
+    [dbM copyDatabaseIfNeeded];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _viewController = [[StartUpViewController alloc] initWithNibName:@"StartUpViewController" bundle:nil];
