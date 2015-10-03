@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D30830D1BBF00B800654FDA /* QuestionYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D30830C1BBF00B800654FDA /* QuestionYIC.m */; };
+		1D3083121BBF017E00654FDA /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3083101BBF017E00654FDA /* InstructionViewController.m */; };
+		1D3083131BBF017E00654FDA /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D3083111BBF017E00654FDA /* InstructionViewController.xib */; };
+		1D3083181BBF019C00654FDA /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3083161BBF019C00654FDA /* ResultViewController.m */; };
+		1D3083191BBF019C00654FDA /* ResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D3083171BBF019C00654FDA /* ResultViewController.xib */; };
+		1D3083221BBF041500654FDA /* list_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831A1BBF041500654FDA /* list_large.png */; };
+		1D3083231BBF041500654FDA /* list_large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831B1BBF041500654FDA /* list_large@2x.png */; };
+		1D3083241BBF041500654FDA /* list_large@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831C1BBF041500654FDA /* list_large@3x.png */; };
+		1D3083251BBF041500654FDA /* Question_Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831D1BBF041500654FDA /* Question_Arrow.png */; };
+		1D3083261BBF041500654FDA /* Question_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831E1BBF041500654FDA /* Question_Arrow@2x.png */; };
+		1D3083271BBF041500654FDA /* Question_Arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D30831F1BBF041500654FDA /* Question_Arrow@3x.png */; };
+		1D3083281BBF041500654FDA /* selectbox-blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D3083201BBF041500654FDA /* selectbox-blank.png */; };
+		1D3083291BBF041500654FDA /* selectbox-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D3083211BBF041500654FDA /* selectbox-selected.png */; };
 		1D45748A1BBC2BBE002BCDF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574891BBC2BBE002BCDF8 /* main.m */; };
 		1D45748D1BBC2BBE002BCDF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D45748C1BBC2BBE002BCDF8 /* AppDelegate.m */; };
 		1D4574901BBC2BBE002BCDF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D45748F1BBC2BBE002BCDF8 /* ViewController.m */; };
@@ -126,7 +139,6 @@
 		1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A62761BBC43C000A15717 /* QuestionViewController.m */; };
 		1D4A62791BBC43C000A15717 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4A62771BBC43C000A15717 /* QuestionViewController.xib */; };
 		F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */; };
-		F96837D21BBC6D6000BD58D6 /* QuestionYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +152,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D30830B1BBF00B800654FDA /* QuestionYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionYIC.h; sourceTree = "<group>"; };
+		1D30830C1BBF00B800654FDA /* QuestionYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionYIC.m; sourceTree = "<group>"; };
+		1D30830F1BBF017E00654FDA /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
+		1D3083101BBF017E00654FDA /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
+		1D3083111BBF017E00654FDA /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstructionViewController.xib; sourceTree = "<group>"; };
+		1D3083151BBF019C00654FDA /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		1D3083161BBF019C00654FDA /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
+		1D3083171BBF019C00654FDA /* ResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultViewController.xib; sourceTree = "<group>"; };
+		1D30831A1BBF041500654FDA /* list_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_large.png; sourceTree = "<group>"; };
+		1D30831B1BBF041500654FDA /* list_large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_large@2x.png"; sourceTree = "<group>"; };
+		1D30831C1BBF041500654FDA /* list_large@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_large@3x.png"; sourceTree = "<group>"; };
+		1D30831D1BBF041500654FDA /* Question_Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Question_Arrow.png; sourceTree = "<group>"; };
+		1D30831E1BBF041500654FDA /* Question_Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Question_Arrow@2x.png"; sourceTree = "<group>"; };
+		1D30831F1BBF041500654FDA /* Question_Arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Question_Arrow@3x.png"; sourceTree = "<group>"; };
+		1D3083201BBF041500654FDA /* selectbox-blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectbox-blank.png"; sourceTree = "<group>"; };
+		1D3083211BBF041500654FDA /* selectbox-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectbox-selected.png"; sourceTree = "<group>"; };
 		1D4574841BBC2BBE002BCDF8 /* YIC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YIC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4574881BBC2BBE002BCDF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4574891BBC2BBE002BCDF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -298,8 +326,6 @@
 		1D4A62771BBC43C000A15717 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerYIC.h; sourceTree = "<group>"; };
 		F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerYIC.m; sourceTree = "<group>"; };
-		F96837D01BBC6D6000BD58D6 /* QuestionYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionYIC.h; sourceTree = "<group>"; };
-		F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionYIC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +354,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D30830E1BBF017E00654FDA /* Instruction Screen */ = {
+			isa = PBXGroup;
+			children = (
+				1D30830F1BBF017E00654FDA /* InstructionViewController.h */,
+				1D3083101BBF017E00654FDA /* InstructionViewController.m */,
+				1D3083111BBF017E00654FDA /* InstructionViewController.xib */,
+			);
+			path = "Instruction Screen";
+			sourceTree = "<group>";
+		};
+		1D3083141BBF019C00654FDA /* Result screen */ = {
+			isa = PBXGroup;
+			children = (
+				1D3083151BBF019C00654FDA /* ResultViewController.h */,
+				1D3083161BBF019C00654FDA /* ResultViewController.m */,
+				1D3083171BBF019C00654FDA /* ResultViewController.xib */,
+			);
+			path = "Result screen";
+			sourceTree = "<group>";
+		};
 		1D45747B1BBC2BBE002BCDF8 = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +403,8 @@
 		1D4574861BBC2BBE002BCDF8 /* YIC */ = {
 			isa = PBXGroup;
 			children = (
+				1D3083141BBF019C00654FDA /* Result screen */,
+				1D30830E1BBF017E00654FDA /* Instruction Screen */,
 				1D4A626E1BBC439500A15717 /* Question Screen */,
 				1D4A626F1BBC439500A15717 /* TestDetail */,
 				1D4575AA1BBC3678002BCDF8 /* Unlock Test */,
@@ -412,12 +460,12 @@
 		1D4574AD1BBC2EB6002BCDF8 /* Global Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F96837D01BBC6D6000BD58D6 /* QuestionYIC.h */,
-				F96837D11BBC6D6000BD58D6 /* QuestionYIC.m */,
 				F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */,
 				F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */,
 				1D4574AE1BBC2EB6002BCDF8 /* GlobalDataPersistence.h */,
 				1D4574AF1BBC2EB6002BCDF8 /* GlobalDataPersistence.m */,
+				1D30830B1BBF00B800654FDA /* QuestionYIC.h */,
+				1D30830C1BBF00B800654FDA /* QuestionYIC.m */,
 			);
 			path = "Global Classes";
 			sourceTree = "<group>";
@@ -438,6 +486,14 @@
 		1D4574B71BBC2EB6002BCDF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1D30831A1BBF041500654FDA /* list_large.png */,
+				1D30831B1BBF041500654FDA /* list_large@2x.png */,
+				1D30831C1BBF041500654FDA /* list_large@3x.png */,
+				1D30831D1BBF041500654FDA /* Question_Arrow.png */,
+				1D30831E1BBF041500654FDA /* Question_Arrow@2x.png */,
+				1D30831F1BBF041500654FDA /* Question_Arrow@3x.png */,
+				1D3083201BBF041500654FDA /* selectbox-blank.png */,
+				1D3083211BBF041500654FDA /* selectbox-selected.png */,
 				1D4574B81BBC2EB6002BCDF8 /* back.png */,
 				1D4574B91BBC2EB6002BCDF8 /* back@2x.png */,
 				1D4574BA1BBC2EB6002BCDF8 /* back@3x.png */,
@@ -750,12 +806,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D45756B1BBC2EB6002BCDF8 /* pi05@2x.png in Resources */,
+				1D3083241BBF041500654FDA /* list_large@3x.png in Resources */,
 				1D4575441BBC2EB6002BCDF8 /* down_arrow@2x.png in Resources */,
 				1D4575761BBC2EB6002BCDF8 /* tree_home.png in Resources */,
+				1D3083281BBF041500654FDA /* selectbox-blank.png in Resources */,
 				1D4575731BBC2EB6002BCDF8 /* test.png in Resources */,
 				1D45756F1BBC2EB6002BCDF8 /* share@3x.png in Resources */,
 				1D45754E1BBC2EB6002BCDF8 /* home_icon@3x.png in Resources */,
 				1D4575541BBC2EB6002BCDF8 /* line-right@3x.png in Resources */,
+				1D3083261BBF041500654FDA /* Question_Arrow@2x.png in Resources */,
 				1D4574931BBC2BBE002BCDF8 /* Main.storyboard in Resources */,
 				1D45757B1BBC2EB6002BCDF8 /* pinViewImage.png in Resources */,
 				1D45755F1BBC2EB6002BCDF8 /* pi01@2x.png in Resources */,
@@ -796,8 +855,10 @@
 				1D4575581BBC2EB6002BCDF8 /* logo.png in Resources */,
 				1D45754D1BBC2EB6002BCDF8 /* home_icon@2x.png in Resources */,
 				1D4575AF1BBC3678002BCDF8 /* UnlockViewController.xib in Resources */,
+				1D3083131BBF017E00654FDA /* InstructionViewController.xib in Resources */,
 				1D4575901BBC2EB6002BCDF8 /* SVProgressHUD.bundle in Resources */,
 				1D4575551BBC2EB6002BCDF8 /* list.png in Resources */,
+				1D3083271BBF041500654FDA /* Question_Arrow@3x.png in Resources */,
 				1D4575741BBC2EB6002BCDF8 /* test@2x.png in Resources */,
 				1D4575721BBC2EB6002BCDF8 /* steps@3x.png in Resources */,
 				1D4575481BBC2EB6002BCDF8 /* dropdown_field@3x.png in Resources */,
@@ -811,13 +872,17 @@
 				1D4574951BBC2BBE002BCDF8 /* Images.xcassets in Resources */,
 				1D4575391BBC2EB6002BCDF8 /* YICRoundsViewController.xib in Resources */,
 				1D4575811BBC2EB6002BCDF8 /* RegistrationViewController.xib in Resources */,
+				1D3083291BBF041500654FDA /* selectbox-selected.png in Resources */,
 				1D4575711BBC2EB6002BCDF8 /* steps@2x.png in Resources */,
 				1D4575571BBC2EB6002BCDF8 /* list@3x.png in Resources */,
+				1D3083231BBF041500654FDA /* list_large@2x.png in Resources */,
 				1D4575A91BBC32E0002BCDF8 /* TestViewController.xib in Resources */,
 				1D45755E1BBC2EB6002BCDF8 /* pi01.png in Resources */,
 				1D45756E1BBC2EB6002BCDF8 /* share@2x.png in Resources */,
 				1D4575511BBC2EB6002BCDF8 /* line-left@3x.png in Resources */,
 				1D4575931BBC2EB6002BCDF8 /* yic.db in Resources */,
+				1D3083191BBF019C00654FDA /* ResultViewController.xib in Resources */,
+				1D3083221BBF041500654FDA /* list_large.png in Resources */,
 				1D4575621BBC2EB6002BCDF8 /* pi02@2x.png in Resources */,
 				1D4A62791BBC43C000A15717 /* QuestionViewController.xib in Resources */,
 				1D4575371BBC2EB6002BCDF8 /* HomeViewController.xib in Resources */,
@@ -827,6 +892,7 @@
 				1D4575501BBC2EB6002BCDF8 /* line-left@2x.png in Resources */,
 				1D4575431BBC2EB6002BCDF8 /* down_arrow.png in Resources */,
 				1D4575451BBC2EB6002BCDF8 /* down_arrow@3x.png in Resources */,
+				1D3083251BBF041500654FDA /* Question_Arrow.png in Resources */,
 				1D4575651BBC2EB6002BCDF8 /* pi03@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,7 +916,7 @@
 				1D4574901BBC2BBE002BCDF8 /* ViewController.m in Sources */,
 				1D4575871BBC2EB6002BCDF8 /* ASIDataCompressor.m in Sources */,
 				1D4575851BBC2EB6002BCDF8 /* ALUtilityClass.m in Sources */,
-				F96837D21BBC6D6000BD58D6 /* QuestionYIC.m in Sources */,
+				1D30830D1BBF00B800654FDA /* QuestionYIC.m in Sources */,
 				1D45757C1BBC2EB6002BCDF8 /* PPCircleButton.m in Sources */,
 				1D4575921BBC2EB6002BCDF8 /* WebCommunicationClass.m in Sources */,
 				1D45758A1BBC2EB6002BCDF8 /* ASIFormDataRequest.m in Sources */,
@@ -867,6 +933,7 @@
 				1D4575821BBC2EB6002BCDF8 /* StartUpViewController.m in Sources */,
 				1D4575791BBC2EB6002BCDF8 /* OTPassViewController.m in Sources */,
 				1D4575891BBC2EB6002BCDF8 /* ASIDownloadCache.m in Sources */,
+				1D3083121BBF017E00654FDA /* InstructionViewController.m in Sources */,
 				1D4A62731BBC43AB00A15717 /* TestDetailViewController.m in Sources */,
 				F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */,
 				1D45758E1BBC2EB6002BCDF8 /* Reachability.m in Sources */,
@@ -875,6 +942,7 @@
 				1D45748A1BBC2BBE002BCDF8 /* main.m in Sources */,
 				1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */,
 				1D4575A81BBC32E0002BCDF8 /* TestViewController.m in Sources */,
+				1D3083181BBF019C00654FDA /* ResultViewController.m in Sources */,
 				1D4575841BBC2EB6002BCDF8 /* ALSServiceInvoker.m in Sources */,
 				1D45758C1BBC2EB6002BCDF8 /* ASIInputStream.m in Sources */,
 			);

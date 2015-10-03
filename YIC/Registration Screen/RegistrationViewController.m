@@ -231,5 +231,10 @@ numberOfRowsInComponent:(NSInteger)component{
     
     
 }
+-(IBAction)btn_Back:(id)sender
+{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

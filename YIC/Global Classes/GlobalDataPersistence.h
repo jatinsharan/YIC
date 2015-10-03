@@ -14,6 +14,7 @@
 }
 @property(nonatomic,strong)NSArray *arrQuestions;
 @property(nonatomic,strong)NSString *strCollageId;
+@property(nonatomic,assign)int correctPoint;
 
 
 + (GlobalDataPersistence *)sharedGlobalDataPersistence;

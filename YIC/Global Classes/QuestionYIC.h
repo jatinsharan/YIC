@@ -2,14 +2,13 @@
 //  QuestionYIC.h
 //  YIC
 //
-//  Created by ROHIT on 01/10/15.
+//  Created by Jatin on 10/2/15.
 //
 //
 
 #import <Foundation/Foundation.h>
 
 @interface QuestionYIC : NSObject
-
 @property (assign, nonatomic) int qId;
 @property (strong, nonatomic) NSString* qSection;
 @property (strong, nonatomic) NSString* qLevel;
@@ -21,5 +20,4 @@
 @property (strong, nonatomic) NSString* qOption_4;
 @property (strong, nonatomic) NSString* qCorrectOption;
 @property (assign, nonatomic) int qMarks;
-
 @end

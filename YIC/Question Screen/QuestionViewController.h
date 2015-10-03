@@ -7,7 +7,42 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionYIC.h"
 
 @interface QuestionViewController : UIViewController
+{
+    int countDownTime ;
+    int secs;
+    int mints;
+    int hourss;
+    IBOutlet UILabel *lblSectionHeading;
+
+    IBOutlet UILabel *lblQuestionCount;
+
+    IBOutlet UILabel *lblQuestion;
+
+    IBOutlet UIButton *btnOption1;
+
+    IBOutlet UIButton *btnOption2;
+
+    IBOutlet UIButton *btnOption3;
+
+    IBOutlet UIButton *btnOption4;
+
+    int questionCount;
+    QuestionYIC *question;
+    NSArray *arrQuestion;
+    
+    NSString *correctOption;
+    
+}
+- (IBAction)Select_Option:(id)sender;
+- (IBAction)Click_NextQuestion:(id)sender;
+
+
+
+
+@property (strong, nonatomic) IBOutlet UILabel *lbl;
+@property(retain,nonatomic)NSTimer *CountDownTimer;
 
 @end

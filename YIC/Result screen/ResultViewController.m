@@ -1,48 +1,38 @@
 //
-//  TestViewController.m
-//  CL-YIC
+//  ResultViewController.m
+//  YIC
 //
-//  Created by Jatin on 9/21/15.
+//  Created by Jatin on 10/1/15.
 //
 //
 
-#import "TestViewController.h"
+#import "ResultViewController.h"
+#import "HomeViewController.h"
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "GlobalDataPersistence.h"
 #import "DBManagerYIC.h"
-@interface TestViewController ()
+@interface ResultViewController ()
 
 @end
 
-@implementation TestViewController
+@implementation ResultViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self copyDatabaseIfNeeded];
-    
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-    NSLog(@"%@",obj_GlobalDataPersistence.strCollageId);
-   
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm a"];
-    NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
-    
-    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-    
-    NSString *strhourlycode=[self getHourlyCode:[formatter stringFromDate:[NSDate date]]];
-    NSArray *arr=[obj_DBManagerYIC getAllRandomQuestion];
-    NSLog(@"%@",arr);
-    NSLog(@"%@",strhourlycode);
-    
-    
-    // Do any additional setup after loading the view from its nib.
+       // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(IBAction)Click_Home:(id)sender
+{
+    HomeViewController *obj_HomeViewController=[HomeViewController new];
+    [self.navigationController pushViewController:obj_HomeViewController animated:YES];
+}
+
 #pragma mark Class functions
 - (NSString *) getDBPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
@@ -67,7 +57,7 @@
 
 - (NSString *)getHourlyCode:(NSString*)strDate
 {
-
+    
     sqlite3 *database;
     ;
     NSMutableArray *result = [[NSMutableArray alloc]init] ;
@@ -84,13 +74,13 @@
             while(sqlite3_step(statement) == SQLITE_ROW)
             {
                 //int key = sqlite3_column_int(selectStatement, 0);
-               
+                
                 NSString *Strname = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
-            
                 
                 
                 
-               NSDictionary * dict1=[[NSMutableDictionary alloc]init];
+                
+                NSDictionary * dict1=[[NSMutableDictionary alloc]init];
                 
                 [dict1 setValue:Strname forKey:@"Date"];
                 
@@ -99,7 +89,7 @@
                 
                 
                 // Add the animal object to the animals Array
-              
+                
                 
                 NSLog(@"%@",dict1);
                 dict1=nil;
@@ -108,7 +98,7 @@
                 
                 // Loop through the results and add them to the feeds array
             }
-
+            
         } else
         {
             result = nil;
@@ -122,7 +112,6 @@
     }
     return result;
 }
-
 /*
 #pragma mark - Navigation
 

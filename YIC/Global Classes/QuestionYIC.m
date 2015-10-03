@@ -2,12 +2,14 @@
 //  QuestionYIC.m
 //  YIC
 //
-//  Created by ROHIT on 01/10/15.
+//  Created by Jatin on 10/2/15.
 //
 //
 
 #import "QuestionYIC.h"
 
 @implementation QuestionYIC
+
+
 
 @end

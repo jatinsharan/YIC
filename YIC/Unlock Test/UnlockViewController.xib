@@ -12,6 +12,10 @@
                 <outletCollection property="otpTxt" destination="57k-K8-HWn" id="TPu-Zw-zj5"/>
                 <outletCollection property="otpTxt" destination="75o-mH-VWk" id="lAh-bd-eiH"/>
                 <outletCollection property="otpTxt" destination="nuS-zO-gk4" id="zc1-dc-lgM"/>
+                <outletCollection property="otpTxt" destination="pCU-wg-xBf" id="WSP-6S-Xjf"/>
+                <outletCollection property="otpTxt" destination="xg7-0k-Qfl" id="qER-OF-8Eq"/>
+                <outletCollection property="otpTxt" destination="iI8-J0-D0R" id="wUr-aI-qLs"/>
+                <outletCollection property="otpTxt" destination="dVr-Vc-fWy" id="quR-a1-arG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -118,6 +122,9 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="tapped_ResentOTP:" destination="-1" eventType="touchUpInside" id="tDn-g5-bB3"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" id="Q5c-DI-yCy">
                             <rect key="frame" x="58" y="26" width="206" height="201"/>

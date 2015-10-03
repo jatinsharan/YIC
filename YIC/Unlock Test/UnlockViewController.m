@@ -7,6 +7,7 @@
 //
 
 #import "UnlockViewController.h"
+#import "InstructionViewController.h"
 
 
 @implementation UnlockViewController
@@ -98,6 +99,8 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
+    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
 }
 
 #pragma Text Field Delegate
