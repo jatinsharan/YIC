@@ -39,58 +39,64 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Custom methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
--(void)CreateCity
+- (void)CreateCity
 {
     
 }
-- (IBAction)Click_City:(id)sender {
+
+- (void)hidePickerView
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    vwReg.frame = CGRectMake(0,750, self.view.frame.size.width, 222);
+    [UIView commitAnimations];
+}
+
+- (void)showPickerView
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
+    [UIView commitAnimations];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)Click_City:(id)sender
+{
+    [self resignAllTextFields];
     
     strBtnSelection=@"C";
     pickerReg.delegate = self;
     pickerReg.dataSource = self;
     [pickerReg reloadAllComponents];
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
-    [UIView commitAnimations];
-    
-    [self.view addSubview:vwReg];
-    
+    [self showPickerView];
 }
 
-- (IBAction)Click_Collage:(id)sender {
+- (IBAction)Click_Collage:(id)sender
+{
+    [self resignAllTextFields];
     
     strBtnSelection=@"Cl";
     
     WebCommunicationClass *obj=[WebCommunicationClass new];
-    
     [obj setACaller:self];
-    
-    [obj GetCity:@"1"];
+    [obj GetCity:strCityId];
 }
 
-- (IBAction)Click_Sem:(id)sender {
+- (IBAction)Click_Sem:(id)sender
+{
+    [self resignAllTextFields];
     
     strBtnSelection=@"S";
     pickerReg.delegate = self;
     pickerReg.dataSource = self;
     [pickerReg reloadAllComponents];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
-    [UIView commitAnimations];
-    
-    [self.view addSubview:vwReg];
+   
+    [self showPickerView];
 }
 
 - (IBAction)Click_Submit:(id)sender {
@@ -100,23 +106,28 @@
     [self.navigationController pushViewController:pinViewController animated:YES];
     
     
-//    WebCommunicationClass *obj=[WebCommunicationClass new];
-//    
-//    [obj setACaller:self];
-//    [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
-}
-- (BOOL)checkPin:(NSString *)pin {
-    
-    return [pin isEqualToString:@"123456"];
-    
+    //    WebCommunicationClass *obj=[WebCommunicationClass new];
+    //
+    //    [obj setACaller:self];
+    //    [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
 }
 
+- (BOOL)checkPin:(NSString *)pin {
+    return [pin isEqualToString:@"123456"];
+}
 
 - (NSInteger)pinLenght {
     return 6 ;
 }
+
+-(IBAction)btn_Back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark- Webservice callback
 #pragma mark-
+
 -(void) dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
 {
     NSError *jsonParsingError = nil;
@@ -128,40 +139,36 @@
     
     if(aReq.tag==2)
     {
-    if(isSuccessNumber)
-    {
-        arrCollage=[strResult valueForKey:@"responseObject"];
-        NSLog(@"%@",arrCollage);
-        pickerReg.delegate=self;
-        pickerReg.dataSource=self;
-        [pickerReg reloadAllComponents];
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3];
-        vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
-        [UIView commitAnimations];
-        
-        [self.view addSubview:vwReg];
-    }
+        if(isSuccessNumber)
+        {
+            arrCollage=[strResult valueForKey:@"responseObject"];
+            NSLog(@"%@",arrCollage);
+            pickerReg.delegate=self;
+            pickerReg.dataSource=self;
+            [pickerReg reloadAllComponents];
+            
+            [self showPickerView];
+        }
     }
     else
     {
         if(isSuccessNumber)
         {
-                        
+            
         }
-    
-    
     }
 }
 
 #pragma mark - Picker View Data source
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
+
 -(NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component{
-    
+numberOfRowsInComponent:(NSInteger)component
+{
     if([strBtnSelection isEqualToString:@"C"])
     {
         return [arrCity count] ;
@@ -172,10 +179,8 @@ numberOfRowsInComponent:(NSInteger)component{
     }
     else
     {
-    return [arrSem count] ;
+        return [arrSem count] ;
     }
-    
-
 }
 
 #pragma mark- Picker View Delegate
@@ -185,56 +190,64 @@ numberOfRowsInComponent:(NSInteger)component{
     
     if([strBtnSelection isEqualToString:@"C"])
     {
-    [btnCity setTitle:[arrCity objectAtIndex:row] forState:UIControlStateNormal];
+        [btnCity setTitle:[arrCity objectAtIndex:row] forState:UIControlStateNormal];
         strCityId=[NSString stringWithFormat:@"%ld",row+1];
         NSLog(@"%@",strCityId);
     }
     else if ([strBtnSelection isEqualToString:@"Cl"])
     {
-    
-    [btnCollage setTitle:[[arrCollage valueForKey:@"collegeName"] objectAtIndex:row] forState:UIControlStateNormal];
+        
+        [btnCollage setTitle:[[arrCollage valueForKey:@"collegeName"] objectAtIndex:row] forState:UIControlStateNormal];
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
         obj_GlobalDataPersistence.strCollageId=[NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]];
     }
-    
     else
     {
-    [btnSem setTitle:[arrSem objectAtIndex:row] forState:UIControlStateNormal];
+        [btnSem setTitle:[arrSem objectAtIndex:row] forState:UIControlStateNormal];
     }
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    vwReg.frame = CGRectMake(0,750, self.view.frame.size.width, 222);
-    [UIView commitAnimations];
     
-    //[txtjobdesc resignFirstResponder];
-    [self.view addSubview:vwReg];
-    
-    
+    [self hidePickerView];
 }
+
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
-(NSInteger)row forComponent:(NSInteger)component{
-    
+(NSInteger)row forComponent:(NSInteger)component
+{
     if([strBtnSelection isEqualToString:@"C"])
     {
         return [arrCity objectAtIndex:row];
     }
     else if ([strBtnSelection isEqualToString:@"Cl"])
     {
-    
-    return [[arrCollage valueForKey:@"collegeName"] objectAtIndex:row];
+        
+        return [[arrCollage valueForKey:@"collegeName"] objectAtIndex:row];
     }
     
     else
     {
-    return [arrSem objectAtIndex:row];
+        return [arrSem objectAtIndex:row];
     }
-    
-    
 }
--(IBAction)btn_Back:(id)sender
-{
 
-    [self.navigationController popViewControllerAnimated:YES];
+#pragma mark - TextField delegate
+
+- (void)resignAllTextFields
+{
+    [lblName resignFirstResponder];
+    [lblEmail resignFirstResponder];
+    [lblCourse resignFirstResponder];
+    [lblNumber resignFirstResponder];
+    [lblAddress resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self hidePickerView];
 }
 
 @end

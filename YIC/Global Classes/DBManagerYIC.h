@@ -13,7 +13,7 @@
 
 - (void) copyDatabaseIfNeeded;
 
-- (NSString *)getHourlyCode:(NSString*)strDate;
+- (NSString *)getHourlyCode:(NSString*)timeString;
 - (NSMutableArray*)getAllRandomQuestion;
 
 @end

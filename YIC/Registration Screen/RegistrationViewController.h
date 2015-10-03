@@ -10,9 +10,8 @@
 #import "PPPinPadViewController.h"
 
 
-@interface RegistrationViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,PinPadPasswordProtocol>
+@interface RegistrationViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,PinPadPasswordProtocol>
 {
-
     IBOutlet UITextField *lblName;
     IBOutlet UITextField *lblEmail;
     IBOutlet UITextField *lblNumber;
@@ -28,9 +27,6 @@
     NSArray *arrCollage;
     IBOutlet UIPickerView *pickerReg;
     IBOutlet UIView *vwReg;
-    
-    
-    
     
     NSString *strBtnSelection;
     NSString *strCityId;

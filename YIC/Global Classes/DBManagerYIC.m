@@ -40,13 +40,16 @@
 
 #pragma mark - datasource methods
 
-- (NSString *)getHourlyCode:(NSString*)strDate
+- (NSString *)getHourlyCode:(NSString*)timeString
 {
     sqlite3 *database;
     
     NSString *result = @"";
     
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM hourly_code WHERE slot LIKE \"%@\"",strDate];
+    // first, get time slots from current time
+    NSString *slot = [self getSlotFromCurrentTime:timeString];
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM hourly_code WHERE slot LIKE \"%@\"",slot];
     sqlite3_stmt * statement;
     
     if(sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK)
@@ -169,6 +172,39 @@
     }
     
     return result;
+}
+
+- (NSString*)getSlotFromCurrentTime:(NSString*)timeString
+{
+    NSString *slot = @"";
+    
+    NSString *time = [[timeString componentsSeparatedByString:@" "] firstObject];
+    NSString *median = [[timeString componentsSeparatedByString:@" "] lastObject];
+    
+    NSArray *strings = [time componentsSeparatedByString:@":"];
+    
+    int firstPart = [[NSString stringWithFormat:@"%@",strings[0]] intValue];
+    int lastPart = [[NSString stringWithFormat:@"%@",strings[1]] intValue];
+    
+    NSLog(@"LAST:%d",lastPart);
+    
+    if (lastPart>30)
+    {
+        slot=[NSString stringWithFormat:@"%02d:30 %@",firstPart,median];
+        NSLog(@"OUTPUT:%@",slot);
+    }
+    else if (lastPart>0)
+    {
+        slot = [NSString stringWithFormat:@"%02d:00 %@",firstPart,median];
+        NSLog(@"OUTPUT:%@",slot);
+    }
+    else
+    {
+        slot = timeString;
+        NSLog(@"OUTPUT:%@",timeString);
+    }
+    
+    return slot;
 }
 
 int myRandom() {

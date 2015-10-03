@@ -8,7 +8,7 @@
 
 #import "OTPassViewController.h"
 #import "HomeViewController.h"
-
+#import "DBManagerYIC.h"
 
 @implementation OTPassViewController
 
@@ -28,6 +28,18 @@
     
    /* UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
     [self.pageScroll addGestureRecognizer:tap];*/
+    
+    
+    
+    /// ---- getting hourly code from dB ------- ////
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"hh:mm a"];
+    NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
+    NSString *strDate = [formatter stringFromDate:[NSDate date]];
+    
+    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
+    NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
+    NSLog(@"%@",strhourlycode);
 }
 
 
@@ -48,8 +60,6 @@
     }
 }
 
-
-
 -(void)increaseTimer:(NSTimer *)theTimer
 {
     
@@ -60,6 +70,7 @@
     self.timerLbl.text=[NSString stringWithFormat:@"%d",timeCount];
     timeCount--;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -70,6 +81,7 @@
     [super viewWillAppear:YES];
     timeCount=60;
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
@@ -81,25 +93,21 @@
 - (IBAction)tapped_continue:(id)sender
 {
     NSString *strOtp = @"";
+    
     for(UITextField *text in self.otpTxt)
     {
-        
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
-        
-        
     }
 }
 
-
-
-
 - (IBAction)tapped_ResentOTP:(id)sender
 {
-    HomeViewController  *objHomeViewController=[HomeViewController new];
+    HomeViewController *objHomeViewController=[HomeViewController new];
     [self.navigationController pushViewController:objHomeViewController animated:YES];
 }
 
 #pragma Text Field Delegate
+
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
     return YES;
