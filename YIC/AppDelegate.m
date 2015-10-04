@@ -10,6 +10,7 @@
 #import "Config.h"
 #import "ALUtilityClass.h"
 #import "DBManagerYIC.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,20 @@
     DBManagerYIC *dbM = [DBManagerYIC new];
     [dbM copyDatabaseIfNeeded];
     
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"] isEqualToString:@"1"])
+    {
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _SecviewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        self.navigation = [[UINavigationController alloc]initWithRootViewController:_SecviewController];
+        [self.navigation setNavigationBarHidden:YES];
+        [self.window setRootViewController:self.navigation];
+        
+        [self.window makeKeyAndVisible];
+        
+    }
+    else
+    {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _viewController = [[StartUpViewController alloc] initWithNibName:@"StartUpViewController" bundle:nil];
     self.navigation = [[UINavigationController alloc]initWithRootViewController:_viewController];
@@ -30,6 +45,7 @@
     [self.window setRootViewController:self.navigation];
     
     [self.window makeKeyAndVisible];
+    }
     
     //***********|| APNS ||*************//
     if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {

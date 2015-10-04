@@ -131,6 +131,8 @@
 		1D4A62741BBC43AB00A15717 /* TestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4A62721BBC43AB00A15717 /* TestDetailViewController.xib */; };
 		1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A62761BBC43C000A15717 /* QuestionViewController.m */; };
 		1D4A62791BBC43C000A15717 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4A62771BBC43C000A15717 /* QuestionViewController.xib */; };
+		1DB17EB71BC1CDEA00326852 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB17EB51BC1CDEA00326852 /* NotificationViewController.m */; };
+		1DB17EB81BC1CDEA00326852 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB17EB61BC1CDEA00326852 /* NotificationViewController.xib */; };
 		1DB754851BC18028008EA1AE /* next_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB754791BC18028008EA1AE /* next_arrow.png */; };
 		1DB754861BC18029008EA1AE /* next_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB7547A1BC18028008EA1AE /* next_arrow@2x.png */; };
 		1DB754871BC18029008EA1AE /* next_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB7547B1BC18028008EA1AE /* next_arrow@3x.png */; };
@@ -322,6 +324,9 @@
 		1D4A62751BBC43C000A15717 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
 		1D4A62761BBC43C000A15717 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		1D4A62771BBC43C000A15717 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
+		1DB17EB41BC1CDEA00326852 /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		1DB17EB51BC1CDEA00326852 /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		1DB17EB61BC1CDEA00326852 /* NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
 		1DB754791BC18028008EA1AE /* next_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_arrow.png; sourceTree = "<group>"; };
 		1DB7547A1BC18028008EA1AE /* next_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next_arrow@2x.png"; sourceTree = "<group>"; };
 		1DB7547B1BC18028008EA1AE /* next_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next_arrow@3x.png"; sourceTree = "<group>"; };
@@ -580,6 +585,9 @@
 		1D4574F71BBC2EB6002BCDF8 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				1DB17EB41BC1CDEA00326852 /* NotificationViewController.h */,
+				1DB17EB51BC1CDEA00326852 /* NotificationViewController.m */,
+				1DB17EB61BC1CDEA00326852 /* NotificationViewController.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -840,6 +848,7 @@
 				1D4574981BBC2BBE002BCDF8 /* LaunchScreen.xib in Resources */,
 				1D45755C1BBC2EB6002BCDF8 /* notification@2x.png in Resources */,
 				1D4575661BBC2EB6002BCDF8 /* pi03@3x.png in Resources */,
+				1DB17EB81BC1CDEA00326852 /* NotificationViewController.xib in Resources */,
 				1D4575771BBC2EB6002BCDF8 /* tree_home@2x.png in Resources */,
 				1D45753C1BBC2EB6002BCDF8 /* back@3x.png in Resources */,
 				1D4575521BBC2EB6002BCDF8 /* line-right.png in Resources */,
@@ -953,6 +962,7 @@
 				1D4575AE1BBC3678002BCDF8 /* UnlockViewController.m in Sources */,
 				1D4575381BBC2EB6002BCDF8 /* YICRoundsViewController.m in Sources */,
 				1D4575821BBC2EB6002BCDF8 /* StartUpViewController.m in Sources */,
+				1DB17EB71BC1CDEA00326852 /* NotificationViewController.m in Sources */,
 				1D4575791BBC2EB6002BCDF8 /* OTPassViewController.m in Sources */,
 				1D4575891BBC2EB6002BCDF8 /* ASIDownloadCache.m in Sources */,
 				1D3083121BBF017E00654FDA /* InstructionViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "YICRoundsViewController.h"
 #import "UnlockViewController.h"
+#import "NotificationViewController.h"
 
 @interface HomeViewController ()
 
@@ -43,6 +44,8 @@
 }
 
 - (IBAction)Click_Notifications:(id)sender {
+    NotificationViewController *obj_NotificationViewController=[NotificationViewController new];
+    [self.navigationController pushViewController:obj_NotificationViewController animated:YES];
 }
 
 - (IBAction)Click_TakeTest:(id)sender {
