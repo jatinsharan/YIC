@@ -233,4 +233,9 @@
             }
         
 }
+-(IBAction)click_back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
 @end

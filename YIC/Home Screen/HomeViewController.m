@@ -55,7 +55,7 @@
 
 - (IBAction)Click_Share:(id)sender {
     
-    NSURL *OBJURL=[NSURL URLWithString:@"www.google.com"];
+    NSURL *OBJURL=[NSURL URLWithString:@"https://play.google.com/store/apps/details?id=com.mobiquel.yic"];
     NSArray *postItems = @[@"CL-YIC", OBJURL];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc]

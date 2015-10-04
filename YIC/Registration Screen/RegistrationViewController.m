@@ -112,6 +112,15 @@
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Email" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
+    else if (![self validateEmail:lblEmail.text])
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter Valid EmailId" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.delegate=self;
+        [alert show];
+        
+        
+    }
+
     else if(btnCity.titleLabel.text.length==0)
     {
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your City" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -143,7 +152,13 @@
     }
 }
 
-
+- (BOOL) validateEmail: (NSString *) candidate
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
 
 -(IBAction)btn_Back:(id)sender
 {
