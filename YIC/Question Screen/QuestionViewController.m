@@ -204,20 +204,33 @@
         
         NSLog(@"%d",50-countDownTime);
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-
+        NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
         WebCommunicationClass *obj=[WebCommunicationClass new];
         [obj setACaller:self];
         
-        [obj GetSaveUserdetail:@"" testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",50-countDownTime] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+        [obj GetSaveUserdetail:obj_GlobalDataPersistence.strUserId testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",50-countDownTime] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
         
         
-        ResultViewController *obj_ResultViewController=[ResultViewController new];
-        [self.navigationController pushViewController:obj_ResultViewController animated:YES];
-    
+        
     }
     
-    
-    
-    
+}
+-(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+    {
+        NSError *jsonParsingError = nil;
+        
+        NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+        
+        NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
+        NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
+        
+            if(isSuccessNumber)
+            {
+                ResultViewController *obj_ResultViewController=[ResultViewController new];
+                [self.navigationController pushViewController:obj_ResultViewController animated:YES];
+
+                
+            }
+        
 }
 @end

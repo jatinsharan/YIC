@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "DBManagerYIC.h"
 #import "WebCommunicationClass.h"
+#import "GlobalDataPersistence.h"
 
 @implementation OTPassViewController
 
@@ -111,10 +112,14 @@
     {
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
     }
-    NSLog(@"%@",strOtp);
+    
+    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+    NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
+    
+    
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
-    [obj GetOtp:@"1" otp:strOtp];
+    [obj GetOtp:obj_GlobalDataPersistence.strUserId otp:strOtp];
 
     
     

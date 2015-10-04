@@ -40,11 +40,6 @@
 
 #pragma mark - Custom methods
 
-- (void)CreateCity
-{
-    
-}
-
 - (void)hidePickerView
 {
     [UIView beginAnimations:nil context:NULL];
@@ -101,15 +96,51 @@
 
 - (IBAction)Click_Submit:(id)sender {
     
-    OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
+    if(lblName.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your name" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
     
-    [self.navigationController pushViewController:pinViewController animated:YES];
+    }
+    else if (lblNumber.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if (lblEmail.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Email" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if(btnCity.titleLabel.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your City" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else if (lblAddress.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
     
+    }else if (btnCollage.titleLabel.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your Collage" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if (lblCourse.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Course" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else if (btnSem.titleLabel.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your Semester" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else
+    {
+        WebCommunicationClass *obj=[WebCommunicationClass new];
     
-    //    WebCommunicationClass *obj=[WebCommunicationClass new];
-    //
-    //    [obj setACaller:self];
-    //    [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
+        [obj setACaller:self];
+        [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
+    }
 }
 
 
@@ -128,13 +159,15 @@
     
     NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
     
-    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
+    NSLog(@"%@",[strResult valueForKey:@"responseObject"]);
     NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
     
     if(aReq.tag==2)
     {
         if(isSuccessNumber)
         {
+            
+            
             arrCollage=[strResult valueForKey:@"responseObject"];
             NSLog(@"%@",arrCollage);
             pickerReg.delegate=self;
@@ -162,6 +195,13 @@
     {
         if(isSuccessNumber)
         {
+             GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+            obj_GlobalDataPersistence.strUserId=[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]];
+            OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
+            
+            [self.navigationController pushViewController:pinViewController animated:YES];
+            
+
             
         }
     }

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PPPinPadViewController.h"
 
 
-@interface RegistrationViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,PinPadPasswordProtocol>
+@interface RegistrationViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     IBOutlet UITextField *lblName;
     IBOutlet UITextField *lblEmail;

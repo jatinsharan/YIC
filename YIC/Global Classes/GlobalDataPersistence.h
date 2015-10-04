@@ -17,6 +17,7 @@
 @property(nonatomic,strong)NSString *strTimeDuration;
 @property(nonatomic,strong)NSString *strcode;
 @property(nonatomic,strong)NSString *strPasscode;
+@property(nonatomic,strong)NSString *strUserId;
 
 @property(nonatomic,assign)int correctPoint;
 
