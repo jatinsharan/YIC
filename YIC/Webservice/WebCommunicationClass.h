@@ -22,9 +22,14 @@
 
 -(void)GetRegestater:(NSString*)name  mobile:(NSString*)mobile email:(NSString*)email city:(NSString*)city localAddress:(NSString*)localAddress collegeName:(NSString*)collegeName course:(NSString*)course semester:(NSString*)semester;
 
--(void)GetCity:(NSString *)cityId;
+-(void)GetCollage:(NSString *)cityId;
+-(void)Getcity;
 
 -(void)getUserNotices:(NSString *)userId;
+
+-(void)GetOtp:(NSString*)userId otp:(NSString*)otp;
+-(void)GetSaveUserdetail:(NSString*)userId  testDate:(NSString*)testDate passcode:(NSString*)passcode timeTaken:(NSString*)timeTaken marks:(NSString*)marks;
+
 
 + (NSString *)urlEncodeValue:(NSString *)str;
 + (NSString *)urlDecodeValue:(NSString *)str;

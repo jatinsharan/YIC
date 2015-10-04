@@ -8,6 +8,7 @@
 
 #import "DBManagerYIC.h"
 #import "QuestionYIC.h"
+#import "GlobalDataPersistence.h"
 
 @implementation DBManagerYIC
 
@@ -75,7 +76,9 @@
         
         sqlite3_close(database);
     }
+    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
     
+    obj_GlobalDataPersistence.strTimeDuration=result;
     return result;
 }
 
@@ -209,6 +212,54 @@
 
 int myRandom() {
     return (arc4random() % 2 ? 1 : 0);
+}
+
+- (void)getUniquecode:(NSString*)strCode
+{
+    sqlite3 *database;
+    
+    BOOL isTrue=FALSE;
+    // first, get time slots from current time
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM lockcode"];
+    sqlite3_stmt * statement;
+    
+    if(sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK)
+    {
+        int sqlResult = sqlite3_prepare_v2(database, [sql UTF8String], -1, &statement, NULL);
+        
+        if(sqlResult == SQLITE_OK)
+        {
+            while(sqlite3_step(statement) == SQLITE_ROW)
+            {
+                //int id = sqlite3_column_int(selectStatement, 0);
+            NSString * result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
+                
+                if([result isEqualToString:strCode])
+                {
+                    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+                    
+                    obj_GlobalDataPersistence.strcode=result;
+                    NSLog(@"%@",obj_GlobalDataPersistence.strcode);
+                    isTrue=TRUE;
+                }
+                
+            }
+            
+
+            
+        }
+        else {
+           
+            printf( "could not prepare statemnt: %s\n", sqlite3_errmsg(database) );
+        }
+        
+        sqlite3_reset(statement);
+        sqlite3_finalize(statement);
+        
+        sqlite3_close(database);
+    }
+    
 }
 
 @end

@@ -12,9 +12,9 @@
 {
     int timeCount;
     NSTimer *timer;
-    int nextTag;
+    NSInteger nextTag;
     NSString *nextStr;
-    
+    NSString *strOtp;
     
 }
 @property (weak, nonatomic) IBOutlet UILabel *timerLbl;

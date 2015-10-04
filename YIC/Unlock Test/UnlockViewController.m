@@ -8,13 +8,15 @@
 
 #import "UnlockViewController.h"
 #import "InstructionViewController.h"
+#import "DBManagerYIC.h"
+#import "GlobalDataPersistence.h"
 
 
 @implementation UnlockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
    /* UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
     [nextTextField1 becomeFirstResponder];
     
@@ -84,7 +86,7 @@
 
 - (IBAction)tapped_continue:(id)sender
 {
-    NSString *strOtp = @"";
+    strOtp = @"";
     for(UITextField *text in self.otpTxt)
     {
         
@@ -92,6 +94,9 @@
         
         
     }
+    NSString *code = [@"kjtlmt" substringFromIndex: [@"kjtlmt" length] - 3];
+    
+    NSLog(@"%@",code);
 }
 
 
@@ -99,8 +104,50 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
-    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+    UITextField *text=nil;
+    strOtp = @"";
+    for(text in self.otpTxt)
+    {
+        
+        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
+        
+        
+    }
+    
+    NSString *strLastSecureCode = [strOtp substringFromIndex: [strOtp length] - 3];
+    NSLog(@"%@",strLastSecureCode);
+    
+    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
+    [obj_DBManagerYIC getUniquecode:strLastSecureCode];
+    
+    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+    NSLog(@"%@%@%@",obj_GlobalDataPersistence.strCollageId,obj_GlobalDataPersistence.strTimeDuration,obj_GlobalDataPersistence.strcode);
+    
+    
+   
+    
+    NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",obj_GlobalDataPersistence.strCollageId,obj_GlobalDataPersistence.strTimeDuration,obj_GlobalDataPersistence.strcode];
+    
+    NSLog(@"%@",strCommom);
+    
+   if([strCommom isEqualToString:strOtp])
+   {
+       obj_GlobalDataPersistence.strPasscode=strCommom;
+           InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+           [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+   
+   }
+    else
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter correct Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+
+        [text resignFirstResponder];
+    }
+ 
+    
+//    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+//    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
 }
 
 #pragma Text Field Delegate
@@ -142,7 +189,7 @@
     else   if ([textField.text length]==1)
     {
         nextTag = textField.tag;
-        if (nextTag<=9) {
+        if (nextTag<8) {
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
             

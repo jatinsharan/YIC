@@ -54,7 +54,7 @@
     [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:kregisterUser reqTag:1 delegate:self];
 }
 
--(void)GetCity:(NSString *)cityId
+-(void)GetCollage:(NSString *)cityId
 {
     [SVProgressHUD showWithStatus:@"Please wait..."];
     NSMutableDictionary *aUserInfo= [NSMutableDictionary dictionary];
@@ -65,6 +65,8 @@
      [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:KgetColleges reqTag:2 delegate:self];
 
 }
+
+
 -(void)getUserNotices:(NSString *)userId
 
 {
@@ -79,8 +81,47 @@
 
 }
 
+-(void)GetOtp:(NSString*)userId otp:(NSString*)otp
+{
+    [SVProgressHUD showWithStatus:@"Please wait..."];
+    NSMutableDictionary *aUserInfo= [NSMutableDictionary dictionary];
+    [aUserInfo setValue:userId forKey:@"userId"];
+    [aUserInfo setValue:otp forKey:@"otp"];
+    
+    
+    [self retain];
+    
+    
+    [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:kOtp reqTag:4 delegate:self];
+    
+}
 
-
+-(void)GetSaveUserdetail:(NSString*)userId  testDate:(NSString*)testDate passcode:(NSString*)passcode timeTaken:(NSString*)timeTaken marks:(NSString*)marks
+{
+    
+    [SVProgressHUD showWithStatus:@"Please wait..."];
+    NSMutableDictionary *aUserInfo= [NSMutableDictionary dictionary];
+    [aUserInfo setValue:userId forKey:@"userId"];
+    [aUserInfo setValue:testDate forKey:@"testDate"];
+    [aUserInfo setValue:passcode forKey:@"passcode"];
+    
+    [aUserInfo setValue:timeTaken forKey:@"timeTaken"];
+    [aUserInfo setValue:marks forKey:@"marks"];
+    
+    //    [self ASICallSyncToServerWithFunctionName:Login_MethodName PostDataDictonery:aUserInfo];
+    [self retain];
+    
+    [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:ksaveUserTest reqTag:5 delegate:self];
+}
+-(void)Getcity
+{
+    [SVProgressHUD showWithStatus:@"Please wait..."];
+    NSMutableDictionary *aUserInfo= [NSMutableDictionary dictionary];
+    [self retain];
+    
+    [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:KgetCities reqTag:6 delegate:self];
+    
+}
 
 /*
 -(void)checkCompanyExist:(NSString*)companyName

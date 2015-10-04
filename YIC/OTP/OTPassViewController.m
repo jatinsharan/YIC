@@ -9,6 +9,7 @@
 #import "OTPassViewController.h"
 #import "HomeViewController.h"
 #import "DBManagerYIC.h"
+#import "WebCommunicationClass.h"
 
 @implementation OTPassViewController
 
@@ -29,7 +30,8 @@
    /* UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
     [self.pageScroll addGestureRecognizer:tap];*/
     
-    
+   
+
     
     /// ---- getting hourly code from dB ------- ////
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -92,7 +94,7 @@
 
 - (IBAction)tapped_continue:(id)sender
 {
-    NSString *strOtp = @"";
+    strOtp = @"";
     
     for(UITextField *text in self.otpTxt)
     {
@@ -102,8 +104,20 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
-    HomeViewController *objHomeViewController=[HomeViewController new];
-    [self.navigationController pushViewController:objHomeViewController animated:YES];
+   
+    strOtp = @"";
+    
+    for(UITextField *text in self.otpTxt)
+    {
+        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
+    }
+    NSLog(@"%@",strOtp);
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    [obj GetOtp:@"1" otp:strOtp];
+
+    
+    
 }
 
 #pragma Text Field Delegate
@@ -130,7 +144,7 @@
     
     nextStr=string;
     
-    NSLog(@"%d",nextTag);
+    NSLog(@"%ld",(long)nextTag);
     
     if (range.length==1 )
     {
@@ -148,10 +162,15 @@
     else   if ([textField.text length]==1)
     {
         nextTag = textField.tag;
-        if (nextTag<=7) {
+        if (nextTag<6) {
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
             
+        }
+        else
+        {
+            [textField resignFirstResponder];
+        
         }
         return NO;
         
@@ -204,5 +223,28 @@
         //[self.navigationController popViewControllerAnimated:YES];
     }
 }
+#pragma mark- Webservice callback
+#pragma mark-
 
+-(void) dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+{
+    NSError *jsonParsingError = nil;
+    
+    NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    
+    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
+    NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
+    
+    
+        if(isSuccessNumber)
+        {
+            HomeViewController *objHomeViewController=[HomeViewController new];
+            [self.navigationController pushViewController:objHomeViewController animated:YES];
+        }
+   
+}
+-(IBAction)Click_REcivedOtpRetry:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

@@ -32,7 +32,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="EUv-gj-NSa"/>
                             </connections>
@@ -42,7 +42,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="tBB-pP-X3M"/>
                             </connections>
@@ -52,7 +52,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="Uci-bf-cgM"/>
                             </connections>
@@ -62,7 +62,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="zJP-U8-HEh"/>
                             </connections>
@@ -72,7 +72,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="D2a-4P-IjA"/>
                             </connections>
@@ -82,7 +82,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="LO5-rq-q9Q"/>
                             </connections>
@@ -92,7 +92,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="b1a-L9-qvF"/>
                             </connections>
@@ -102,7 +102,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="NrA-ra-JeA"/>
                             </connections>

@@ -38,8 +38,10 @@
 
 #define kAPNS_WEBSERVICE @"registerPushNotificationId"
 #define KgetColleges @"getColleges"
-
+#define KgetCities @"getCities"
 #define kregisterUser @"registerUser"
 #define kgetUserNotices @"getUserNotices"
+#define kOtp @"verifyOTP"
+#define ksaveUserTest @"saveUserTest"
 
 

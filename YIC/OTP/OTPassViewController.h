@@ -12,15 +12,15 @@
 {
     int timeCount;
     NSTimer *timer;
-    int nextTag;
+    NSInteger nextTag;
     NSString *nextStr;
-    
+    NSString *strOtp;
     
 }
 @property (weak, nonatomic) IBOutlet UILabel *timerLbl;
 - (IBAction)tapped_continue:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *pageScroll;
-
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *otpTxt;
 @property(strong,nonatomic) NSString *strPhoneNo;
+-(IBAction)Click_REcivedOtpRetry:(id)sender;
 @end

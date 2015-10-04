@@ -13,6 +13,7 @@
 #import "GlobalDataPersistence.h"
 #import "DBManagerYIC.h"
 #import "QuestionYIC.h"
+#import "WebCommunicationClass.h"
 
 @interface QuestionViewController ()
 
@@ -71,13 +72,12 @@
     //        $seconds = $init % 60;
     int sec = countDownTime%60;
     int min =(countDownTime / 60)%60;
-    int hours = countDownTime /3600;
     if(countDownTime > 0)
     {
         
         countDownTime--;
         // int
-        if (hours == hourss && mints == min && sec==secs)
+        if (mints == min && sec==secs)
         {
             UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Worning" message:@"Time Up!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
@@ -200,9 +200,17 @@
     else
     {
         [_CountDownTimer invalidate];
-        
-        
         _CountDownTimer=nil;
+        
+        NSLog(@"%d",50-countDownTime);
+        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+
+        WebCommunicationClass *obj=[WebCommunicationClass new];
+        [obj setACaller:self];
+        
+        [obj GetSaveUserdetail:@"" testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",50-countDownTime] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+        
+        
         ResultViewController *obj_ResultViewController=[ResultViewController new];
         [self.navigationController pushViewController:obj_ResultViewController animated:YES];
     

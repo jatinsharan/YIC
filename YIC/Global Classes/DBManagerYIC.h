@@ -15,5 +15,5 @@
 
 - (NSString *)getHourlyCode:(NSString*)timeString;
 - (NSMutableArray*)getAllRandomQuestion;
-
+- (void)getUniquecode:(NSString*)strCode;
 @end

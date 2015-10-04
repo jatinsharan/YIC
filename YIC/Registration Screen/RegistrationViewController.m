@@ -29,7 +29,6 @@
     arrCollage=[[NSArray alloc] init];
     
     arrSem=[[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",nil];
-    arrCity=[[NSArray alloc] initWithObjects:@"Agra",@"Ahmedabad",@"Ajmer",@"Allahabad",@"Ambala",@"Amritsar",@"Asansol",@"Bangalore",@"Bathinda",@"Bhagalpur",@"Bhilai",@"Bhilwara",@"Bhopal",@"Bhubaneswar",@"Bhopal",@"Bhubaneswar",@"Chandigarh",@"Chennai",@"Cochin",@"Dehradun",@"Dhanbad",@"Durgapur",@"Faridabad",@"Gandhinagar",@"Ghaziabad",@"Greater Noida",@"Gurgaon",@"Gwalior",@"Haldwani",@"Hissar",@"Hyderabad",@"Indore",@"Jabalpur",@"Jalandhar",@"Jammu",@"Jamshedpur",@"Jodhpur",@"Kanpur",@"karnal",@"Jaipur",@"Kolkata",@"Kullu",@"Kurukshetra",@"Lucknow",@"Ludhiana",@"Meerut",@"Moradabad",@"Mumbai",@"Nagpur",@"New Delh",@"Noida",@"Patiala",@"Patna",@"Pune",@"Raipur",@"Rajkot",@"Ranchi",@"Rewa",@"Rohtak",@"Roorkee",@"Rudrapur",@"Saharanpur",@"Siliguri",@"Udaipur",@"Varanasi",@"Yamunanagar",nil];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -67,13 +66,11 @@
 - (IBAction)Click_City:(id)sender
 {
     [self resignAllTextFields];
-    
     strBtnSelection=@"C";
-    pickerReg.delegate = self;
-    pickerReg.dataSource = self;
-    [pickerReg reloadAllComponents];
-    
-    [self showPickerView];
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    [obj Getcity];
+
 }
 
 - (IBAction)Click_Collage:(id)sender
@@ -84,12 +81,15 @@
     
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
-    [obj GetCity:strCityId];
+    [obj GetCollage:strCityId];
 }
 
 - (IBAction)Click_Sem:(id)sender
 {
     [self resignAllTextFields];
+    
+   
+    
     
     strBtnSelection=@"S";
     pickerReg.delegate = self;
@@ -112,13 +112,7 @@
     //    [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
 }
 
-- (BOOL)checkPin:(NSString *)pin {
-    return [pin isEqualToString:@"123456"];
-}
 
-- (NSInteger)pinLenght {
-    return 6 ;
-}
 
 -(IBAction)btn_Back:(id)sender
 {
@@ -149,6 +143,20 @@
             
             [self showPickerView];
         }
+    }
+    else if (aReq.tag==6)
+    {
+        if(isSuccessNumber)
+        {
+            arrCity=[strResult valueForKey:@"responseObject"];
+            NSLog(@"%@",arrCity);
+            pickerReg.delegate=self;
+            pickerReg.dataSource=self;
+            [pickerReg reloadAllComponents];
+            
+            [self showPickerView];
+        }
+    
     }
     else
     {
@@ -190,8 +198,8 @@ numberOfRowsInComponent:(NSInteger)component
     
     if([strBtnSelection isEqualToString:@"C"])
     {
-        [btnCity setTitle:[arrCity objectAtIndex:row] forState:UIControlStateNormal];
-        strCityId=[NSString stringWithFormat:@"%ld",row+1];
+        [btnCity setTitle:[[arrCity valueForKey:@"cityName"] objectAtIndex:row] forState:UIControlStateNormal];
+        strCityId=[NSString stringWithFormat:@"%@",[[arrCity valueForKey:@"cityId"] objectAtIndex:row]];
         NSLog(@"%@",strCityId);
     }
     else if ([strBtnSelection isEqualToString:@"Cl"])
@@ -214,7 +222,7 @@ numberOfRowsInComponent:(NSInteger)component
 {
     if([strBtnSelection isEqualToString:@"C"])
     {
-        return [arrCity objectAtIndex:row];
+        return [[arrCity valueForKey:@"cityName"] objectAtIndex:row];
     }
     else if ([strBtnSelection isEqualToString:@"Cl"])
     {

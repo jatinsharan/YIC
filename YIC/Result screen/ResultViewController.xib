@@ -48,6 +48,10 @@
                         <action selector="Click_Home:" destination="-1" eventType="touchUpInside" id="zfg-ve-Cnm"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_marks.png" id="asR-ru-shN">
+                    <rect key="frame" x="115" y="201" width="90" height="77"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -55,6 +59,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_marks.png" width="288" height="288"/>
         <image name="list_large.png" width="308" height="140"/>
         <image name="logo.png" width="206" height="201"/>
     </resources>
