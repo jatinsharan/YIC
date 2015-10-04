@@ -194,6 +194,10 @@
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
             
         }
+        else
+        {
+            [textField resignFirstResponder];
+        }
         return NO;
         
     }
