@@ -8,7 +8,6 @@
 
 #import "RegistrationViewController.h"
 #import "WebCommunicationClass.h"
-#import "PPPinPadViewController.h"
 #import "OTPassViewController.h"
 #import "Config.h"
 #import "GlobalDataPersistence.h"

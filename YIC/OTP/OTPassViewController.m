@@ -129,6 +129,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
+    [textField resignFirstResponder];
     return YES;
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField

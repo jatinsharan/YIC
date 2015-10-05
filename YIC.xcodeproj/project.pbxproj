@@ -90,11 +90,6 @@
 		1D4575781BBC2EB6002BCDF8 /* tree_home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4574F61BBC2EB6002BCDF8 /* tree_home@3x.png */; };
 		1D4575791BBC2EB6002BCDF8 /* OTPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574FA1BBC2EB6002BCDF8 /* OTPassViewController.m */; };
 		1D45757A1BBC2EB6002BCDF8 /* OTPassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4574FB1BBC2EB6002BCDF8 /* OTPassViewController.xib */; };
-		1D45757B1BBC2EB6002BCDF8 /* pinViewImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4574FD1BBC2EB6002BCDF8 /* pinViewImage.png */; };
-		1D45757C1BBC2EB6002BCDF8 /* PPCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574FF1BBC2EB6002BCDF8 /* PPCircleButton.m */; };
-		1D45757D1BBC2EB6002BCDF8 /* PPPinCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4575011BBC2EB6002BCDF8 /* PPPinCircleView.m */; };
-		1D45757E1BBC2EB6002BCDF8 /* PPPinPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4575031BBC2EB6002BCDF8 /* PPPinPadViewController.m */; };
-		1D45757F1BBC2EB6002BCDF8 /* PPPinPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4575041BBC2EB6002BCDF8 /* PPPinPadViewController.xib */; };
 		1D4575801BBC2EB6002BCDF8 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4575071BBC2EB6002BCDF8 /* RegistrationViewController.m */; };
 		1D4575811BBC2EB6002BCDF8 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4575081BBC2EB6002BCDF8 /* RegistrationViewController.xib */; };
 		1D4575821BBC2EB6002BCDF8 /* StartUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D45750B1BBC2EB6002BCDF8 /* StartUpViewController.m */; };
@@ -255,14 +250,6 @@
 		1D4574F91BBC2EB6002BCDF8 /* OTPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPassViewController.h; sourceTree = "<group>"; };
 		1D4574FA1BBC2EB6002BCDF8 /* OTPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPassViewController.m; sourceTree = "<group>"; };
 		1D4574FB1BBC2EB6002BCDF8 /* OTPassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPassViewController.xib; sourceTree = "<group>"; };
-		1D4574FD1BBC2EB6002BCDF8 /* pinViewImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinViewImage.png; sourceTree = "<group>"; };
-		1D4574FE1BBC2EB6002BCDF8 /* PPCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCircleButton.h; sourceTree = "<group>"; };
-		1D4574FF1BBC2EB6002BCDF8 /* PPCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPCircleButton.m; sourceTree = "<group>"; };
-		1D4575001BBC2EB6002BCDF8 /* PPPinCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPinCircleView.h; sourceTree = "<group>"; };
-		1D4575011BBC2EB6002BCDF8 /* PPPinCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPinCircleView.m; sourceTree = "<group>"; };
-		1D4575021BBC2EB6002BCDF8 /* PPPinPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPinPadViewController.h; sourceTree = "<group>"; };
-		1D4575031BBC2EB6002BCDF8 /* PPPinPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPinPadViewController.m; sourceTree = "<group>"; };
-		1D4575041BBC2EB6002BCDF8 /* PPPinPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPPinPadViewController.xib; sourceTree = "<group>"; };
 		1D4575061BBC2EB6002BCDF8 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		1D4575071BBC2EB6002BCDF8 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		1D4575081BBC2EB6002BCDF8 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
@@ -430,7 +417,6 @@
 				1D4574B71BBC2EB6002BCDF8 /* Images */,
 				1D4574F71BBC2EB6002BCDF8 /* Notifications */,
 				1D4574F81BBC2EB6002BCDF8 /* OTP */,
-				1D4574FC1BBC2EB6002BCDF8 /* PinCode */,
 				1D4575051BBC2EB6002BCDF8 /* Registration Screen */,
 				1D4575091BBC2EB6002BCDF8 /* StartUp Screen */,
 				1D45750D1BBC2EB6002BCDF8 /* Webservice */,
@@ -600,21 +586,6 @@
 				1D4574FB1BBC2EB6002BCDF8 /* OTPassViewController.xib */,
 			);
 			path = OTP;
-			sourceTree = "<group>";
-		};
-		1D4574FC1BBC2EB6002BCDF8 /* PinCode */ = {
-			isa = PBXGroup;
-			children = (
-				1D4574FD1BBC2EB6002BCDF8 /* pinViewImage.png */,
-				1D4574FE1BBC2EB6002BCDF8 /* PPCircleButton.h */,
-				1D4574FF1BBC2EB6002BCDF8 /* PPCircleButton.m */,
-				1D4575001BBC2EB6002BCDF8 /* PPPinCircleView.h */,
-				1D4575011BBC2EB6002BCDF8 /* PPPinCircleView.m */,
-				1D4575021BBC2EB6002BCDF8 /* PPPinPadViewController.h */,
-				1D4575031BBC2EB6002BCDF8 /* PPPinPadViewController.m */,
-				1D4575041BBC2EB6002BCDF8 /* PPPinPadViewController.xib */,
-			);
-			path = PinCode;
 			sourceTree = "<group>";
 		};
 		1D4575051BBC2EB6002BCDF8 /* Registration Screen */ = {
@@ -840,7 +811,6 @@
 				1D4575541BBC2EB6002BCDF8 /* line-right@3x.png in Resources */,
 				1DB7548E1BC18029008EA1AE /* radio.png in Resources */,
 				1DB754901BC18029008EA1AE /* radio@3x.png in Resources */,
-				1D45757B1BBC2EB6002BCDF8 /* pinViewImage.png in Resources */,
 				1DB754871BC18029008EA1AE /* next_arrow@3x.png in Resources */,
 				1D45755F1BBC2EB6002BCDF8 /* pi01@2x.png in Resources */,
 				1D45753D1BBC2EB6002BCDF8 /* change_box.png in Resources */,
@@ -920,7 +890,6 @@
 				1D4A62791BBC43C000A15717 /* QuestionViewController.xib in Resources */,
 				1D4575371BBC2EB6002BCDF8 /* HomeViewController.xib in Resources */,
 				1D4575601BBC2EB6002BCDF8 /* pi01@3x.png in Resources */,
-				1D45757F1BBC2EB6002BCDF8 /* PPPinPadViewController.xib in Resources */,
 				1D45755B1BBC2EB6002BCDF8 /* notification.png in Resources */,
 				1D4575501BBC2EB6002BCDF8 /* line-left@2x.png in Resources */,
 				1D4575431BBC2EB6002BCDF8 /* down_arrow.png in Resources */,
@@ -943,19 +912,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D45757E1BBC2EB6002BCDF8 /* PPPinPadViewController.m in Sources */,
 				1D4575881BBC2EB6002BCDF8 /* ASIDataDecompressor.m in Sources */,
 				1D4575871BBC2EB6002BCDF8 /* ASIDataCompressor.m in Sources */,
 				1D4575851BBC2EB6002BCDF8 /* ALUtilityClass.m in Sources */,
 				1D30830D1BBF00B800654FDA /* QuestionYIC.m in Sources */,
-				1D45757C1BBC2EB6002BCDF8 /* PPCircleButton.m in Sources */,
 				1D4575921BBC2EB6002BCDF8 /* WebCommunicationClass.m in Sources */,
 				1D45758A1BBC2EB6002BCDF8 /* ASIFormDataRequest.m in Sources */,
 				1D45758F1BBC2EB6002BCDF8 /* MBProgressHUD.m in Sources */,
 				1D4575801BBC2EB6002BCDF8 /* RegistrationViewController.m in Sources */,
 				1D45758D1BBC2EB6002BCDF8 /* ASINetworkQueue.m in Sources */,
 				1D45748D1BBC2BBE002BCDF8 /* AppDelegate.m in Sources */,
-				1D45757D1BBC2EB6002BCDF8 /* PPPinCircleView.m in Sources */,
 				1D4575911BBC2EB6002BCDF8 /* SVProgressHUD.m in Sources */,
 				1D4575861BBC2EB6002BCDF8 /* ASIAuthenticationDialog.m in Sources */,
 				1D4575351BBC2EB6002BCDF8 /* GlobalDataPersistence.m in Sources */,
