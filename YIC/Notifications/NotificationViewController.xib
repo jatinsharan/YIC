@@ -30,8 +30,8 @@
                         <action selector="click_Back:" destination="-1" eventType="touchUpInside" id="fFz-EP-cfu"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YIC Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OYq-i1-Zy5">
-                    <rect key="frame" x="42" y="17" width="270" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YIC Notification" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OYq-i1-Zy5">
+                    <rect key="frame" x="38" y="17" width="274" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" red="0.2470588235" green="0.10980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
