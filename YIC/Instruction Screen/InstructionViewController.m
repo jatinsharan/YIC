@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [scrInstrucation setContentSize:CGSizeMake(self.view.frame.size.width, 1250)];
+    [scrInstrucation setContentSize:CGSizeMake(self.view.frame.size.width, 1150)];
     // Do any additional setup after loading the view from its nib.
 }
 

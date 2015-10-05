@@ -121,12 +121,14 @@
     [obj_DBManagerYIC getUniquecode:strLastSecureCode];
     
     GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-    NSLog(@"%@%@%@",obj_GlobalDataPersistence.strCollageId,obj_GlobalDataPersistence.strTimeDuration,obj_GlobalDataPersistence.strcode);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"hh:mm a"];
+    NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
+    NSString *strDate = [formatter stringFromDate:[NSDate date]];
     
+    NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
     
-   
-    
-    NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",obj_GlobalDataPersistence.strCollageId,obj_GlobalDataPersistence.strTimeDuration,obj_GlobalDataPersistence.strcode];
+    NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"],strhourlycode,obj_GlobalDataPersistence.strcode];
     
     NSLog(@"%@",strCommom);
     
@@ -236,7 +238,10 @@
     }
     
 }
-
+-(IBAction)Click_Back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma AlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

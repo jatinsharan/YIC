@@ -31,18 +31,7 @@
    /* UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
     [self.pageScroll addGestureRecognizer:tap];*/
     
-   
 
-    
-    /// ---- getting hourly code from dB ------- ////
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm a"];
-    NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
-    NSString *strDate = [formatter stringFromDate:[NSDate date]];
-    
-    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-    NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
-    NSLog(@"%@",strhourlycode);
 }
 
 

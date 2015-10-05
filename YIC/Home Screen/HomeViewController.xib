@@ -72,7 +72,7 @@
         </view>
     </objects>
     <resources>
-        <image name="cl_icon.png" width="127" height="146"/>
+        <image name="cl_icon.png" width="108" height="125"/>
         <image name="logo.png" width="206" height="201"/>
         <image name="notification.png" width="127" height="146"/>
         <image name="share.png" width="127" height="146"/>
