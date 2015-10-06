@@ -18,7 +18,6 @@
 		1D45748A1BBC2BBE002BCDF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574891BBC2BBE002BCDF8 /* main.m */; };
 		1D45748D1BBC2BBE002BCDF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D45748C1BBC2BBE002BCDF8 /* AppDelegate.m */; };
 		1D4574951BBC2BBE002BCDF8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D4574941BBC2BBE002BCDF8 /* Images.xcassets */; };
-		1D4574981BBC2BBE002BCDF8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4574961BBC2BBE002BCDF8 /* LaunchScreen.xib */; };
 		1D4574A41BBC2BBF002BCDF8 /* YICTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574A31BBC2BBF002BCDF8 /* YICTests.m */; };
 		1D4575351BBC2EB6002BCDF8 /* GlobalDataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574AF1BBC2EB6002BCDF8 /* GlobalDataPersistence.m */; };
 		1D4575361BBC2EB6002BCDF8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4574B21BBC2EB6002BCDF8 /* HomeViewController.m */; };
@@ -172,7 +171,6 @@
 		1D45748B1BBC2BBE002BCDF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D45748C1BBC2BBE002BCDF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D4574941BBC2BBE002BCDF8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1D4574971BBC2BBE002BCDF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1D45749D1BBC2BBF002BCDF8 /* YICTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YICTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4574A21BBC2BBF002BCDF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4574A31BBC2BBF002BCDF8 /* YICTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YICTests.m; sourceTree = "<group>"; };
@@ -424,7 +422,6 @@
 				1D45748B1BBC2BBE002BCDF8 /* AppDelegate.h */,
 				1D45748C1BBC2BBE002BCDF8 /* AppDelegate.m */,
 				1D4574941BBC2BBE002BCDF8 /* Images.xcassets */,
-				1D4574961BBC2BBE002BCDF8 /* LaunchScreen.xib */,
 				1D4574871BBC2BBE002BCDF8 /* Supporting Files */,
 			);
 			path = YIC;
@@ -815,7 +812,6 @@
 				1D45755F1BBC2EB6002BCDF8 /* pi01@2x.png in Resources */,
 				1D45753D1BBC2EB6002BCDF8 /* change_box.png in Resources */,
 				1D4575531BBC2EB6002BCDF8 /* line-right@2x.png in Resources */,
-				1D4574981BBC2BBE002BCDF8 /* LaunchScreen.xib in Resources */,
 				1D45755C1BBC2EB6002BCDF8 /* notification@2x.png in Resources */,
 				1D4575661BBC2EB6002BCDF8 /* pi03@3x.png in Resources */,
 				1DB17EB81BC1CDEA00326852 /* NotificationViewController.xib in Resources */,
@@ -963,17 +959,6 @@
 			targetProxy = 1D45749E1BBC2BBF002BCDF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1D4574961BBC2BBE002BCDF8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1D4574971BBC2BBE002BCDF8 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D4574A51BBC2BBF002BCDF8 /* Debug */ = {

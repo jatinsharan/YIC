@@ -69,7 +69,7 @@
     int sec = countDownTime%60;
     int min =(countDownTime / 60)%60;
     
-    NSLog(@"%d",(countDownTime / 60)%60-countDownTime);
+    NSLog(@"%d",(3000-countDownTime));
     if(countDownTime > 0)
     {
         
@@ -144,7 +144,7 @@
         WebCommunicationClass *obj=[WebCommunicationClass new];
         [obj setACaller:self];
         
-        [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"] testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",50] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+        [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"] testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",3000-countDownTime] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
     }
 }
 
