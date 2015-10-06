@@ -37,14 +37,14 @@
     }
     else
     {
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    _viewController = [[StartUpViewController alloc] initWithNibName:@"StartUpViewController" bundle:nil];
-    self.navigation = [[UINavigationController alloc]initWithRootViewController:_viewController];
-    [self.navigation setNavigationBarHidden:YES];
-    [self.window setRootViewController:self.navigation];
-    
-    [self.window makeKeyAndVisible];
+        
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _viewController = [[StartUpViewController alloc] initWithNibName:@"StartUpViewController" bundle:nil];
+        self.navigation = [[UINavigationController alloc]initWithRootViewController:_viewController];
+        [self.navigation setNavigationBarHidden:YES];
+        [self.window setRootViewController:self.navigation];
+        
+        [self.window makeKeyAndVisible];
     }
     
     //***********|| APNS ||*************//

@@ -233,9 +233,9 @@ int myRandom() {
             while(sqlite3_step(statement) == SQLITE_ROW)
             {
                 //int id = sqlite3_column_int(selectStatement, 0);
-            NSString * result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
+                NSString * result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
                 
-                if([result isEqualToString:strCode])
+                if([[result capitalizedString] isEqualToString:[strCode capitalizedString]])
                 {
                     GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
                     
@@ -245,8 +245,6 @@ int myRandom() {
                 }
                 
             }
-            
-
             
         }
         else {

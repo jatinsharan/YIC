@@ -105,47 +105,51 @@
 - (IBAction)tapped_ResentOTP:(id)sender
 {
     UITextField *text=nil;
+    
     strOtp = @"";
-    for(text in self.otpTxt)
-    {
-        
+    for(text in self.otpTxt) {
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
-        
-        
     }
     
-    NSString *strLastSecureCode = [strOtp substringFromIndex: [strOtp length] - 3];
-    NSLog(@"%@",strLastSecureCode);
+    [text resignFirstResponder];
     
-    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-    [obj_DBManagerYIC getUniquecode:strLastSecureCode];
-    
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm a"];
-    NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
-    NSString *strDate = [formatter stringFromDate:[NSDate date]];
-    
-    NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
-    
-    NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"],strhourlycode,obj_GlobalDataPersistence.strcode];
-    
-    NSLog(@"%@",strCommom);
-    
-   if([strCommom isEqualToString:strOtp])
-   {
-       obj_GlobalDataPersistence.strPasscode=strCommom;
-           InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-           [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
-   
-   }
-    else
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter correct Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    if (strOtp.length>0) {
+        
+        NSString *strLastSecureCode = [strOtp substringFromIndex: [strOtp length] - 3];
+        NSLog(@"%@",strLastSecureCode);
+        
+        DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
+        [obj_DBManagerYIC getUniquecode:strLastSecureCode];
+        
+        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"hh:mm a"];
+        NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
+        NSString *strDate = [formatter stringFromDate:[NSDate date]];
+        
+        NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
+        
+        NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"],strhourlycode,obj_GlobalDataPersistence.strcode];
+        
+        NSLog(@"%@",strCommom);
+        
+        if([[strCommom capitalizedString] isEqualToString:[strOtp capitalizedString]])
+        {
+            obj_GlobalDataPersistence.strPasscode=strCommom;
+            InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+            [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+        }
+        else
+        {
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter correct Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-
-        [text resignFirstResponder];
     }
+    
  
     
 //    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];

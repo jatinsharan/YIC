@@ -35,12 +35,13 @@
     
     NSString *correctOption;
     
+    IBOutlet UIButton *btnPrevious;
+    IBOutlet UIButton *btnNext;
+    
 }
 - (IBAction)Select_Option:(id)sender;
 - (IBAction)Click_NextQuestion:(id)sender;
-
-
-
+- (IBAction)Click_PreviousQuestion:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *lbl;
 @property(retain,nonatomic)NSTimer *CountDownTimer;

@@ -22,33 +22,19 @@
 @implementation QuestionViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    
-    questionCount=0;
-    
-    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount];
     
     GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
     NSLog(@"%@",obj_GlobalDataPersistence.strCollageId);
     
     DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-    arrQuestion=[obj_DBManagerYIC getAllRandomQuestion];
+    arrQuestion = [obj_DBManagerYIC getAllRandomQuestion];
     
     question = [QuestionYIC new];
-    question=[arrQuestion objectAtIndex:questionCount];
     
-    lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
-    lblQuestion.text=[NSString stringWithFormat:@"%@",question.qQuestion];
-    
-    [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
-    
-    [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
-    
-    [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
-    
-    [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
-    
-    NSLog(@"%@",question.qCorrectOption);
+    questionCount=0;
+    [self setCurrentQuestion];
     
     secs = 00;
     mints = 58;
@@ -101,20 +87,17 @@
         
         
     }
-    
 }
 
 
 -(void)InvalidateCountDownTimer
 {
-    
-    if ([_CountDownTimer isValid])
-    {
+    if ([_CountDownTimer isValid]) {
         [_CountDownTimer invalidate];
         
     }
-    _CountDownTimer=nil;
     
+    _CountDownTimer=nil;
 }
 
 #pragma mark Class functions
@@ -129,75 +112,23 @@
 }
 */
 
-- (IBAction)Select_Option:(UIButton*)sender {
-    
-    if(sender.tag==0)
-    {
-        correctOption=@"A";
-        [btnOption1 setSelected:YES];
-        [btnOption2 setSelected:NO];
-        [btnOption3 setSelected:NO];
-        [btnOption4 setSelected:NO];
-    }
-    else if(sender.tag==1)
-    {
-                correctOption=@"B";
-        [btnOption2 setSelected:YES];
-        [btnOption1 setSelected:NO];
-        [btnOption3 setSelected:NO];
-        [btnOption4 setSelected:NO];
-    }
-    else if(sender.tag==2)
-    {
-                correctOption=@"c";
-        [btnOption1 setSelected:NO];
-        [btnOption2 setSelected:NO];
-        [btnOption3 setSelected:YES];
-        [btnOption4 setSelected:NO];
-    }
-    else if(sender.tag==3)
-    {
-                correctOption=@"D";
-        [btnOption1 setSelected:NO];
-        [btnOption2 setSelected:NO];
-        [btnOption3 setSelected:NO];
-        [btnOption4 setSelected:YES];
-    }
-    
-
-    
-}
-
 - (IBAction)Click_NextQuestion:(id)sender {
     
     if(questionCount<[arrQuestion count]-1)
     {
         questionCount++;
-         lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount];
-        question=[arrQuestion objectAtIndex:questionCount];
-         NSLog(@"%@",question.qCorrectOption);
-        lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
-        lblQuestion.text=[NSString stringWithFormat:@"%@",question.qQuestion];
+        [self setCurrentQuestion];
         
-        [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
-        
-        [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
-        
-        [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
-        
-        [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
+        // ======== this logic here need to be revised ==========
         GlobalDataPersistence *obj_global=[GlobalDataPersistence sharedGlobalDataPersistence];
-         NSLog(@"%d",question.qMarks);
-        if([correctOption isEqualToString:question.qCorrectOption])
-        {
-        obj_global.correctPoint=obj_global.correctPoint+question.qMarks;
+        NSLog(@"%d",question.qMarks);
+        
+        if([correctOption isEqualToString:question.qCorrectOption]) {
+            obj_global.correctPoint=obj_global.correctPoint+question.qMarks;
         }
+        
         NSLog(@"%d",obj_global.correctPoint);
-        [btnOption1 setSelected:NO];
-        [btnOption2 setSelected:NO];
-        [btnOption3 setSelected:NO];
-        [btnOption4 setSelected:NO];
-
+        // ====================================================
     }
     else
     {
@@ -211,33 +142,104 @@
         [obj setACaller:self];
         
         [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"] testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",50] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
-        
-        
-        
+    }
+}
+
+- (IBAction)Click_PreviousQuestion:(id)sender {
+    
+    if(questionCount>0)
+    {
+        questionCount--;
+        [self setCurrentQuestion];
+    }
+}
+
+- (IBAction)Select_Option:(UIButton*)sender {
+    
+    if(sender.tag==0)
+    {
+        correctOption=@"A";
+        [btnOption1 setSelected:YES];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:NO];
+    }
+    else if(sender.tag==1)
+    {
+        correctOption=@"B";
+        [btnOption2 setSelected:YES];
+        [btnOption1 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:NO];
+    }
+    else if(sender.tag==2)
+    {
+        correctOption=@"c";
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:YES];
+        [btnOption4 setSelected:NO];
+    }
+    else if(sender.tag==3)
+    {
+        correctOption=@"D";
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:YES];
     }
     
 }
--(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
-    {
-        NSError *jsonParsingError = nil;
-        
-        NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
-        
-        NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
-        NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
-        
-            if(isSuccessNumber)
-            {
-                ResultViewController *obj_ResultViewController=[ResultViewController new];
-                [self.navigationController pushViewController:obj_ResultViewController animated:YES];
 
-                
-            }
-        
-}
 -(IBAction)click_back:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-
 }
+
+-(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+{
+    NSError *jsonParsingError = nil;
+    
+    NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    
+    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
+    NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
+    
+    if(isSuccessNumber)
+    {
+        ResultViewController *obj_ResultViewController=[ResultViewController new];
+        [self.navigationController pushViewController:obj_ResultViewController animated:YES];
+        
+        
+    }
+}
+
+- (void)setCurrentQuestion
+{
+    // This is a generic func. which is using repeteadly
+    
+    if (questionCount==0)
+        btnPrevious.hidden = YES;
+    else
+        btnPrevious.hidden = NO;
+    
+    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
+    
+    question=[arrQuestion objectAtIndex:questionCount];
+    NSLog(@"%@",question.qCorrectOption);
+    
+    lblQuestion.text=[NSString stringWithFormat:@"%@",question.qQuestion];
+    lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
+    
+    [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
+    [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
+    [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
+    [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
+    
+    [btnOption1 setSelected:NO];
+    [btnOption2 setSelected:NO];
+    [btnOption3 setSelected:NO];
+    [btnOption4 setSelected:NO];
+}
+
 @end
