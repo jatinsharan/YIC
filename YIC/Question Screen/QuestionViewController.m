@@ -206,13 +206,11 @@
     NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
     
     NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
-    NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
     
-    if(isSuccessNumber)
-    {
+   
         ResultViewController *obj_ResultViewController=[ResultViewController new];
         [self.navigationController pushViewController:obj_ResultViewController animated:YES];
-    }
+    
 }
 
 - (void)setCurrentQuestion

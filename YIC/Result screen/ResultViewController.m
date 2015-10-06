@@ -13,6 +13,10 @@
 #import "GlobalDataPersistence.h"
 #import "DBManagerYIC.h"
 @interface ResultViewController ()
+{
+    GlobalDataPersistence *obj_GlobalDataPersistence;
+
+}
 
 @end
 
@@ -20,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    lblScore.text=[NSString stringWithFormat:@"Your Score is :%d",obj_GlobalDataPersistence.correctPoint];
        // Do any additional setup after loading the view from its nib.
 }
 

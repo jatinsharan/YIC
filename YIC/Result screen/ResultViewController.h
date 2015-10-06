@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ResultViewController : UIViewController
+{
+   IBOutlet UILabel *lblScore;
+}
 
 @end
