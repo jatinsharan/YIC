@@ -32,6 +32,7 @@
     int questionCount;
     QuestionYIC *question;
     NSArray *arrQuestion;
+    NSMutableDictionary *dictAnsweredQuestion;
     
     NSString *correctOption;
     

@@ -15,7 +15,9 @@
 #import "QuestionYIC.h"
 #import "WebCommunicationClass.h"
 
-@interface QuestionViewController ()
+@interface QuestionViewController () {
+    GlobalDataPersistence *obj_GlobalDataPersistence;
+}
 
 @end
 
@@ -25,16 +27,24 @@
     
     [super viewDidLoad];
     
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+    obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
     NSLog(@"%@",obj_GlobalDataPersistence.strCollageId);
     
-    DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
+    DBManagerYIC *obj_DBManagerYIC = [DBManagerYIC new];
     arrQuestion = [obj_DBManagerYIC getAllRandomQuestion];
     
     question = [QuestionYIC new];
     
     questionCount=0;
     [self setCurrentQuestion];
+    
+    
+    dictAnsweredQuestion = [NSMutableDictionary dictionary];
+    for (int i=0; i<arrQuestion.count; i++) {
+        [dictAnsweredQuestion setObject:@"N" forKey:[NSNumber numberWithInt:i]];
+    }
+    
+    NSLog(@"%@",dictAnsweredQuestion.description);
     
     secs = 00;
     mints = 58;
@@ -116,19 +126,12 @@
     
     if(questionCount<[arrQuestion count]-1)
     {
-        questionCount++;
-        [self setCurrentQuestion];
-        
-        // ======== this logic here need to be revised ==========
-        GlobalDataPersistence *obj_global=[GlobalDataPersistence sharedGlobalDataPersistence];
-        NSLog(@"%d",question.qMarks);
-        
-        if([correctOption isEqualToString:question.qCorrectOption]) {
-            obj_global.correctPoint=obj_global.correctPoint+question.qMarks;
+        if ([[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"N"]) {
+            [self submitAnswer]; // This is imp.
         }
         
-        NSLog(@"%d",obj_global.correctPoint);
-        // ====================================================
+        questionCount++;
+        [self setCurrentQuestion];
     }
     else
     {
@@ -136,8 +139,8 @@
         _CountDownTimer=nil;
         
         NSLog(@"%d",50-countDownTime);
-        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
         NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
+        
         WebCommunicationClass *obj=[WebCommunicationClass new];
         [obj setACaller:self];
         
@@ -209,8 +212,6 @@
     {
         ResultViewController *obj_ResultViewController=[ResultViewController new];
         [self.navigationController pushViewController:obj_ResultViewController animated:YES];
-        
-        
     }
 }
 
@@ -240,6 +241,25 @@
     [btnOption2 setSelected:NO];
     [btnOption3 setSelected:NO];
     [btnOption4 setSelected:NO];
+    
+    correctOption=@"";
+}
+
+- (void)submitAnswer {
+    
+    // =========== logic to check the answer and calculate the total marks
+    
+    NSLog(@"%d",question.qMarks);
+    
+    if([[correctOption capitalizedString] isEqualToString:[question.qCorrectOption capitalizedString]]) {
+        obj_GlobalDataPersistence.correctPoint = obj_GlobalDataPersistence.correctPoint + question.qMarks;
+        // now marking this question as answered in global dict
+        [dictAnsweredQuestion setObject:@"Y" forKey:[NSNumber numberWithInt:questionCount]];
+    }
+    
+    NSLog(@"%d",obj_GlobalDataPersistence.correctPoint);
+    
+    // ====================================
 }
 
 @end
