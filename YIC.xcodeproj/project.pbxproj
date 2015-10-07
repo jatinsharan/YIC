@@ -1053,6 +1053,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: shivika gandhi (MW58TUB9J7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shivika gandhi (MW58TUB9J7)";
 				INFOPLIST_FILE = YIC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bac4ec2f-eddc-44a2-963e-e2934bba3c00";
@@ -1067,6 +1068,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: shivika gandhi (MW58TUB9J7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shivika gandhi (MW58TUB9J7)";
 				INFOPLIST_FILE = YIC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bac4ec2f-eddc-44a2-963e-e2934bba3c00";
