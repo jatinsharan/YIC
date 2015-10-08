@@ -249,7 +249,8 @@
     
     NSLog(@"%d",question.qMarks);
     
-    if([[correctOption capitalizedString] isEqualToString:[question.qCorrectOption capitalizedString]]) {
+    if([[correctOption capitalizedString] isEqualToString:[question.qCorrectOption capitalizedString]])
+    {
         obj_GlobalDataPersistence.correctPoint = obj_GlobalDataPersistence.correctPoint + question.qMarks;
         // now marking this question as answered in global dict
         [dictAnsweredQuestion setObject:@"Y" forKey:[NSNumber numberWithInt:questionCount]];

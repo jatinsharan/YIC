@@ -106,6 +106,12 @@
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
+    else if (lblNumber.text.length>=10)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter only 10 digit Phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     else if (lblEmail.text.length==0)
     {
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Email" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

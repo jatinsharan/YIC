@@ -140,6 +140,9 @@
 		1DB7548F1BC18029008EA1AE /* radio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB754831BC18028008EA1AE /* radio@2x.png */; };
 		1DB754901BC18029008EA1AE /* radio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB754841BC18028008EA1AE /* radio@3x.png */; };
 		1DB754921BC18058008EA1AE /* ic_marks.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DB754911BC18058008EA1AE /* ic_marks.png */; };
+		1DE2DFC21BC5B40A00B410F9 /* social.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFBF1BC5B40900B410F9 /* social.png */; };
+		1DE2DFC31BC5B40B00B410F9 /* social@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFC01BC5B40A00B410F9 /* social@2x.png */; };
+		1DE2DFC41BC5B40B00B410F9 /* social@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFC11BC5B40A00B410F9 /* social@3x.png */; };
 		F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */; };
 /* End PBXBuildFile section */
 
@@ -325,6 +328,9 @@
 		1DB754831BC18028008EA1AE /* radio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio@2x.png"; sourceTree = "<group>"; };
 		1DB754841BC18028008EA1AE /* radio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio@3x.png"; sourceTree = "<group>"; };
 		1DB754911BC18058008EA1AE /* ic_marks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_marks.png; sourceTree = "<group>"; };
+		1DE2DFBF1BC5B40900B410F9 /* social.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = social.png; sourceTree = "<group>"; };
+		1DE2DFC01BC5B40A00B410F9 /* social@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "social@2x.png"; sourceTree = "<group>"; };
+		1DE2DFC11BC5B40A00B410F9 /* social@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "social@3x.png"; sourceTree = "<group>"; };
 		F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerYIC.h; sourceTree = "<group>"; };
 		F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerYIC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -482,6 +488,9 @@
 		1D4574B71BBC2EB6002BCDF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1DE2DFBF1BC5B40900B410F9 /* social.png */,
+				1DE2DFC01BC5B40A00B410F9 /* social@2x.png */,
+				1DE2DFC11BC5B40A00B410F9 /* social@3x.png */,
 				1DB754911BC18058008EA1AE /* ic_marks.png */,
 				1DB754791BC18028008EA1AE /* next_arrow.png */,
 				1DB7547A1BC18028008EA1AE /* next_arrow@2x.png */,
@@ -834,6 +843,7 @@
 				1D4575691BBC2EB6002BCDF8 /* pi04@3x.png in Resources */,
 				1D4575591BBC2EB6002BCDF8 /* logo@2x.png in Resources */,
 				1DB754861BC18029008EA1AE /* next_arrow@2x.png in Resources */,
+				1DE2DFC31BC5B40B00B410F9 /* social@2x.png in Resources */,
 				1DB7548A1BC18029008EA1AE /* pre_arrow@3x.png in Resources */,
 				1D45757A1BBC2EB6002BCDF8 /* OTPassViewController.xib in Resources */,
 				1D45756D1BBC2EB6002BCDF8 /* share.png in Resources */,
@@ -848,6 +858,7 @@
 				1D4A62741BBC43AB00A15717 /* TestDetailViewController.xib in Resources */,
 				1D4575461BBC2EB6002BCDF8 /* dropdown_field.png in Resources */,
 				1D4575471BBC2EB6002BCDF8 /* dropdown_field@2x.png in Resources */,
+				1DE2DFC21BC5B40A00B410F9 /* social.png in Resources */,
 				1D4575581BBC2EB6002BCDF8 /* logo.png in Resources */,
 				1DB754891BC18029008EA1AE /* pre_arrow@2x.png in Resources */,
 				1D45754D1BBC2EB6002BCDF8 /* home_icon@2x.png in Resources */,
@@ -856,6 +867,7 @@
 				1D4575901BBC2EB6002BCDF8 /* SVProgressHUD.bundle in Resources */,
 				1D4575551BBC2EB6002BCDF8 /* list.png in Resources */,
 				1D4575741BBC2EB6002BCDF8 /* test@2x.png in Resources */,
+				1DE2DFC41BC5B40B00B410F9 /* social@3x.png in Resources */,
 				1D4575721BBC2EB6002BCDF8 /* steps@3x.png in Resources */,
 				1D4575481BBC2EB6002BCDF8 /* dropdown_field@3x.png in Resources */,
 				1D4575781BBC2EB6002BCDF8 /* tree_home@3x.png in Resources */,
