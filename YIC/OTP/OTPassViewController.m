@@ -105,11 +105,19 @@
     GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
     NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
     
+    if(strOtp.length!=0)
+    {
     
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
     [obj GetOtp:obj_GlobalDataPersistence.strUserId otp:strOtp];
-
+    }
+    else
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter OTP" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    
+    }
     
     
 }
@@ -233,6 +241,10 @@
     
         if(isSuccessNumber)
         {
+            NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
+            [pref setBool:true forKey:@"isOtp"];
+            [pref synchronize];
+            
             HomeViewController *objHomeViewController=[HomeViewController new];
             [self.navigationController pushViewController:objHomeViewController animated:YES];
         }
