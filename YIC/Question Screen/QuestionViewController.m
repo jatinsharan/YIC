@@ -48,8 +48,8 @@
     
     secs = 00;
     mints = 58;
-    hourss=23;
-    countDownTime=3000;
+    hourss = 23;
+    countDownTime = 3000;
     _CountDownTimer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(DecrementCounterValue) userInfo:nil repeats:YES];
     // Do any additional setup after loading the view from its nib.
 }
@@ -126,7 +126,7 @@
     
     if(questionCount<[arrQuestion count]-1)
     {
-        if ([[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"N"]) {
+        if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
             [self submitAnswer]; // This is imp.
         }
         
@@ -177,7 +177,7 @@
     }
     else if(sender.tag==2)
     {
-        correctOption=@"c";
+        correctOption=@"C";
         [btnOption1 setSelected:NO];
         [btnOption2 setSelected:NO];
         [btnOption3 setSelected:YES];
@@ -192,6 +192,7 @@
         [btnOption4 setSelected:YES];
     }
     
+    [dictAnsweredQuestion setObject:correctOption forKey:[NSNumber numberWithInt:questionCount]];
 }
 
 -(IBAction)click_back:(id)sender
@@ -207,10 +208,8 @@
     
     NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
     
-   
-        ResultViewController *obj_ResultViewController=[ResultViewController new];
-        [self.navigationController pushViewController:obj_ResultViewController animated:YES];
-    
+    ResultViewController *obj_ResultViewController=[ResultViewController new];
+    [self.navigationController pushViewController:obj_ResultViewController animated:YES];
 }
 
 - (void)setCurrentQuestion
@@ -235,12 +234,46 @@
     [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
     [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
     
-    [btnOption1 setSelected:NO];
-    [btnOption2 setSelected:NO];
-    [btnOption3 setSelected:NO];
-    [btnOption4 setSelected:NO];
     
-    correctOption=@"";
+    NSString *selectedAnswer = [dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]];
+    
+    if ([selectedAnswer isEqualToString:@"N"])
+        correctOption=@"";
+    else if ([selectedAnswer isEqualToString:@"Y"])
+        correctOption = question.qCorrectOption;
+    else
+        correctOption = selectedAnswer;
+    
+    if ([correctOption isEqualToString:@"A"]) {
+        [btnOption1 setSelected:YES];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:NO];
+    }
+    else if ([correctOption isEqualToString:@"B"]) {
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:YES];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:NO];
+    }
+    else if ([correctOption isEqualToString:@"C"]) {
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:YES];
+        [btnOption4 setSelected:NO];
+    }
+    else if ([correctOption isEqualToString:@"D"]) {
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:YES];
+    }
+    else {
+        [btnOption1 setSelected:NO];
+        [btnOption2 setSelected:NO];
+        [btnOption3 setSelected:NO];
+        [btnOption4 setSelected:NO];
+    }
 }
 
 - (void)submitAnswer {
