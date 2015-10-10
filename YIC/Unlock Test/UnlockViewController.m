@@ -16,24 +16,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-   /* UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
-    [nextTextField1 becomeFirstResponder];
     
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    
-    self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
-    
-  
-    
-    timeCount=60;
-    timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(increaseTimer:) userInfo:nil repeats:YES];
-    [timer fire];
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
-    [self.pageScroll addGestureRecognizer:tap];*/
+    /* UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
+     [nextTextField1 becomeFirstResponder];
+     
+     CGRect screenRect = [[UIScreen mainScreen] bounds];
+     CGFloat screenWidth = screenRect.size.width;
+     CGFloat screenHeight = screenRect.size.height;
+     
+     self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+     [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
+     
+     
+     
+     timeCount=60;
+     timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(increaseTimer:) userInfo:nil repeats:YES];
+     [timer fire];
+     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
+     [self.pageScroll addGestureRecognizer:tap];*/
 }
 
 
@@ -61,8 +61,8 @@
     
     if (timeCount==0)
     {
-       
-       }
+        
+    }
     self.timerLbl.text=[NSString stringWithFormat:@"%d",timeCount];
     timeCount--;
 }
@@ -113,122 +113,116 @@
     
     [text resignFirstResponder];
     
-    if (strOtp.length>0) {
-        
-        NSString *strLastSecureCode = [strOtp substringFromIndex: [strOtp length] - 3];
-        NSLog(@"%@",strLastSecureCode);
-        
+    if (strOtp.length == 8)
+    {
         DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-        [obj_DBManagerYIC getUniquecode:strLastSecureCode];
-        
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"hh:mm a"];
-        NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
         NSString *strDate = [formatter stringFromDate:[NSDate date]];
         
         NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
         
-        NSString *strCommom=[NSString stringWithFormat:@"%@%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"],strhourlycode,obj_GlobalDataPersistence.strcode];
+        NSString *strLockCode = [obj_DBManagerYIC getLockCode];
         
+        NSString *strCollegeCode = obj_GlobalDataPersistence.strCollageId;
+        
+        NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,strLockCode];
         NSLog(@"%@",strCommom);
         
         if([[strCommom capitalizedString] isEqualToString:[strOtp capitalizedString]])
         {
-            obj_GlobalDataPersistence.strPasscode=strCommom;
+            obj_GlobalDataPersistence.strPasscode = strCommom;
+            
+            // lock code entered is valid, move to next screen
             InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
             [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
         }
         else
         {
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter correct Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
     else {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter Access Code" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     
- 
-    
-//    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-//    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
 }
 
 #pragma Text Field Delegate
+
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     return YES;
 }
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
-    NSLog(@"ff");
+
 }
+
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     
 }
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
     nextStr=string;
     
     if (range.length==1 )
     {
         nextTag = textField.tag;
-        
         if (nextTag>1) {
+            
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag-1];
             nextTextField.text=@"";
             [self  textFieldDidBeginEditienter:nextTextField :@"rev"];
             
             return NO;
         }
+        
         return YES;
     }
-    else   if ([textField.text length]==1)
+    else if ([textField.text length]==1)
     {
         nextTag = textField.tag;
         if (nextTag<8) {
+            
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
-            
         }
         else
         {
             [textField resignFirstResponder];
         }
-        return NO;
         
+        return NO;
     }
-    
     
     return YES;
 }
 
 -(void)textFieldDidBeginEditienter:(UITextField *)textField :(NSString *)revOrFrwd
 {
-    
-    
     if ([revOrFrwd isEqualToString:@"rev"]) {
         
         UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:nextTag-2];
         for (UITextField *obj in self.otpTxt) {
             obj.userInteractionEnabled=NO;
         }
+        
         nextTextField1.userInteractionEnabled=YES;
         [nextTextField1 becomeFirstResponder];
-        
-        
-        // nextTextField1.text=prevStr;
-        
     }
     else if ([revOrFrwd isEqualToString:@"forward"])
     {
@@ -240,24 +234,12 @@
         
         textField.text=nextStr;
     }
-    
 }
+
 -(IBAction)Click_Back:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma AlertView Delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag == 1)
-    {
-             
-    }
-    else if (alertView.tag == 2)
-    {
-        //[self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 @end

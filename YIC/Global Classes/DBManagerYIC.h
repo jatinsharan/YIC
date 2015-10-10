@@ -13,7 +13,9 @@
 
 - (void) copyDatabaseIfNeeded;
 
-- (NSString *)getHourlyCode:(NSString*)timeString;
 - (NSMutableArray*)getAllRandomQuestion;
-- (void)getUniquecode:(NSString*)strCode;
+
+- (NSString*)getLockCode;
+- (NSString*)getHourlyCode:(NSString*)timeString;
+
 @end

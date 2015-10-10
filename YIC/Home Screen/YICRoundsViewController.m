@@ -15,20 +15,22 @@
 @implementation YICRoundsViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    [scrYic setContentSize:CGSizeMake(307,2200)];
+    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [scrYic setContentSize:CGSizeMake(320,2524)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction)ClickBack:(id)sender{
 
+-(IBAction)ClickBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 /*
 #pragma mark - Navigation
 

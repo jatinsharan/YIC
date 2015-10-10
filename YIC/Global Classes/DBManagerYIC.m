@@ -41,11 +41,46 @@
 
 #pragma mark - datasource methods
 
-- (NSString *)getHourlyCode:(NSString*)timeString
+- (NSString*)getLockCode
 {
+    NSString * result = @"";
+    
     sqlite3 *database;
     
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM lockcode"];
+    sqlite3_stmt * statement;
+    
+    if(sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK)
+    {
+        int sqlResult = sqlite3_prepare_v2(database, [sql UTF8String], -1, &statement, NULL);
+        
+        if(sqlResult == SQLITE_OK)
+        {
+            while(sqlite3_step(statement) == SQLITE_ROW)
+            {
+                //int id = sqlite3_column_int(selectStatement, 0);
+                result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
+            }
+            
+        }
+        else {
+            printf( "could not prepare statemnt: %s\n", sqlite3_errmsg(database) );
+        }
+        
+        sqlite3_reset(statement);
+        sqlite3_finalize(statement);
+        
+        sqlite3_close(database);
+    }
+    
+    return result;
+}
+
+- (NSString *)getHourlyCode:(NSString*)timeString
+{
     NSString *result = @"";
+    
+    sqlite3 *database;
     
     // first, get time slots from current time
     NSString *slot = [self getSlotFromCurrentTime:timeString];
@@ -76,9 +111,10 @@
         
         sqlite3_close(database);
     }
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
     
-    obj_GlobalDataPersistence.strTimeDuration=result;
+    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+    obj_GlobalDataPersistence.strTimeDuration = result;
+    
     return result;
 }
 
@@ -120,7 +156,6 @@
         }
     }
     
-    NSLog(@"%@",[result valueForKey:@"qId"]);
     return result;
 }
 
@@ -155,7 +190,7 @@
                 question.qOption_2 = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,6)];
                 question.qOption_3 = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,7)];
                 question.qOption_4 = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,8)];
-
+                
                 question.qCorrectOption = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,9)];
                 question.qMarks = sqlite3_column_int(statement, 10);
                 
@@ -177,6 +212,8 @@
     return result;
 }
 
+#pragma mark - local helper methods
+
 - (NSString*)getSlotFromCurrentTime:(NSString*)timeString
 {
     NSString *slot = @"";
@@ -191,7 +228,7 @@
     
     NSLog(@"LAST:%d",lastPart);
     
-    if (lastPart>30)
+    if (lastPart>=30)
     {
         slot=[NSString stringWithFormat:@"%02d:30 %@",firstPart,median];
         NSLog(@"OUTPUT:%@",slot);
@@ -212,52 +249,6 @@
 
 int myRandom() {
     return (arc4random() % 2 ? 1 : 0);
-}
-
-- (void)getUniquecode:(NSString*)strCode
-{
-    sqlite3 *database;
-    
-    BOOL isTrue=FALSE;
-    // first, get time slots from current time
-    
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM lockcode"];
-    sqlite3_stmt * statement;
-    
-    if(sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK)
-    {
-        int sqlResult = sqlite3_prepare_v2(database, [sql UTF8String], -1, &statement, NULL);
-        
-        if(sqlResult == SQLITE_OK)
-        {
-            while(sqlite3_step(statement) == SQLITE_ROW)
-            {
-                //int id = sqlite3_column_int(selectStatement, 0);
-                NSString * result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
-                
-                if([[result capitalizedString] isEqualToString:[strCode capitalizedString]])
-                {
-                    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-                    
-                    obj_GlobalDataPersistence.strcode=result;
-                    NSLog(@"%@",obj_GlobalDataPersistence.strcode);
-                    isTrue=TRUE;
-                }
-                
-            }
-            
-        }
-        else {
-           
-            printf( "could not prepare statemnt: %s\n", sqlite3_errmsg(database) );
-        }
-        
-        sqlite3_reset(statement);
-        sqlite3_finalize(statement);
-        
-        sqlite3_close(database);
-    }
-    
 }
 
 @end

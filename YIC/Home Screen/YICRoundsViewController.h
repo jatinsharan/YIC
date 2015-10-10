@@ -12,5 +12,7 @@
 {
     IBOutlet UIScrollView *scrYic;
 }
+
 -(IBAction)ClickBack:(id)sender;
+
 @end

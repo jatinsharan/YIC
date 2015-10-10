@@ -15,11 +15,8 @@
 @implementation OTPassViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    
-    
-    UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
-    [nextTextField1 becomeFirstResponder];
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -27,13 +24,31 @@
     
     self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
-    
-   /* UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
-    [self.pageScroll addGestureRecognizer:tap];*/
-    
-
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    timeCount=60;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [timer invalidate];
+    timeCount=60;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"A OTP code has been sent to you. Please verify and complete registration." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 -(void)tapOnView
 {
@@ -54,32 +69,8 @@
 
 -(void)increaseTimer:(NSTimer *)theTimer
 {
-    
-    if (timeCount==0)
-    {
-       
-       }
     self.timerLbl.text=[NSString stringWithFormat:@"%d",timeCount];
     timeCount--;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    timeCount=60;
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:YES];
-    [timer invalidate];
-    timeCount=60;
-    
 }
 
 - (IBAction)tapped_continue:(id)sender
@@ -94,32 +85,32 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
-   
     strOtp = @"";
     
-    for(UITextField *text in self.otpTxt)
-    {
+    for(UITextField *text in self.otpTxt) {
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
     }
     
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-    NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
-    
-    if(strOtp.length!=0)
+    if(strOtp.length != 0)
     {
-    
-    WebCommunicationClass *obj=[WebCommunicationClass new];
-    [obj setACaller:self];
-    [obj GetOtp:obj_GlobalDataPersistence.strUserId otp:strOtp];
+        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+        NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
+        
+        WebCommunicationClass *obj=[WebCommunicationClass new];
+        [obj setACaller:self];
+        [obj GetOtp:obj_GlobalDataPersistence.strUserId otp:strOtp];
     }
     else
     {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter OTP" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"OTP needs to be exactly of 6 digits!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-    
     }
-    
-    
+}
+
+-(IBAction)Click_REcivedOtpRetry:(id)sender
+{
+    // Havn't received OTP, navigate back to registration screen
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma Text Field Delegate
@@ -129,22 +120,25 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     return YES;
 }
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
     NSLog(@"ff");
 }
+
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     
 }
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
     nextStr=string;
     
     NSLog(@"%ld",(long)nextTag);
@@ -154,80 +148,62 @@
         nextTag = textField.tag;
         
         if (nextTag>1) {
+            
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag-1];
             nextTextField.text=@"";
             [self  textFieldDidBeginEditienter:nextTextField :@"rev"];
-            
+
             return NO;
         }
+        
         return YES;
     }
-    else   if ([textField.text length]==1)
+    else if ([textField.text length]==1)
     {
         nextTag = textField.tag;
+        
         if (nextTag<6) {
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
-            
         }
         else
         {
             [textField resignFirstResponder];
-        
         }
-        return NO;
         
+        return NO;
     }
-    
     
     return YES;
 }
 
 -(void)textFieldDidBeginEditienter:(UITextField *)textField :(NSString *)revOrFrwd
 {
-    
-    
     if ([revOrFrwd isEqualToString:@"rev"]) {
         
         UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:nextTag-2];
+        
         for (UITextField *obj in self.otpTxt) {
             obj.userInteractionEnabled=NO;
         }
+        
         nextTextField1.userInteractionEnabled=YES;
         [nextTextField1 becomeFirstResponder];
-        
-        
-        // nextTextField1.text=prevStr;
-        
     }
     else if ([revOrFrwd isEqualToString:@"forward"])
     {
         for (UITextField *obj in self.otpTxt) {
             obj.userInteractionEnabled=NO;
         }
+        
         textField.userInteractionEnabled=YES;
         [textField becomeFirstResponder];
         
         textField.text=nextStr;
     }
-    
 }
 
-#pragma AlertView Delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag == 1)
-    {
-             
-    }
-    else if (alertView.tag == 2)
-    {
-        //[self.navigationController popViewControllerAnimated:YES];
-    }
-}
 #pragma mark- Webservice callback
-#pragma mark-
 
 -(void) dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
 {
@@ -238,20 +214,15 @@
     NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
     NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
     
-    
-        if(isSuccessNumber)
-        {
-            NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
-            [pref setBool:true forKey:@"isOtp"];
-            [pref synchronize];
-            
-            HomeViewController *objHomeViewController=[HomeViewController new];
-            [self.navigationController pushViewController:objHomeViewController animated:YES];
-        }
-   
+    if(isSuccessNumber)
+    {
+        NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
+        [pref setBool:true forKey:@"isOtp"];
+        [pref synchronize];
+        
+        HomeViewController *objHomeViewController=[HomeViewController new];
+        [self.navigationController pushViewController:objHomeViewController animated:YES];
+    }
 }
--(IBAction)Click_REcivedOtpRetry:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 @end

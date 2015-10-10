@@ -21,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // delay of 3 second in splash
+    [NSThread sleepForTimeInterval:3.0];
+    
     DBManagerYIC *dbM = [DBManagerYIC new];
     [dbM copyDatabaseIfNeeded];
     
@@ -33,11 +36,10 @@
         [self.window setRootViewController:self.navigation];
         
         [self.window makeKeyAndVisible];
-        
     }
     else
     {
-        
+
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         _viewController = [[StartUpViewController alloc] initWithNibName:@"StartUpViewController" bundle:nil];
         self.navigation = [[UINavigationController alloc]initWithRootViewController:_viewController];
@@ -67,6 +69,7 @@
     // Override point for customization after application launch.
     return YES;
 }
+
 #pragma mark- Push notification registration methods
 #pragma mark-
 

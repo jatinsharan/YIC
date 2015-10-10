@@ -108,11 +108,12 @@
     [aUserInfo setValue:timeTaken forKey:@"timeTaken"];
     [aUserInfo setValue:marks forKey:@"marks"];
     
-    //    [self ASICallSyncToServerWithFunctionName:Login_MethodName PostDataDictonery:aUserInfo];
+    // [self ASICallSyncToServerWithFunctionName:Login_MethodName PostDataDictonery:aUserInfo];
     [self retain];
     
     [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:ksaveUserTest reqTag:5 delegate:self];
 }
+
 -(void)Getcity
 {
     [SVProgressHUD showWithStatus:@"Please wait..."];
@@ -120,7 +121,6 @@
     [self retain];
     
     [[ALServiceInvoker sharedInstance] serviceInvokerRequestWithParams:aUserInfo requestAPI:KgetCities reqTag:6 delegate:self];
-    
 }
 
 /*

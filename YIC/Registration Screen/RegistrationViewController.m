@@ -19,17 +19,20 @@
 @implementation RegistrationViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    
-    
+    // Do any additional setup after loading the view from its nib.
+
     pickerReg.delegate=nil;
     pickerReg.dataSource=nil;
     
-    arrCollage=[[NSArray alloc] init];
+    arrCollage = [[NSArray alloc] init];
+    arrSem = [[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",nil];
     
-    arrSem=[[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",nil];
-    
-    // Do any additional setup after loading the view from its nib.
+    // Fetching list of Cities
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    [obj Getcity];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,107 +58,6 @@
     [UIView commitAnimations];
 }
 
-#pragma mark - IBActions
-
-- (IBAction)Click_City:(id)sender
-{
-    [self resignAllTextFields];
-    strBtnSelection=@"C";
-    WebCommunicationClass *obj=[WebCommunicationClass new];
-    [obj setACaller:self];
-    [obj Getcity];
-
-}
-
-- (IBAction)Click_Collage:(id)sender
-{
-    [self resignAllTextFields];
-    
-    strBtnSelection=@"Cl";
-    
-    WebCommunicationClass *obj=[WebCommunicationClass new];
-    [obj setACaller:self];
-    [obj GetCollage:strCityId];
-}
-
-- (IBAction)Click_Sem:(id)sender
-{
-    [self resignAllTextFields];
-    
-   
-    
-    
-    strBtnSelection=@"S";
-    pickerReg.delegate = self;
-    pickerReg.dataSource = self;
-    [pickerReg reloadAllComponents];
-   
-    [self showPickerView];
-}
-
-- (IBAction)Click_Submit:(id)sender {
-    
-    if(lblName.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your name" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    
-    }
-    else if (lblNumber.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if (lblNumber.text.length<10)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter 10 digit Phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if (lblEmail.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Email" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if (![self validateEmail:lblEmail.text])
-    {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter Valid EmailId" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        alert.delegate=self;
-        [alert show];
-        
-        
-    }
-
-    else if(btnCity.titleLabel.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your City" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }else if (lblAddress.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    
-    }else if (btnCollage.titleLabel.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your Collage" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if (lblCourse.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please enter your Course" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }else if (btnSem.titleLabel.text.length==0)
-    {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"YIC" message:@"Please select your Semester" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }else
-    {
-        WebCommunicationClass *obj=[WebCommunicationClass new];
-    
-        [obj setACaller:self];
-        [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
-    }
-}
-
 - (BOOL) validateEmail: (NSString *) candidate
 {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -164,13 +66,89 @@
     return [emailTest evaluateWithObject:candidate];
 }
 
+#pragma mark - IBActions
+
 -(IBAction)btn_Back:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)Click_Sem:(id)sender
+{
+    [self resignAllTextFields];
+    strBtnSelection=@"S";
+    
+    pickerReg.delegate = self;
+    pickerReg.dataSource = self;
+    [pickerReg reloadAllComponents];
+    
+    [self showPickerView];
+}
+
+- (IBAction)Click_City:(id)sender
+{
+    [self resignAllTextFields];
+    strBtnSelection=@"C";
+    
+    pickerReg.delegate=self;
+    pickerReg.dataSource=self;
+    [pickerReg reloadAllComponents];
+    
+    [self showPickerView];
+}
+
+- (IBAction)Click_Collage:(id)sender
+{
+    [self resignAllTextFields];
+    strBtnSelection=@"CL";
+    
+    // Fetching list of Collages
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    [obj GetCollage:strCityId];
+}
+
+- (IBAction)Click_Submit:(id)sender {
+    
+    if(lblName.text.length==0 || lblNumber.text.length==0 || lblEmail.text.length==0 ||
+       lblAddress.text.length==0 || lblCourse.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if(btnCity.titleLabel.text.length==0 ||
+            btnCollage.titleLabel.text.length==0 ||
+            btnSem.titleLabel.text.length==0)
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if (lblNumber.text.length != 10)
+    {
+        // check for mobile number validation
+        
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Please enter a valid mobile number!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if (![self validateEmail:lblEmail.text])
+    {
+        // check for email validation
+        
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Please enter a valid email address!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        // Request to register with YIC
+        
+        WebCommunicationClass *obj=[WebCommunicationClass new];
+        
+        [obj setACaller:self];
+        [obj GetRegestater:lblName.text mobile:lblNumber.text email:lblEmail.text city:strCityId localAddress:lblAddress.text collegeName:btnCollage.titleLabel.text course:lblCourse.text semester:btnSem.titleLabel.text];
+    }
+}
+
 #pragma mark- Webservice callback
-#pragma mark-
 
 -(void) dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
 {
@@ -181,54 +159,49 @@
     NSLog(@"%@",[strResult valueForKey:@"responseObject"]);
     NSNumber * isSuccessNumber = (NSNumber *)[strResult valueForKey:@"errorCode"];
     
-    if(aReq.tag==2)
+    if (aReq.tag==6)
     {
-        if(isSuccessNumber)
+        if(isSuccessNumber.intValue==0)
         {
+            arrCity = [strResult valueForKey:@"responseObject"];
+            NSLog(@"%@",arrCity);
             
+            [btnCity setTitle:[[arrCity valueForKey:@"cityName"] objectAtIndex:0] forState:UIControlStateNormal];
+            strCityId = [NSString stringWithFormat:@"%@",[[arrCity valueForKey:@"cityId"] objectAtIndex:0]];
             
-            arrCollage=[strResult valueForKey:@"responseObject"];
-            NSLog(@"%@",arrCollage);
-            pickerReg.delegate=self;
-            pickerReg.dataSource=self;
-            [pickerReg reloadAllComponents];
+            [btnSem setTitle:[arrSem objectAtIndex:0] forState:UIControlStateNormal];
             
-            [self showPickerView];
+            [lblName becomeFirstResponder];
         }
     }
-    else if (aReq.tag==6)
+    else if(aReq.tag==2)
     {
-        if(isSuccessNumber)
+        if(isSuccessNumber.intValue==0)
         {
-            arrCity=[strResult valueForKey:@"responseObject"];
-            NSLog(@"%@",arrCity);
+            arrCollage = [strResult valueForKey:@"responseObject"];
+            NSLog(@"%@",arrCollage);
+            
             pickerReg.delegate=self;
             pickerReg.dataSource=self;
             [pickerReg reloadAllComponents];
             
             [self showPickerView];
         }
-    
     }
     else
     {
         if(isSuccessNumber)
         {
+            GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
+            obj_GlobalDataPersistence.strUserId=[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]];
             
             NSUserDefaults *defult=[NSUserDefaults standardUserDefaults];
-            [defult setValue:@"1" forKey:@"isLogin"];
-            
-            
-             GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-            obj_GlobalDataPersistence.strUserId=[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]];
             [defult setValue:[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]] forKey:@"UserId"];
+            [defult setValue:@"1" forKey:@"isLogin"];
             [defult synchronize];
+            
             OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
-            
             [self.navigationController pushViewController:pinViewController animated:YES];
-            
-
-            
         }
     }
 }
@@ -243,37 +216,51 @@
 -(NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
-    if([strBtnSelection isEqualToString:@"C"])
-    {
+    if([strBtnSelection isEqualToString:@"C"]) {
         return [arrCity count] ;
     }
-    else if ([strBtnSelection isEqualToString:@"Cl"])
-    {
+    else if ([strBtnSelection isEqualToString:@"CL"]) {
         return [arrCollage count];
     }
-    else
-    {
+    else {
         return [arrSem count] ;
+    }
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
+(NSInteger)row forComponent:(NSInteger)component {
+    
+    if([strBtnSelection isEqualToString:@"C"])
+    {
+        return [[arrCity valueForKey:@"cityName"] objectAtIndex:row];
+    }
+    else if ([strBtnSelection isEqualToString:@"CL"])
+    {
+        return [[arrCollage valueForKey:@"collegeName"] objectAtIndex:row];
+    }
+    else 
+    {
+        return [arrSem objectAtIndex:row];
     }
 }
 
 #pragma mark- Picker View Delegate
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:
-(NSInteger)row inComponent:(NSInteger)component{
+(NSInteger)row inComponent:(NSInteger)component {
     
     if([strBtnSelection isEqualToString:@"C"])
     {
         [btnCity setTitle:[[arrCity valueForKey:@"cityName"] objectAtIndex:row] forState:UIControlStateNormal];
-        strCityId=[NSString stringWithFormat:@"%@",[[arrCity valueForKey:@"cityId"] objectAtIndex:row]];
+        strCityId = [NSString stringWithFormat:@"%@",[[arrCity valueForKey:@"cityId"] objectAtIndex:row]];
         NSLog(@"%@",strCityId);
     }
-    else if ([strBtnSelection isEqualToString:@"Cl"])
+    else if ([strBtnSelection isEqualToString:@"CL"])
     {
-        
         [btnCollage setTitle:[[arrCollage valueForKey:@"collegeName"] objectAtIndex:row] forState:UIControlStateNormal];
+        
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-        obj_GlobalDataPersistence.strCollageId=[NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]];
+        obj_GlobalDataPersistence.strCollageId = [NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]];
         
         NSUserDefaults *defult=[NSUserDefaults standardUserDefaults];
         [defult setValue:[NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]] forKey:@"CollageId"];
@@ -285,25 +272,6 @@ numberOfRowsInComponent:(NSInteger)component
     }
     
     [self hidePickerView];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
-(NSInteger)row forComponent:(NSInteger)component
-{
-    if([strBtnSelection isEqualToString:@"C"])
-    {
-        return [[arrCity valueForKey:@"cityName"] objectAtIndex:row];
-    }
-    else if ([strBtnSelection isEqualToString:@"Cl"])
-    {
-        
-        return [[arrCollage valueForKey:@"collegeName"] objectAtIndex:row];
-    }
-    
-    else
-    {
-        return [arrSem objectAtIndex:row];
-    }
 }
 
 #pragma mark - TextField delegate
@@ -321,38 +289,50 @@ numberOfRowsInComponent:(NSInteger)component
 {
     [textField resignFirstResponder];
     
-
+    if (textField == lblName) {
+        [lblNumber becomeFirstResponder];
+    }
+    else if (textField == lblNumber) {
+        [lblEmail becomeFirstResponder];
+    }
+    else if (textField == lblEmail) {
+        [lblAddress becomeFirstResponder];
+    }
+    else if (textField == lblAddress) {
+        [lblCourse becomeFirstResponder];
+    }
+    
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self hidePickerView];
-    if(textField.tag==10)
-    {
-    [self animateTextField: textField up: YES];
+    
+    if(textField.tag==10) {
+        [self animateViewUp:YES];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if(textField.tag==10)
-    {
-   [self animateTextField: textField up: NO];
+    if(textField.tag==10) {
+        [self animateViewUp:NO];
     }
 }
-- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+
+- (void) animateViewUp:(BOOL)up
 {
-    
-    const int movementDistance = 130; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
-    
-    int movement = (up ? -movementDistance : movementDistance);
-    
     [UIView beginAnimations: @"anim" context: nil];
     [UIView setAnimationBeginsFromCurrentState: YES];
-    [UIView setAnimationDuration: movementDuration];
+    [UIView setAnimationDuration:0.3f];
+    
+    const int movementDistance = 130;
+    int movement = (up ? -movementDistance : movementDistance);
+    
     self.view.frame=CGRectOffset(self.view.frame, 0, movement);
+    
     [UIView commitAnimations];
 }
+
 @end
