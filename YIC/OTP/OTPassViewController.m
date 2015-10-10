@@ -91,7 +91,7 @@
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
     }
     
-    if(strOtp.length != 0)
+    if(strOtp.length == 6)
     {
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
         NSLog(@"%@",obj_GlobalDataPersistence.strUserId);

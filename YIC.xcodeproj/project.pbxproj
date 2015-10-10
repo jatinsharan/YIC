@@ -143,6 +143,10 @@
 		1DE2DFC21BC5B40A00B410F9 /* social.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFBF1BC5B40900B410F9 /* social.png */; };
 		1DE2DFC31BC5B40B00B410F9 /* social@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFC01BC5B40A00B410F9 /* social@2x.png */; };
 		1DE2DFC41BC5B40B00B410F9 /* social@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE2DFC11BC5B40A00B410F9 /* social@3x.png */; };
+		CE8177351BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81772E1BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.m */; settings = {ASSET_TAGS = (); }; };
+		CE8177361BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177301BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m */; settings = {ASSET_TAGS = (); }; };
+		CE8177371BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177321BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m */; settings = {ASSET_TAGS = (); }; };
+		CE8177381BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177341BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */; };
 		F98460C21BC8650200F0F4A7 /* dropdown.png in Resources */ = {isa = PBXBuildFile; fileRef = F98460BC1BC8650200F0F4A7 /* dropdown.png */; };
 		F98460C31BC8650200F0F4A7 /* dropdown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98460BD1BC8650200F0F4A7 /* dropdown@2x.png */; };
@@ -337,6 +341,14 @@
 		1DE2DFBF1BC5B40900B410F9 /* social.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = social.png; sourceTree = "<group>"; };
 		1DE2DFC01BC5B40A00B410F9 /* social@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "social@2x.png"; sourceTree = "<group>"; };
 		1DE2DFC11BC5B40A00B410F9 /* social@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "social@3x.png"; sourceTree = "<group>"; };
+		CE81772D1BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		CE81772E1BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		CE81772F1BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		CE8177301BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		CE8177311BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		CE8177321BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		CE8177331BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		CE8177341BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerYIC.h; sourceTree = "<group>"; };
 		F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerYIC.m; sourceTree = "<group>"; };
 		F98460BC1BC8650200F0F4A7 /* dropdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown.png; sourceTree = "<group>"; };
@@ -396,6 +408,7 @@
 		1D45747B1BBC2BBE002BCDF8 = {
 			isa = PBXGroup;
 			children = (
+				CE81772C1BC92FFF00E2CBB8 /* TPKeyboardAvoiding */,
 				1D45759C1BBC30AC002BCDF8 /* libz.1.1.3.dylib */,
 				1D45759D1BBC30AC002BCDF8 /* libz.1.2.5.dylib */,
 				1D45759E1BBC30AC002BCDF8 /* libz.1.dylib */,
@@ -745,6 +758,21 @@
 			path = TestDetail;
 			sourceTree = "<group>";
 		};
+		CE81772C1BC92FFF00E2CBB8 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				CE81772D1BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.h */,
+				CE81772E1BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.m */,
+				CE81772F1BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.h */,
+				CE8177301BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m */,
+				CE8177311BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.h */,
+				CE8177321BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m */,
+				CE8177331BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				CE8177341BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -964,14 +992,18 @@
 				1D4575821BBC2EB6002BCDF8 /* StartUpViewController.m in Sources */,
 				1DB17EB71BC1CDEA00326852 /* NotificationViewController.m in Sources */,
 				1D4575791BBC2EB6002BCDF8 /* OTPassViewController.m in Sources */,
+				CE8177351BC92FFF00E2CBB8 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				CE8177371BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1D4575891BBC2EB6002BCDF8 /* ASIDownloadCache.m in Sources */,
 				1D3083121BBF017E00654FDA /* InstructionViewController.m in Sources */,
 				1D4A62731BBC43AB00A15717 /* TestDetailViewController.m in Sources */,
 				F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */,
+				CE8177381BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				1D45758E1BBC2EB6002BCDF8 /* Reachability.m in Sources */,
 				1D4575361BBC2EB6002BCDF8 /* HomeViewController.m in Sources */,
 				1D45758B1BBC2EB6002BCDF8 /* ASIHTTPRequest.m in Sources */,
 				1D45748A1BBC2BBE002BCDF8 /* main.m in Sources */,
+				CE8177361BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */,
 				1D4575A81BBC32E0002BCDF8 /* TestViewController.m in Sources */,
 				1D3083181BBF019C00654FDA /* ResultViewController.m in Sources */,
