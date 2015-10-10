@@ -41,7 +41,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"A OTP code has been sent to you. Please verify and complete registration." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"A OTP code has been sent to you. Please verify and complete registration." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
 }
 
@@ -102,7 +102,7 @@
     }
     else
     {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"OTP needs to be exactly of 6 digits!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"OTP needs to be exactly of 6 digits!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
 }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPKeyboardAvoidingScrollView;
 
 @interface RegistrationViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -26,6 +27,7 @@
     NSArray *arrCollage;
     IBOutlet UIPickerView *pickerReg;
     IBOutlet UIView *vwReg;
+    IBOutlet TPKeyboardAvoidingScrollView *scrlView;
     
     NSString *strBtnSelection;
     NSString *strCityId;

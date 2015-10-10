@@ -11,6 +11,7 @@
 #import "OTPassViewController.h"
 #import "Config.h"
 #import "GlobalDataPersistence.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface RegistrationViewController ()
 
@@ -28,6 +29,11 @@
     
     arrCollage = [[NSArray alloc] init];
     arrSem = [[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",nil];
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    [scrlView setContentSize:CGSizeMake(screenSize.width,520)];
+    
+//    [scrlView contentSizeToFit];
     
     // Fetching list of Cities
     WebCommunicationClass *obj=[WebCommunicationClass new];
@@ -113,28 +119,28 @@
     if(lblName.text.length==0 || lblNumber.text.length==0 || lblEmail.text.length==0 ||
        lblAddress.text.length==0 || lblCourse.text.length==0)
     {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if(btnCity.titleLabel.text.length==0 ||
             btnCollage.titleLabel.text.length==0 ||
             btnSem.titleLabel.text.length==0)
     {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if (lblNumber.text.length != 10)
     {
         // check for mobile number validation
         
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Please enter a valid mobile number!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Please enter a valid mobile number!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if (![self validateEmail:lblEmail.text])
     {
         // check for email validation
         
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Please enter a valid email address!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Please enter a valid email address!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     else
@@ -171,7 +177,7 @@
             
             [btnSem setTitle:[arrSem objectAtIndex:0] forState:UIControlStateNormal];
             
-            [lblName becomeFirstResponder];
+//            [lblName becomeFirstResponder];
         }
     }
     else if(aReq.tag==2)

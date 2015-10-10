@@ -39,15 +39,15 @@
     }
 }
 
-#pragma mark - datasource methods
+#pragma mark - datasource methodsa
 
-- (NSString*)getLockCode
+- (BOOL)checkLockCode:(NSString *)lockCode
 {
-    NSString * result = @"";
+    BOOL success;
     
     sqlite3 *database;
     
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM lockcode"];
+    NSString *sql = [NSString stringWithFormat:@"SELECT COUNT(*) FROM lockcode WHERE Code = '%@'",lockCode];
     sqlite3_stmt * statement;
     
     if(sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK)
@@ -58,8 +58,11 @@
         {
             while(sqlite3_step(statement) == SQLITE_ROW)
             {
-                //int id = sqlite3_column_int(selectStatement, 0);
-                result = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement,1)];
+                int count = sqlite3_column_int(statement, 0);
+                if (count == 1)
+                    success = YES;
+                else
+                    success = NO;
             }
             
         }
@@ -73,7 +76,7 @@
         sqlite3_close(database);
     }
     
-    return result;
+    return success;
 }
 
 - (NSString *)getHourlyCode:(NSString*)timeString

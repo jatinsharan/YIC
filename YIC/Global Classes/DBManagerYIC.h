@@ -15,7 +15,7 @@
 
 - (NSMutableArray*)getAllRandomQuestion;
 
-- (NSString*)getLockCode;
+- (BOOL)checkLockCode:(NSString*)lockCode;
 - (NSString*)getHourlyCode:(NSString*)timeString;
 
 @end

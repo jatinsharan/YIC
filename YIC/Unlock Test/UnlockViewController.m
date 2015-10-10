@@ -118,35 +118,45 @@
         DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
         GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"hh:mm a"];
-        NSString *strDate = [formatter stringFromDate:[NSDate date]];
+        NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] capitalizedString];
+        NSLog(@"%@",lockCode);
         
-        NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
-        
-        NSString *strLockCode = [obj_DBManagerYIC getLockCode];
-        
-        NSString *strCollegeCode = obj_GlobalDataPersistence.strCollageId;
-        
-        NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,strLockCode];
-        NSLog(@"%@",strCommom);
-        
-        if([[strCommom capitalizedString] isEqualToString:[strOtp capitalizedString]])
+        BOOL success = [obj_DBManagerYIC checkLockCode:lockCode];
+        if (success)
         {
-            obj_GlobalDataPersistence.strPasscode = strCommom;
+            NSString *strCollegeCode = obj_GlobalDataPersistence.strCollageId;
             
-            // lock code entered is valid, move to next screen
-            InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-            [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"hh:mm a"];
+            NSString *strDate = [formatter stringFromDate:[NSDate date]];
+            NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
+            
+            NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,lockCode];
+            NSLog(@"%@",strCommom);
+            
+            if([[strCommom capitalizedString] isEqualToString:[strOtp capitalizedString]])
+            {
+                obj_GlobalDataPersistence.strPasscode = strCommom;
+                
+                // lock code entered is valid, move to next screen
+                InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+                [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+            }
+            else
+            {
+                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
         else
         {
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
-    else {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:nil message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    else
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     

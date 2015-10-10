@@ -19,7 +19,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [scrYic setContentSize:CGSizeMake(320,2524)];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    [scrYic setContentSize:CGSizeMake(screenSize.width,2524)];
 }
 
 - (void)didReceiveMemoryWarning {
