@@ -58,11 +58,13 @@
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
+//    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
+    vwReg.frame = CGRectMake(0,(self.view.frame.size.height - 222), self.view.frame.size.width, 222);
+
     [UIView commitAnimations];
 }
 
-- (BOOL) validateEmail: (NSString *) candidate
+- (BOOL)validateEmail: (NSString *) candidate
 {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -121,10 +123,14 @@
         [alert show];
     }
     else if(btnCity.titleLabel.text.length==0 ||
-            btnCollage.titleLabel.text.length==0 ||
             btnSem.titleLabel.text.length==0)
     {
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"No field can be left blank!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([btnCollage.titleLabel.text isEqualToString:@"Select a college"]) {
+        
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You must select a college!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if (lblNumber.text.length != 10)
@@ -201,7 +207,6 @@
             
             NSUserDefaults *defult=[NSUserDefaults standardUserDefaults];
             [defult setValue:[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]] forKey:@"UserId"];
-            [defult setValue:@"1" forKey:@"isLogin"];
             [defult synchronize];
             
             OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
