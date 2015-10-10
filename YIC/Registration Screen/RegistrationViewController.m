@@ -32,9 +32,7 @@
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     [scrlView setContentSize:CGSizeMake(screenSize.width,520)];
-    
-//    [scrlView contentSizeToFit];
-    
+        
     // Fetching list of Cities
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
