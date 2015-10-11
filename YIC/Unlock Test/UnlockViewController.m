@@ -116,15 +116,14 @@
     if (strOtp.length == 8)
     {
         DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
         
-        NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] capitalizedString];
+        NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] uppercaseString];
         NSLog(@"%@",lockCode);
         
         BOOL success = [obj_DBManagerYIC checkLockCode:lockCode];
         if (success)
-        {
-            NSString *strCollegeCode = obj_GlobalDataPersistence.strCollageId;
+        {            
+            NSString *strCollegeCode = [[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"];
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"hh:mm a"];
@@ -134,8 +133,9 @@
             NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,lockCode];
             NSLog(@"%@",strCommom);
             
-            if([[strCommom capitalizedString] isEqualToString:[strOtp capitalizedString]])
+            if([[strCommom uppercaseString] isEqualToString:[strOtp uppercaseString]])
             {
+                GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
                 obj_GlobalDataPersistence.strPasscode = strCommom;
                 
                 // lock code entered is valid, move to next screen

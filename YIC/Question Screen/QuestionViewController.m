@@ -282,7 +282,7 @@
     
     NSLog(@"%d",question.qMarks);
     
-    if([[correctOption capitalizedString] isEqualToString:[question.qCorrectOption capitalizedString]])
+    if([[correctOption uppercaseString] isEqualToString:[question.qCorrectOption uppercaseString]])
     {
         obj_GlobalDataPersistence.correctPoint = obj_GlobalDataPersistence.correctPoint + question.qMarks;
         // now marking this question as answered in global dict
