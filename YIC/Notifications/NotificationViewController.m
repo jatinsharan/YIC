@@ -8,6 +8,9 @@
 
 #import "NotificationViewController.h"
 
+#import "WebCommunicationClass.h"
+//#import "Config.h"
+#import "GlobalDataPersistence.h"
 @interface NotificationViewController ()
 
 @end
@@ -17,24 +20,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    [obj getUserNotices:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 -(IBAction)click_Back:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+#pragma mark- Webservice callback
+
+-(void) dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+{
+    NSError *jsonParsingError = nil;
+    
+    NSDictionary *resultDict=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    
+    NSLog(@"%@",[resultDict valueForKey:@"responseObject"]);
+    NSNumber * isSuccessNumber = (NSNumber *)[resultDict valueForKey:@"errorCode"];
+    
+    if(isSuccessNumber.intValue==0)
+    {
+        arrayNotifications = [resultDict valueForKey:@"responseObject"];
+        
+        //[arrayNotifications objectAtIndex:<#(NSUInteger)#>] will result
+/*        {
+        "noticeId": "1",
+        "notice": "Hi",
+        "noticeDescription": "My name is Vibhor",
+        "date": ""
+        }
+ */
+        
+        // TODO: load data into tableView.
+        
+    }
 }
-*/
+
+
 
 @end

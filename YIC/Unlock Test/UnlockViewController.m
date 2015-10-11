@@ -108,7 +108,7 @@
     
     strOtp = @"";
     for(text in self.otpTxt) {
-        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
+        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text]];
     }
     
     [text resignFirstResponder];
@@ -119,6 +119,14 @@
         
         NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] uppercaseString];
         NSLog(@"%@",lockCode);
+        
+//********** Debug only code starts from here, Remove when go liVe **********//
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"hh:mm a"];
+        NSString *strDate = [formatter stringFromDate:[NSDate date]];
+
+        NSLog(@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"],[obj_DBManagerYIC getHourlyCode:strDate]);
+//***************************** Remove code till this line *************** //
         
         BOOL success = [obj_DBManagerYIC checkLockCode:lockCode];
         if (success)

@@ -55,10 +55,12 @@
 
 - (IBAction)Click_Share:(id)sender {
     
-    NSString *title = @"Hi, I am participating in CL Young India Challenge: Business Plan and Start-up Challenge.You can too by downloading the app and appearing for App based Prelim College Round. Download Now";
-     NSURL *OBJURL=[NSURL URLWithString:@"https://play.google.com/store/apps/details?id=com.mobiquel.yic"];
+    NSString *body = @"Hi, I am participating in CL Young India Challenge: Business Plan and Start-up Challenge.You can too by downloading the app and appearing for App based Prelim College Round. Download Now";
     
-    NSArray *activityItems = @[title,OBJURL];
+    NSString *itunesAPPID = @"1047789943";
+    NSString *appStoreURL = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",itunesAPPID];
+    
+    NSArray *activityItems = @[body,appStoreURL];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     [activityViewController setValue:@"CL Young India Challenge: Business Plan and Start-up Challenge is around the corner" forKey:@"subject"];

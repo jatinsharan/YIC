@@ -218,6 +218,7 @@
     {
         NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
         [pref setBool:true forKey:@"isOtp"];
+        [pref setValue:@"1" forKey:@"isLogin"];
         [pref synchronize];
         
         HomeViewController *objHomeViewController=[HomeViewController new];
