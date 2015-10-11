@@ -94,8 +94,6 @@
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Worning" message:@"Time Up!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [self InvalidateCountDownTimer];
-        
-        
     }
 }
 

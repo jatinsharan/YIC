@@ -9,8 +9,9 @@
 #import "NotificationViewController.h"
 
 #import "WebCommunicationClass.h"
-//#import "Config.h"
 #import "GlobalDataPersistence.h"
+#import "CalendarCell.h"
+
 @interface NotificationViewController ()
 
 @end
@@ -18,6 +19,7 @@
 @implementation NotificationViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -30,7 +32,6 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 #pragma mark- Webservice callback
 
@@ -46,8 +47,18 @@
     if(isSuccessNumber.intValue==0)
     {
         arrayNotifications = [resultDict valueForKey:@"responseObject"];
+
+        if (arrayNotifications.count > 0) {
+            // TODO: load data into tableView.
+            tblNotification.hidden = NO;
+            [tblNotification reloadData];
+        }
+        else {
+            // TODO: display an alert.
+
+        }
         
-        //[arrayNotifications objectAtIndex:<#(NSUInteger)#>] will result
+        //[arrayNotifications objectAtIndex:] will result
 /*        {
         "noticeId": "1",
         "notice": "Hi",
@@ -56,11 +67,61 @@
         }
  */
         
-        // TODO: load data into tableView.
         
     }
 }
 
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows.
+    return arrayNotifications.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"NotificationCellID";
+    
+    CalendarCell *cell = (CalendarCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        UIViewController *view = [[UIViewController alloc]initWithNibName:@"CalendarCell" bundle:nil];
+        cell = (CalendarCell *)view.view;
+    }
+    
+    NSDictionary *notice = (NSDictionary*)[arrayNotifications objectAtIndex:indexPath.row];
+    
+    cell.lblMainHeading.text = [notice valueForKey:@"notice"];
+    cell.lblSubHeading.text = [notice valueForKey:@"noticeDescription"];
+    
+    NSArray* dateArray = [[notice valueForKey:@"date"] componentsSeparatedByString: @" "];
+    cell.lblboxdate.text = [dateArray objectAtIndex:0];
+    cell.lbldate.text = [NSString stringWithFormat:@"%@ %@",[dateArray objectAtIndex:1],[dateArray objectAtIndex:2]];
+    
+    cell.imgDate.layer.cornerRadius=cell.imgDate.frame.size.width/2;
+    cell.imgDate.clipsToBounds=YES;
+    
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 
 @end

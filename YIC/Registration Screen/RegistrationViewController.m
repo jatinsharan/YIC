@@ -58,9 +58,7 @@
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-//    vwReg.frame = CGRectMake(0,(self.view.frame.size.width==375?450:347), self.view.frame.size.width, 222);
     vwReg.frame = CGRectMake(0,(self.view.frame.size.height - 222), self.view.frame.size.width, 222);
-
     [UIView commitAnimations];
 }
 
@@ -180,8 +178,6 @@
             strCityId = [NSString stringWithFormat:@"%@",[[arrCity valueForKey:@"cityId"] objectAtIndex:0]];
             
             [btnSem setTitle:[arrSem objectAtIndex:0] forState:UIControlStateNormal];
-            
-//            [lblName becomeFirstResponder];
         }
     }
     else if(aReq.tag==2)
@@ -317,17 +313,11 @@ numberOfRowsInComponent:(NSInteger)component
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self hidePickerView];
-    
-    if(textField.tag==10) {
-        [self animateViewUp:YES];
-    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if(textField.tag==10) {
-        [self animateViewUp:NO];
-    }
+
 }
 
 - (void) animateViewUp:(BOOL)up

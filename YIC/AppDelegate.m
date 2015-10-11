@@ -7,10 +7,13 @@
 //
 
 #import "AppDelegate.h"
+
 #import "Config.h"
-#import "ALUtilityClass.h"
 #import "DBManagerYIC.h"
+#import "ALUtilityClass.h"
+
 #import "HomeViewController.h"
+#import "NotificationViewController.h"
 
 @interface AppDelegate ()
 
@@ -74,6 +77,7 @@
 #pragma mark-
 
 #ifdef __IPHONE_8_0
+
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     //register to receive notifications
@@ -83,10 +87,10 @@
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
     //handle the actions
-    if ([identifier isEqualToString:@"declineAction"]){
+    if ([identifier isEqualToString:@"declineAction"]) {
         //DDLogDebug(@"notification reception Declined");
     }
-    else if ([identifier isEqualToString:@"answerAction"]){
+    else if ([identifier isEqualToString:@"answerAction"]) {
         //DDLogDebug(@"notification reception Accepted");
     }
 }
@@ -98,15 +102,41 @@
     NSString* newToken = [deviceToken description];
     newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"My token is: %@", newToken);
-    [ALUtilityClass SaveDatatoUserDefault:newToken :@"deviceToken"];
     
+    NSLog(@"My token is: %@", newToken);
+    
+    [ALUtilityClass SaveDatatoUserDefault:newToken :@"deviceToken"];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     NSLog(@"Failed to get token, error: %@", error.description);
     //    [SharedUtility saveDatatoUserDefault:@"" :@"deviceToken"];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"] isEqualToString:@"1"]) {
+        
+        // After user login, send device token details for APNS
+        if (application.applicationState == UIApplicationStateInactive ||
+            application.applicationState == UIApplicationStateBackground)
+        {
+            // go to screen relevant to Notification content
+            
+            UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+            [navController popToRootViewControllerAnimated:YES];
+            
+            NotificationViewController *vc = [[NotificationViewController alloc] initWithNibName:@"NotificationViewController" bundle:nil];
+            [navController pushViewController:vc animated:YES];
+            
+        }
+        else {
+            // App is in UIApplicationStateActive (running in foreground)
+            
+        }
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

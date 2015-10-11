@@ -16,26 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /* UITextField *nextTextField1 = (UITextField *)[self.otpTxt objectAtIndex:0];
-     [nextTextField1 becomeFirstResponder];
-     
-     CGRect screenRect = [[UIScreen mainScreen] bounds];
-     CGFloat screenWidth = screenRect.size.width;
-     CGFloat screenHeight = screenRect.size.height;
-     
-     self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-     [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
-     
-     
-     
-     timeCount=60;
-     timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(increaseTimer:) userInfo:nil repeats:YES];
-     [timer fire];
-     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
-     [self.pageScroll addGestureRecognizer:tap];*/
+    // Do any additional setup after loading the view from its nib.
 }
-
 
 -(void)tapOnView
 {
@@ -54,18 +36,16 @@
     }
 }
 
-
-
 -(void)increaseTimer:(NSTimer *)theTimer
 {
-    
-    if (timeCount==0)
-    {
+    if (timeCount==0) {
         
     }
+    
     self.timerLbl.text=[NSString stringWithFormat:@"%d",timeCount];
     timeCount--;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -89,18 +69,12 @@
     strOtp = @"";
     for(UITextField *text in self.otpTxt)
     {
-        
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
-        
-        
     }
-    NSString *code = [@"kjtlmt" substringFromIndex: [@"kjtlmt" length] - 3];
     
+    NSString *code = [@"kjtlmt" substringFromIndex: [@"kjtlmt" length] - 3];
     NSLog(@"%@",code);
 }
-
-
-
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {

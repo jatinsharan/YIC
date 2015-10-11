@@ -12,10 +12,10 @@
 #import <sqlite3.h>
 #import "GlobalDataPersistence.h"
 #import "DBManagerYIC.h"
+
 @interface ResultViewController ()
 {
     GlobalDataPersistence *obj_GlobalDataPersistence;
-
 }
 
 @end
@@ -33,6 +33,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(IBAction)Click_Home:(id)sender
 {
     HomeViewController *obj_HomeViewController=[HomeViewController new];

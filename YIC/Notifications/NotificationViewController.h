@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NotificationViewController : UIViewController {
-    
+@interface NotificationViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     NSArray *arrayNotifications;
+    IBOutlet UITableView *tblNotification;
 }
 
 @end

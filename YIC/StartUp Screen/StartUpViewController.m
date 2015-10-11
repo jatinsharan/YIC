@@ -29,8 +29,8 @@
 {
     RegistrationViewController *obj_HomeViewController=[RegistrationViewController new];
     [self.navigationController pushViewController:obj_HomeViewController animated:YES];
-
 }
+
 /*
 #pragma mark - Navigation
 

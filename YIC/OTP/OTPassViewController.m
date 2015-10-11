@@ -22,8 +22,8 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    self.pageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    [self.pageScroll setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+50)];
+    [self.pageScroll setContentSize:CGSizeMake(screenWidth, screenHeight)];
+    [_pageScroll setContentOffset:CGPointMake(0, 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,7 +62,6 @@
             if ([txtField isFirstResponder] ) {
                 [txtField resignFirstResponder];
             }
-            
         }
     }
 }
@@ -77,14 +76,15 @@
 {
     strOtp = @"";
     
-    for(UITextField *text in self.otpTxt)
-    {
+    for(UITextField *text in self.otpTxt) {
         strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text ]];
     }
 }
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
+    [_pageScroll setContentOffset:CGPointMake(0, -20)];
+    
     strOtp = @"";
     
     for(UITextField *text in self.otpTxt) {
@@ -117,24 +117,21 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
+    [_pageScroll setContentOffset:CGPointMake(0, -20)];
     [textField resignFirstResponder];
-    return YES;
-}
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
     return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
-    NSLog(@"ff");
+    if ([UIScreen mainScreen].bounds.size.width != 375) {
+        [_pageScroll setContentOffset:CGPointMake(0, 100)];
+    }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
+    [_pageScroll setContentOffset:CGPointMake(0, -20)];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
