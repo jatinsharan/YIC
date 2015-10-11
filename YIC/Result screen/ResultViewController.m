@@ -12,6 +12,7 @@
 #import <sqlite3.h>
 #import "GlobalDataPersistence.h"
 #import "DBManagerYIC.h"
+#import "WebCommunicationClass.h"
 
 @interface ResultViewController ()
 {
@@ -38,6 +39,27 @@
 {
     HomeViewController *obj_HomeViewController=[HomeViewController new];
     [self.navigationController pushViewController:obj_HomeViewController animated:YES];
+}
+
+- (void)syncTestResult {
+    
+    WebCommunicationClass *obj=[WebCommunicationClass new];
+    [obj setACaller:self];
+    
+    [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]
+                  testDate:[NSString stringWithFormat:@"%@",[NSDate date]]
+                  passcode:obj_GlobalDataPersistence.strPasscode
+                 timeTaken:[NSString stringWithFormat:@"%d",3000]
+                     marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+    
+}
+
+-(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+{
+    NSError *jsonParsingError = nil;
+    
+    NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
 }
 
 /*

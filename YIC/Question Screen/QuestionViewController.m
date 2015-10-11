@@ -36,6 +36,7 @@
     question = [QuestionYIC new];
     
     questionCount=0;
+    correctOption = @"";
     [self setCurrentQuestion];
     
     
@@ -43,8 +44,6 @@
     for (int i=0; i<arrQuestion.count; i++) {
         [dictAnsweredQuestion setObject:@"N" forKey:[NSNumber numberWithInt:i]];
     }
-    
-    NSLog(@"%@",dictAnsweredQuestion.description);
     
     secs = 00;
     mints = 58;
@@ -72,7 +71,6 @@
     NSLog(@"%d",(3000-countDownTime));
     if(countDownTime > 0)
     {
-        
         countDownTime--;
         // int
         if (mints == min && sec==secs)
@@ -84,12 +82,12 @@
         else
         {
             // label.text=[NSString stringWithFormat:@"%d:00",countDownTime];
-            self.lbl.text=[NSString stringWithFormat:@"%d:%d",min,sec];
+            self.lbl.text=[NSString stringWithFormat:@"%02d:%02d",min,sec];
         }
     }
     else
     {
-        self.lbl.text=[NSString stringWithFormat:@"%d:%d",min,sec];
+        self.lbl.text=[NSString stringWithFormat:@"%02d:%02d",min,sec];
         
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Worning" message:@"Time Up!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -122,27 +120,36 @@
 
 - (IBAction)Click_NextQuestion:(id)sender {
     
-    if(questionCount<[arrQuestion count]-1)
-    {
-        if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
-            [self submitAnswer]; // This is imp.
+    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
+        // No Option selected, display alert
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        
+        if(questionCount<[arrQuestion count]-1)
+        {
+            if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
+                [self submitAnswer]; // This is imp.
+            }
+            
+            questionCount++;
+            [self setCurrentQuestion];
+        }
+        else
+        {
+            [_CountDownTimer invalidate];
+            _CountDownTimer=nil;
+            
+            NSLog(@"%d",50-countDownTime);
+            NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
+            
+            // Question complete, move to Result screen
+            
+            ResultViewController *obj_ResultViewController=[ResultViewController new];
+            [self.navigationController pushViewController:obj_ResultViewController animated:YES];
         }
         
-        questionCount++;
-        [self setCurrentQuestion];
-    }
-    else
-    {
-        [_CountDownTimer invalidate];
-        _CountDownTimer=nil;
-        
-        NSLog(@"%d",50-countDownTime);
-        NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
-        
-        WebCommunicationClass *obj=[WebCommunicationClass new];
-        [obj setACaller:self];
-        
-        [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"] testDate:[NSString stringWithFormat:@"%@",[NSDate date]] passcode:obj_GlobalDataPersistence.strPasscode timeTaken:[NSString stringWithFormat:@"%d",3000-countDownTime] marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
     }
 }
 
@@ -198,26 +205,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
-{
-    NSError *jsonParsingError = nil;
-    
-    NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
-    
-    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
-    
-    ResultViewController *obj_ResultViewController=[ResultViewController new];
-    [self.navigationController pushViewController:obj_ResultViewController animated:YES];
-}
-
 - (void)setCurrentQuestion
 {
     // This is a generic func. which is using repeteadly
     
-    if (questionCount==0)
+    if (questionCount==0) {
         btnPrevious.hidden = YES;
-    else
+        lblPrev.hidden = YES;
+    }
+    else {
         btnPrevious.hidden = NO;
+        lblPrev.hidden = NO;
+    }
+    
+    if (questionCount==44)
+        lblNext.text = @"Submit";
     
     lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
     

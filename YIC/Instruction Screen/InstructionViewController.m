@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [scrInstrucation setContentSize:CGSizeMake(self.view.frame.size.width, 1150)];
+    [scrInstrucation setContentSize:CGSizeMake(self.view.frame.size.width, 1298)];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -34,8 +34,6 @@
 {
     QuestionViewController *obj_QuestionViewController=[QuestionViewController new];
     [self.navigationController pushViewController:obj_QuestionViewController animated:YES];
-
-
 }
 
 /*

@@ -28,6 +28,9 @@
     IBOutlet UIButton *btnOption3;
 
     IBOutlet UIButton *btnOption4;
+    
+    IBOutlet UILabel *lblPrev;
+    IBOutlet UILabel *lblNext;
 
     int questionCount;
     QuestionYIC *question;
