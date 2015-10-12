@@ -69,21 +69,19 @@
 
 - (IBAction)Click_TakeTest:(id)sender {
     
-    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+    BOOL isTestAttempted = [KUSER_DEFAULT boolForKey:KIS_TEST_ATTEMPTED];
+    if (!isTestAttempted) {
+        UnlockViewController *obj_UnlockViewController=[UnlockViewController new];
+        [self.navigationController pushViewController:obj_UnlockViewController animated:YES];
+    }
+    else {
+        
+        // Test already attempted by user, display alert
+        
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Test Submitted! Kindly check notifications for Final Results." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
-//    BOOL isTestAttempted = [KUSER_DEFAULT boolForKey:KIS_TEST_ATTEMPTED];
-//    if (!isTestAttempted) {
-//        UnlockViewController *obj_UnlockViewController=[UnlockViewController new];
-//        [self.navigationController pushViewController:obj_UnlockViewController animated:YES];
-//    }
-//    else {
-//        
-//        // Test already attempted by user, display alert
-//        
-//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Test Submitted! Kindly check notifications for Final Results." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
 }
 
 - (IBAction)Click_Share:(id)sender {

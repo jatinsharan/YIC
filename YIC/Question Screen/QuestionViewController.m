@@ -125,13 +125,13 @@
 
 - (IBAction)Click_NextQuestion:(id)sender {
     
-//    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
-//        // No Option selected, display alert
-//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
-//    else {
-//        
+    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
+        // No Option selected, display alert
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        
         if(questionCount<[arrQuestion count]-1)
         {
             if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
@@ -154,8 +154,7 @@
             ResultViewController *obj_ResultViewController=[ResultViewController new];
             [self.navigationController pushViewController:obj_ResultViewController animated:YES];
         }
-        
-//    }
+    }
 }
 
 - (IBAction)Click_PreviousQuestion:(id)sender {
@@ -231,11 +230,7 @@
         CGRect frame1 = viewQuestion.frame;
         frame1.origin.y = 8;
         viewQuestion.frame = frame1;
-        
-//        CGRect frame2 = scrlMain.frame;
-//        frame2.size.height = 270;
-//        scrlMain.frame = frame2;
-        
+
         viewInstruction.hidden = YES;
         
         CGSize screenSize = [UIScreen mainScreen].bounds.size;
@@ -246,11 +241,7 @@
         CGRect frame1 = viewQuestion.frame;
         frame1.origin.y = 396;
         viewQuestion.frame = frame1;
-        
-//        CGRect frame2 = scrlMain.frame;
-//        frame2.size.height = 658;
-//        scrlMain.frame = frame2;
-//        
+
         viewInstruction.hidden = NO;
         
         CGSize screenSize = [UIScreen mainScreen].bounds.size;
