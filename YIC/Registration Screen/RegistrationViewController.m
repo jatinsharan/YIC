@@ -198,12 +198,10 @@
     {
         if(isSuccessNumber)
         {
-            GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-            obj_GlobalDataPersistence.strUserId=[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]];
+            NSString *strUserId = [NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]];
             
-            NSUserDefaults *defult=[NSUserDefaults standardUserDefaults];
-            [defult setValue:[NSString stringWithFormat:@"%@",[strResult valueForKey:@"responseObject"]] forKey:@"UserId"];
-            [defult synchronize];
+            [KUSER_DEFAULT setValue:strUserId forKey:KUSER_ID];
+            [KUSER_DEFAULT synchronize];
             
             OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
             [self.navigationController pushViewController:pinViewController animated:YES];
@@ -264,12 +262,10 @@ numberOfRowsInComponent:(NSInteger)component
     {
         [btnCollage setTitle:[[arrCollage valueForKey:@"collegeName"] objectAtIndex:row] forState:UIControlStateNormal];
         
-        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-        obj_GlobalDataPersistence.strCollageId = [NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]];
+        NSString *strCollageID = [NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]];
         
-        NSUserDefaults *defult=[NSUserDefaults standardUserDefaults];
-        [defult setValue:[NSString stringWithFormat:@"%@",[[arrCollage valueForKey:@"collegeId"] objectAtIndex:row]] forKey:@"CollageId"];
-        [defult synchronize];
+        [KUSER_DEFAULT setValue:strCollageID forKey:KCOLLAGE_ID];
+        [KUSER_DEFAULT synchronize];
     }
     else
     {

@@ -28,9 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
-    
     DBManagerYIC *obj_DBManagerYIC = [DBManagerYIC new];
+    
     arrQuestion = [obj_DBManagerYIC getAllRandomQuestion];
     
     question = [QuestionYIC new];
@@ -41,8 +40,11 @@
     
     btnBack.hidden = YES;
     
-    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_ATTEMPTED"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
+    obj_GlobalDataPersistence.correctPoint = 0;
+    
+    [KUSER_DEFAULT setBool:TRUE forKey:KIS_TEST_ATTEMPTED];
+    [KUSER_DEFAULT synchronize];
     
     dictAnsweredQuestion = [NSMutableDictionary dictionary];
     for (int i=0; i<arrQuestion.count; i++) {
@@ -68,19 +70,13 @@
 
 -(void)DecrementCounterValue
 {
+    NSLog(@"COUNTDOWN >>> %d",(3000-countDownTime));
     
-    //        $init = 86399;
-    //        $hours = floor($init / 3600);
-    //        $minutes = floor(($init / 60) % 60);
-    //        $seconds = $init % 60;
-    int sec = countDownTime%60;
-    int min =(countDownTime / 60)%60;
-    
-    NSLog(@"%d",(3000-countDownTime));
     if(countDownTime > 0)
     {
-        countDownTime--;
-        // int
+        int sec = countDownTime%60;
+        int min =(countDownTime / 60)%60;
+        
         if (mints == min && sec==secs)
         {
             UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Worning" message:@"Time Up!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -89,13 +85,14 @@
         }
         else
         {
-            // label.text=[NSString stringWithFormat:@"%d:00",countDownTime];
             self.lbl.text=[NSString stringWithFormat:@"%02d:%02d",min,sec];
         }
+        
+        countDownTime--;
     }
     else
     {
-        self.lbl.text=[NSString stringWithFormat:@"%02d:%02d",min,sec];
+        self.lbl.text = @"00:00";
         
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Worning" message:@"Time Up!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -128,13 +125,13 @@
 
 - (IBAction)Click_NextQuestion:(id)sender {
     
-    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
-        // No Option selected, display alert
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else {
-        
+//    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
+//        // No Option selected, display alert
+//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
+//    else {
+//        
         if(questionCount<[arrQuestion count]-1)
         {
             if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
@@ -149,8 +146,8 @@
             [_CountDownTimer invalidate];
             _CountDownTimer=nil;
             
-            NSLog(@"%d",50-countDownTime);
-            NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
+            [KUSER_DEFAULT setInteger:3000-countDownTime forKey:KTIME_TAKEN];
+            [KUSER_DEFAULT setInteger:obj_GlobalDataPersistence.correctPoint forKey:KTIME_TAKEN];
             
             // Question complete, move to Result screen
             
@@ -158,7 +155,7 @@
             [self.navigationController pushViewController:obj_ResultViewController animated:YES];
         }
         
-    }
+//    }
 }
 
 - (IBAction)Click_PreviousQuestion:(id)sender {
@@ -229,14 +226,55 @@
     if (questionCount==44)
         lblNext.text = @"Submit";
     
-    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
+    if (questionCount<40) {
+        
+        CGRect frame1 = viewQuestion.frame;
+        frame1.origin.y = 8;
+        viewQuestion.frame = frame1;
+        
+//        CGRect frame2 = scrlMain.frame;
+//        frame2.size.height = 270;
+//        scrlMain.frame = frame2;
+        
+        viewInstruction.hidden = YES;
+        
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        [scrlMain setContentSize:CGSizeMake(screenSize.width, 270)];
+    }
+    else {
+        
+        CGRect frame1 = viewQuestion.frame;
+        frame1.origin.y = 396;
+        viewQuestion.frame = frame1;
+        
+//        CGRect frame2 = scrlMain.frame;
+//        frame2.size.height = 658;
+//        scrlMain.frame = frame2;
+//        
+        viewInstruction.hidden = NO;
+        
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        [scrlMain setContentSize:CGSizeMake(screenSize.width, 658)];
+    }
     
     question=[arrQuestion objectAtIndex:questionCount];
     NSLog(@"%@",question.qCorrectOption);
     
-    lblQuestion.text=[NSString stringWithFormat:@"%@",question.qQuestion];
-    lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
+    if (questionCount<20) {
+        lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
+    }
+    else if (questionCount<40) {
+        lblSectionHeading.text=[NSString stringWithFormat:@"Section 2:%@",question.qSection];
+    }
+    else {
+        lblSectionHeading.text=[NSString stringWithFormat:@"Section 3:%@",question.qSection];
+    }
+
+    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
     
+    lblQuestion.text = question.qQuestion;
+    lblInstruction.text = question.qInstruction;
+
     [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
     [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
     [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
@@ -292,12 +330,12 @@
     
     if([[correctOption uppercaseString] isEqualToString:[question.qCorrectOption uppercaseString]])
     {
-        obj_GlobalDataPersistence.correctPoint = obj_GlobalDataPersistence.correctPoint + question.qMarks;
-        // now marking this question as answered in global dict
+        // marking this question as answered in global dict
         [dictAnsweredQuestion setObject:@"Y" forKey:[NSNumber numberWithInt:questionCount]];
+        
+        obj_GlobalDataPersistence.correctPoint = obj_GlobalDataPersistence.correctPoint + question.qMarks;
+        NSLog(@"%d",obj_GlobalDataPersistence.correctPoint);
     }
-    
-    NSLog(@"%d",obj_GlobalDataPersistence.correctPoint);
     
     // ====================================
 }

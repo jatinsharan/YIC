@@ -78,66 +78,64 @@
 
 - (IBAction)tapped_ResentOTP:(id)sender
 {
+    UITextField *text=nil;
     
-    // lock code entered is valid, move to next screen
-    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+    strOtp = @"";
+    for(text in self.otpTxt) {
+        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text]];
+    }
     
-//    UITextField *text=nil;
-//    
-//    strOtp = @"";
-//    for(text in self.otpTxt) {
-//        strOtp = [NSString stringWithString:[strOtp stringByAppendingString:text.text]];
-//    }
-//    
-//    [text resignFirstResponder];
-//    
-//    if (strOtp.length == 8)
-//    {
-//        DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
-//        
-//        NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] uppercaseString];
-//        NSLog(@"%@",lockCode);
-//        
-//        BOOL success = [obj_DBManagerYIC checkLockCode:lockCode];
-//        if (success)
-//        {            
-//            NSString *strCollegeCode = [[NSUserDefaults standardUserDefaults] valueForKey:@"CollageId"];
-//            
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            [formatter setDateFormat:@"hh:mm a"];
-//            NSString *strDate = [formatter stringFromDate:[NSDate date]];
-//            NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
-//            
-//            NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,lockCode];
-//            NSLog(@"%@",strCommom);
-//            
-//            if([[strCommom uppercaseString] isEqualToString:[strOtp uppercaseString]])
-//            {
-//                GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-//                obj_GlobalDataPersistence.strPasscode = strCommom;
-//                
-//                // lock code entered is valid, move to next screen
-//                InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
-//                [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
-//            }
-//            else
-//            {
-//                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//                [alert show];
-//            }
-//        }
-//        else
-//        {
-//            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//            [alert show];
-//        }
-//    }
-//    else
-//    {
-//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
+    [text resignFirstResponder];
+    
+    if (strOtp.length == 8)
+    {
+        DBManagerYIC *obj_DBManagerYIC=[DBManagerYIC new];
+        
+        NSString *lockCode = [[strOtp substringFromIndex: [strOtp length] - 3] uppercaseString];
+        NSLog(@"%@",lockCode);
+        
+        BOOL success = [obj_DBManagerYIC checkLockCode:lockCode];
+        if (success)
+        {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"hh:mm a"];
+            NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            [formatter setLocale:locale];
+            NSString *strDate = [formatter stringFromDate:[NSDate date]];
+            
+            NSString *strhourlycode = [obj_DBManagerYIC getHourlyCode:strDate];
+            
+            NSString *strCollegeCode = [KUSER_DEFAULT valueForKey:KCOLLAGE_ID];
+            
+            NSString *strCommom = [NSString stringWithFormat:@"%@%@%@",strCollegeCode,strhourlycode,lockCode];
+            NSLog(@"%@",strCommom);
+            
+            if([[strCommom uppercaseString] isEqualToString:[strOtp uppercaseString]])
+            {                
+                [KUSER_DEFAULT setValue:strCommom forKey:KPASSCODE];
+                [KUSER_DEFAULT synchronize];
+                
+                // lock code entered is valid, move to next screen
+                InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+                [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+            }
+            else
+            {
+                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
+        else
+        {
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Invalid code, Please enter the correct code!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
 }
 
@@ -186,7 +184,6 @@
     {
         nextTag = textField.tag;
         if (nextTag<8) {
-            
             UITextField *nextTextField = (UITextField *)[self.otpTxt objectAtIndex:nextTag];
             [self  textFieldDidBeginEditienter:nextTextField :@"forward"];
         }

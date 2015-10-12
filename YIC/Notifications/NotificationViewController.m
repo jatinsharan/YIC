@@ -25,7 +25,7 @@
     
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
-    [obj getUserNotices:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]];
+    [obj getUserNotices:[KUSER_DEFAULT valueForKey:KUSER_ID]];
 }
 
 -(IBAction)click_Back:(id)sender

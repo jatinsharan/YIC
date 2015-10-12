@@ -92,13 +92,10 @@
     }
     
     if(strOtp.length == 6)
-    {
-        GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-        NSLog(@"%@",obj_GlobalDataPersistence.strUserId);
-        
+    {        
         WebCommunicationClass *obj=[WebCommunicationClass new];
         [obj setACaller:self];
-        [obj GetOtp:obj_GlobalDataPersistence.strUserId otp:strOtp];
+        [obj GetOtp:[KUSER_DEFAULT valueForKey:KUSER_ID] otp:strOtp];
     }
     else
     {
@@ -213,10 +210,9 @@
     
     if(isSuccessNumber)
     {
-        NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
-        [pref setBool:true forKey:@"isOtp"];
-        [pref setValue:@"1" forKey:@"isLogin"];
-        [pref synchronize];
+        [KUSER_DEFAULT setBool:true forKey:KIS_OTP];
+        [KUSER_DEFAULT setValue:@"1" forKey:KIS_LOGIN];
+        [KUSER_DEFAULT synchronize];
         
         HomeViewController *objHomeViewController=[HomeViewController new];
         [self.navigationController pushViewController:objHomeViewController animated:YES];

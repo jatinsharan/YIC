@@ -10,6 +10,7 @@
 #import "YICRoundsViewController.h"
 #import "UnlockViewController.h"
 #import "NotificationViewController.h"
+#import "InstructionViewController.h"
 
 #import "WebCommunicationClass.h"
 #import "GlobalDataPersistence.h"
@@ -34,8 +35,8 @@
     
     [super viewWillAppear:YES];
     
-    BOOL isTestAttempted = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_ATTEMPTED"];
-    BOOL isTestSynced = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_SYNCED"];
+    BOOL isTestAttempted = [KUSER_DEFAULT boolForKey:KIS_TEST_ATTEMPTED];
+    BOOL isTestSynced = [KUSER_DEFAULT boolForKey:KIS_TEST_SYNCED];
 
     if (isTestAttempted && !isTestSynced) {
         btnSync.hidden = NO;
@@ -67,8 +68,22 @@
 }
 
 - (IBAction)Click_TakeTest:(id)sender {
-    UnlockViewController *obj_UnlockViewController=[UnlockViewController new];
-    [self.navigationController pushViewController:obj_UnlockViewController animated:YES];
+    
+    InstructionViewController *obj_InstructionViewController=[InstructionViewController new];
+    [self.navigationController pushViewController:obj_InstructionViewController animated:YES];
+    
+//    BOOL isTestAttempted = [KUSER_DEFAULT boolForKey:KIS_TEST_ATTEMPTED];
+//    if (!isTestAttempted) {
+//        UnlockViewController *obj_UnlockViewController=[UnlockViewController new];
+//        [self.navigationController pushViewController:obj_UnlockViewController animated:YES];
+//    }
+//    else {
+//        
+//        // Test already attempted by user, display alert
+//        
+//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Test Submitted! Kindly check notifications for Final Results." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
 }
 
 - (IBAction)Click_Share:(id)sender {
@@ -88,16 +103,18 @@
 
 - (IBAction)Click_Sync:(id)sender {
     
-    GlobalDataPersistence *obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *testDate = [formatter stringFromDate:[NSDate date]];
     
     WebCommunicationClass *obj = [WebCommunicationClass new];
     [obj setACaller:self];
     
-    [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]
-                  testDate:[NSString stringWithFormat:@"%@",[NSDate date]]
-                  passcode:obj_GlobalDataPersistence.strPasscode
-                 timeTaken:[NSString stringWithFormat:@"%d",3000]
-                     marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+    [obj GetSaveUserdetail:[KUSER_DEFAULT valueForKey:KUSER_ID]
+                  testDate:[NSString stringWithFormat:@"%@",testDate]
+                  passcode:[KUSER_DEFAULT valueForKey:KPASSCODE]
+                 timeTaken:[NSString stringWithFormat:@"%ld",(long)[KUSER_DEFAULT integerForKey:KTIME_TAKEN]]
+                     marks:[NSString stringWithFormat:@"%ld",(long)[KUSER_DEFAULT integerForKey:KTOTALMARK]]];
     
 }
 
@@ -113,9 +130,10 @@
         
         // Test Result successfully synced to server
         
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_SYNCED"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [KUSER_DEFAULT setBool:TRUE forKey:@"IS_TEST_SYNCED"];
+        [KUSER_DEFAULT synchronize];
         
+        btnSync.hidden = YES;
     }
     else {
         

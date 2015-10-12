@@ -16,6 +16,8 @@
 #import "StartUpViewController.h"
 #import "NotificationViewController.h"
 
+#import "GlobalDataPersistence.h"
+
 @interface AppDelegate ()
 
 @end
@@ -32,7 +34,7 @@
     [dbM copyDatabaseIfNeeded];
     
     
-    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"] isEqualToString:@"1"])
+    if([[KUSER_DEFAULT valueForKey:KIS_LOGIN] isEqualToString:@"1"])
     {
         HomeViewController *vc = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
        
@@ -116,7 +118,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"] isEqualToString:@"1"]) {
+    if([[KUSER_DEFAULT valueForKey:KIS_LOGIN] isEqualToString:@"1"]) {
         
         // After user login, send device token details for APNS
         if (application.applicationState == UIApplicationStateInactive ||

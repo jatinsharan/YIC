@@ -8,6 +8,7 @@
 
 #import "InstructionViewController.h"
 #import "QuestionViewController.h"
+#import "GlobalDataPersistence.h"
 
 @interface InstructionViewController ()
 
@@ -35,18 +36,8 @@
 
 -(IBAction)Click_StartTest:(id)sender
 {
-    BOOL isTestAttempted = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_ATTEMPTED"];
-    if (!isTestAttempted) {
-        QuestionViewController *obj_QuestionViewController=[QuestionViewController new];
-        [self.navigationController pushViewController:obj_QuestionViewController animated:YES];
-    }
-    else {
-        
-        // Test already attempted by user, display alert
-        
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Test Submitted! Kindly check notifications for Final Results." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+    QuestionViewController *obj_QuestionViewController=[QuestionViewController new];
+    [self.navigationController pushViewController:obj_QuestionViewController animated:YES];
 }
 
 /*

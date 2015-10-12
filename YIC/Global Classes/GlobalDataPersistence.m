@@ -10,23 +10,18 @@
 
 @implementation GlobalDataPersistence
 
-
-//@synthesize selectedItemType;
-
-
-static GlobalDataPersistence *sharedGlobalDataPersistence=nil;
-
 + (GlobalDataPersistence *)sharedGlobalDataPersistence
 {
-    if(sharedGlobalDataPersistence == nil)
-    {
-		sharedGlobalDataPersistence = [[super allocWithZone:NULL] init];
-	}
+    static GlobalDataPersistence *sharedGlobalDataPersistence = nil;
+
+    @synchronized(self) {
+        
+        if(sharedGlobalDataPersistence == nil) {
+            sharedGlobalDataPersistence = [[GlobalDataPersistence alloc] init];
+        }
+    }
 	
 	return sharedGlobalDataPersistence;
 }
-+ (void)resetGlobalDataPersistence
-{
-    sharedGlobalDataPersistence = nil;
-}
+
 @end

@@ -15,23 +15,18 @@
     int secs;
     int mints;
     int hourss;
+    
     IBOutlet UILabel *lblSectionHeading;
-
     IBOutlet UILabel *lblQuestionCount;
-
+    
     IBOutlet UILabel *lblQuestion;
+    IBOutlet UILabel *lblInstruction;
 
     IBOutlet UIButton *btnOption1;
-
     IBOutlet UIButton *btnOption2;
-
     IBOutlet UIButton *btnOption3;
-
     IBOutlet UIButton *btnOption4;
     
-    IBOutlet UILabel *lblPrev;
-    IBOutlet UILabel *lblNext;
-
     int questionCount;
     QuestionYIC *question;
     NSArray *arrQuestion;
@@ -39,11 +34,18 @@
     
     NSString *correctOption;
     
+    IBOutlet UILabel *lblPrev;
+    IBOutlet UILabel *lblNext;
+    
     IBOutlet UIButton *btnPrevious;
     IBOutlet UIButton *btnNext;
     IBOutlet UIButton *btnBack;
     
+    IBOutlet UIView *viewInstruction;
+    IBOutlet UIView *viewQuestion;
+    IBOutlet UIScrollView *scrlMain;    
 }
+
 - (IBAction)Select_Option:(id)sender;
 - (IBAction)Click_NextQuestion:(id)sender;
 - (IBAction)Click_PreviousQuestion:(id)sender;

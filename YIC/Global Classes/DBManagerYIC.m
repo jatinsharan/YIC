@@ -115,9 +115,6 @@
         sqlite3_close(database);
     }
     
-    GlobalDataPersistence *obj_GlobalDataPersistence=[GlobalDataPersistence sharedGlobalDataPersistence];
-    obj_GlobalDataPersistence.strTimeDuration = result;
-    
     return result;
 }
 

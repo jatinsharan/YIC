@@ -96,11 +96,17 @@
     
 }
 
--(void)GetSaveUserdetail:(NSString*)userId  testDate:(NSString*)testDate passcode:(NSString*)passcode timeTaken:(NSString*)timeTaken marks:(NSString*)marks
+-(void)GetSaveUserdetail:(NSString*)userId
+                testDate:(NSString*)testDate
+                passcode:(NSString*)passcode
+               timeTaken:(NSString*)timeTaken
+                   marks:(NSString*)marks
 {
     
     [SVProgressHUD showWithStatus:@"Please wait..."];
+    
     NSMutableDictionary *aUserInfo= [NSMutableDictionary dictionary];
+    
     [aUserInfo setValue:userId forKey:@"userId"];
     [aUserInfo setValue:testDate forKey:@"testDate"];
     [aUserInfo setValue:passcode forKey:@"passcode"];
@@ -279,7 +285,6 @@
 
 //-(void)uploadImage:(NSString*)imageUrl
 //{
-//    //GlobalDataPersistence *GDP = [GlobalDataPersistence sharedGlobalDataPersistence];
 //    
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 //    NSString *Afunction=[[NSString alloc]initWithString:Image_MethodName];

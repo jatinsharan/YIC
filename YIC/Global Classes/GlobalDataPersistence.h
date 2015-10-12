@@ -6,23 +6,27 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#define KUSER_DEFAULT [NSUserDefaults standardUserDefaults]
+
+#define KCOLLAGE_ID @"COLLAGE_ID"
+#define KUSER_ID @"USER_ID"
+#define KPASSCODE @"PASSCODE"
+
+#define KIS_OTP @"ISOTP"
+#define KIS_LOGIN @"ISLOGIN"
+
+#define KTOTALMARK @"TOTALMARK"
+#define KTIME_TAKEN @"TIMETAKEN"
+
+#define KIS_TEST_ATTEMPTED @"IS_TEST_ATTEMPTED"
+#define KIS_TEST_SYNCED @"IS_TEST_SYNCED"
+
 #import <Foundation/Foundation.h>
 
 @interface GlobalDataPersistence : NSObject
-{
-    
-}
-@property(nonatomic,strong)NSArray *arrQuestions;
-@property(nonatomic,strong)NSString *strCollageId;
-@property(nonatomic,strong)NSString *strTimeDuration;
-@property(nonatomic,strong)NSString *strcode;
-@property(nonatomic,strong)NSString *strPasscode;
-@property(nonatomic,strong)NSString *strUserId;
 
 @property(nonatomic,assign)int correctPoint;
 
-
 + (GlobalDataPersistence *)sharedGlobalDataPersistence;
-+ (void)resetGlobalDataPersistence;
 
 @end

@@ -29,7 +29,9 @@
     // Do any additional setup after loading the view from its nib.
 
     obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
-    lblScore.text=[NSString stringWithFormat:@"Your Score is :%d",obj_GlobalDataPersistence.correctPoint];
+    lblScore.text = [NSString stringWithFormat:@"%ld",(long)[KUSER_DEFAULT integerForKey:KTOTALMARK]];
+    
+    [self syncTestResult];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,20 +41,28 @@
 
 -(IBAction)Click_Home:(id)sender
 {
-    HomeViewController *obj_HomeViewController=[HomeViewController new];
-    [self.navigationController pushViewController:obj_HomeViewController animated:YES];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+     
+        if ([vc isKindOfClass:[HomeViewController class]]) {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
 }
 
 - (void)syncTestResult {
     
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *testDate = [formatter stringFromDate:[NSDate date]];
+    
     WebCommunicationClass *obj=[WebCommunicationClass new];
     [obj setACaller:self];
     
-    [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]
-                  testDate:[NSString stringWithFormat:@"%@",[NSDate date]]
-                  passcode:obj_GlobalDataPersistence.strPasscode
-                 timeTaken:[NSString stringWithFormat:@"%d",3000]
-                     marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+    [obj GetSaveUserdetail:[KUSER_DEFAULT valueForKey:KUSER_ID]
+                  testDate:[NSString stringWithFormat:@"%@",testDate]
+                  passcode:[KUSER_DEFAULT valueForKey:KPASSCODE]
+                 timeTaken:[NSString stringWithFormat:@"%ld",(long)[KUSER_DEFAULT integerForKey:KTIME_TAKEN]]
+                     marks:[NSString stringWithFormat:@"%ld",(long)[KUSER_DEFAULT integerForKey:KTOTALMARK]]];
     
 }
 
@@ -68,7 +78,7 @@
         
         // Test Result successfully synced to server
         
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_SYNCED"];
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:KIS_TEST_SYNCED];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     }
