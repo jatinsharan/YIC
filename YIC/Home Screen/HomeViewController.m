@@ -11,6 +11,9 @@
 #import "UnlockViewController.h"
 #import "NotificationViewController.h"
 
+#import "WebCommunicationClass.h"
+#import "GlobalDataPersistence.h"
+
 @interface HomeViewController ()
 
 @end
@@ -25,6 +28,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:YES];
+    
+    BOOL isTestAttempted = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_ATTEMPTED"];
+    BOOL isTestSynced = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_SYNCED"];
+
+    if (isTestAttempted && !isTestSynced) {
+        btnSync.hidden = NO;
+    }
+    else {
+        btnSync.hidden = YES;
+    }
 }
 
 /*
@@ -66,6 +84,49 @@
     [activityViewController setValue:@"CL Young India Challenge: Business Plan and Start-up Challenge is around the corner" forKey:@"subject"];
     
     [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (IBAction)Click_Sync:(id)sender {
+    
+    GlobalDataPersistence *obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
+    
+    WebCommunicationClass *obj = [WebCommunicationClass new];
+    [obj setACaller:self];
+    
+    [obj GetSaveUserdetail:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserId"]
+                  testDate:[NSString stringWithFormat:@"%@",[NSDate date]]
+                  passcode:obj_GlobalDataPersistence.strPasscode
+                 timeTaken:[NSString stringWithFormat:@"%d",3000]
+                     marks:[NSString stringWithFormat:@"%d",obj_GlobalDataPersistence.correctPoint]];
+    
+}
+
+- (void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+{
+    NSError *jsonParsingError = nil;
+    
+    NSDictionary *resultDict = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    NSLog(@"%@",[resultDict valueForKey:@"errorCode"]);
+    
+    NSNumber * isSuccessNumber = (NSNumber *)[resultDict valueForKey:@"errorCode"];
+    if(isSuccessNumber.intValue == 0) {
+        
+        // Test Result successfully synced to server
+        
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_SYNCED"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
+    else {
+        
+        // Error
+        
+    }
+}
+
+-(void) dataDownloadFail:(ASIHTTPRequest*)aReq  withMethood:(NSString *)MethoodName
+{
+    
 }
 
 @end

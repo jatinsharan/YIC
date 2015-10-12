@@ -16,24 +16,37 @@
 @implementation InstructionViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
     [scrInstrucation setContentSize:CGSizeMake(self.view.frame.size.width, 1298)];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(IBAction)Click_Back:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(IBAction)Click_StartTest:(id)sender
 {
-    QuestionViewController *obj_QuestionViewController=[QuestionViewController new];
-    [self.navigationController pushViewController:obj_QuestionViewController animated:YES];
+    BOOL isTestAttempted = [[NSUserDefaults standardUserDefaults] boolForKey:@"IS_TEST_ATTEMPTED"];
+    if (!isTestAttempted) {
+        QuestionViewController *obj_QuestionViewController=[QuestionViewController new];
+        [self.navigationController pushViewController:obj_QuestionViewController animated:YES];
+    }
+    else {
+        
+        // Test already attempted by user, display alert
+        
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Test Submitted! Kindly check notifications for Final Results." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 /*

@@ -26,9 +26,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
     obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
-    NSLog(@"%@",obj_GlobalDataPersistence.strCollageId);
     
     DBManagerYIC *obj_DBManagerYIC = [DBManagerYIC new];
     arrQuestion = [obj_DBManagerYIC getAllRandomQuestion];
@@ -39,6 +39,10 @@
     correctOption = @"";
     [self setCurrentQuestion];
     
+    btnBack.hidden = YES;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_ATTEMPTED"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     dictAnsweredQuestion = [NSMutableDictionary dictionary];
     for (int i=0; i<arrQuestion.count; i++) {
@@ -49,8 +53,12 @@
     mints = 58;
     hourss = 23;
     countDownTime = 3000;
-    _CountDownTimer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(DecrementCounterValue) userInfo:nil repeats:YES];
-    // Do any additional setup after loading the view from its nib.
+    
+    _CountDownTimer =  [NSTimer scheduledTimerWithTimeInterval:1
+                                                        target:self
+                                                      selector:@selector(DecrementCounterValue)
+                                                      userInfo:nil
+                                                       repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {

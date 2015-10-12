@@ -24,10 +24,12 @@
 @implementation ResultViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+
+    obj_GlobalDataPersistence = [GlobalDataPersistence sharedGlobalDataPersistence];
     lblScore.text=[NSString stringWithFormat:@"Your Score is :%d",obj_GlobalDataPersistence.correctPoint];
-       // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,12 +56,32 @@
     
 }
 
--(void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
+- (void)dataDidFinishDowloading:(ASIHTTPRequest*)aReq withMethood:(NSString *)MethoodName withOBJ:(WebCommunicationClass *)aObj
 {
     NSError *jsonParsingError = nil;
     
-    NSString *strResult=[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
-    NSLog(@"%@",[strResult valueForKey:@"errorCode"]);
+    NSDictionary *resultDict = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:[aReq responseData]options:0 error:&jsonParsingError];
+    NSLog(@"%@",[resultDict valueForKey:@"errorCode"]);
+    
+    NSNumber * isSuccessNumber = (NSNumber *)[resultDict valueForKey:@"errorCode"];
+    if(isSuccessNumber.intValue == 0) {
+        
+        // Test Result successfully synced to server
+        
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"IS_TEST_SYNCED"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
+    else {
+        
+        // Error
+        
+    }
+}
+
+-(void) dataDownloadFail:(ASIHTTPRequest*)aReq  withMethood:(NSString *)MethoodName
+{
+    
 }
 
 /*

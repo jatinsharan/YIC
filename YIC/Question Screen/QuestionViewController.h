@@ -41,6 +41,7 @@
     
     IBOutlet UIButton *btnPrevious;
     IBOutlet UIButton *btnNext;
+    IBOutlet UIButton *btnBack;
     
 }
 - (IBAction)Select_Option:(id)sender;
