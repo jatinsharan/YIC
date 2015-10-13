@@ -54,7 +54,7 @@
     secs = 00;
     mints = 58;
     hourss = 23;
-    countDownTime = 3000;
+    countDownTime = 2700;
     
     _CountDownTimer =  [NSTimer scheduledTimerWithTimeInterval:1
                                                         target:self
@@ -70,7 +70,7 @@
 
 -(void)DecrementCounterValue
 {
-    NSLog(@"COUNTDOWN >>> %d",(3000-countDownTime));
+    NSLog(@"COUNTDOWN >>> %d",(2700-countDownTime));
     
     if(countDownTime > 0)
     {
@@ -125,13 +125,13 @@
 
 - (IBAction)Click_NextQuestion:(id)sender {
     
-    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
-        // No Option selected, display alert
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else {
-        
+//    if ( correctOption == nil || correctOption.length==0 || [correctOption isEqualToString:@""]) {
+//        // No Option selected, display alert
+//        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"You need to select an option to proceed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
+//    else {
+    
         if(questionCount<[arrQuestion count]-1)
         {
             if (![[dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]] isEqualToString:@"Y"]) {
@@ -146,7 +146,7 @@
             [_CountDownTimer invalidate];
             _CountDownTimer=nil;
             
-            [KUSER_DEFAULT setInteger:3000-countDownTime forKey:KTIME_TAKEN];
+            [KUSER_DEFAULT setInteger:2700-countDownTime forKey:KTIME_TAKEN];
             [KUSER_DEFAULT setInteger:obj_GlobalDataPersistence.correctPoint forKey:KTIME_TAKEN];
             
             // Question complete, move to Result screen
@@ -154,7 +154,7 @@
             ResultViewController *obj_ResultViewController=[ResultViewController new];
             [self.navigationController pushViewController:obj_ResultViewController animated:YES];
         }
-    }
+//    }
 }
 
 - (IBAction)Click_PreviousQuestion:(id)sender {

@@ -210,8 +210,7 @@
     
     if(isSuccessNumber)
     {
-        [KUSER_DEFAULT setBool:true forKey:KIS_OTP];
-        [KUSER_DEFAULT setValue:@"1" forKey:KIS_LOGIN];
+        [KUSER_DEFAULT setBool:TRUE forKey:KIS_OTP];
         [KUSER_DEFAULT synchronize];
         
         HomeViewController *objHomeViewController=[HomeViewController new];

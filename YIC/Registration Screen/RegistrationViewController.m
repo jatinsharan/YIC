@@ -203,6 +203,9 @@
             [KUSER_DEFAULT setValue:strUserId forKey:KUSER_ID];
             [KUSER_DEFAULT synchronize];
             
+            [KUSER_DEFAULT setBool:TRUE forKey:KIS_LOGIN];
+            [KUSER_DEFAULT synchronize];
+            
             OTPassViewController * pinViewController = [[OTPassViewController alloc] init];
             [self.navigationController pushViewController:pinViewController animated:YES];
         }

@@ -13,6 +13,7 @@
 #import "ALUtilityClass.h"
 
 #import "HomeViewController.h"
+#import "OTPassViewController.h"
 #import "StartUpViewController.h"
 #import "NotificationViewController.h"
 
@@ -34,12 +35,22 @@
     [dbM copyDatabaseIfNeeded];
     
     
-    if([[KUSER_DEFAULT valueForKey:KIS_LOGIN] isEqualToString:@"1"])
+    if([KUSER_DEFAULT boolForKey:KIS_LOGIN])
     {
-        HomeViewController *vc = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
-       
-        self.navigation = [[UINavigationController alloc]initWithRootViewController:vc];
-        [self.navigation setNavigationBarHidden:YES];
+        if([KUSER_DEFAULT boolForKey:KIS_OTP])
+        {
+            HomeViewController *vc = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+            
+            self.navigation = [[UINavigationController alloc]initWithRootViewController:vc];
+            [self.navigation setNavigationBarHidden:YES];
+        }
+        else
+        {
+            OTPassViewController *vc = [[OTPassViewController alloc] initWithNibName:@"OTPassViewController" bundle:nil];
+            
+            self.navigation = [[UINavigationController alloc]initWithRootViewController:vc];
+            [self.navigation setNavigationBarHidden:YES];
+        }
     }
     else
     {
@@ -118,7 +129,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if([[KUSER_DEFAULT valueForKey:KIS_LOGIN] isEqualToString:@"1"]) {
+    if([KUSER_DEFAULT boolForKey:KIS_LOGIN] && [KUSER_DEFAULT boolForKey:KIS_OTP]) {
         
         // After user login, send device token details for APNS
         if (application.applicationState == UIApplicationStateInactive ||

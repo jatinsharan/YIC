@@ -135,8 +135,7 @@
     {
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"" message:@"Lock code is exactly 8 characters long!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-    }
-    
+    }    
 }
 
 #pragma Text Field Delegate
