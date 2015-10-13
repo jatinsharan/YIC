@@ -225,32 +225,14 @@
     if (questionCount==44)
         lblNext.text = @"Submit";
     
-    if (questionCount<40) {
-        
-        CGRect frame1 = viewQuestion.frame;
-        frame1.origin.y = 8;
-        viewQuestion.frame = frame1;
-
-        viewInstruction.hidden = YES;
-        
-        CGSize screenSize = [UIScreen mainScreen].bounds.size;
-        [scrlMain setContentSize:CGSizeMake(screenSize.width, 270)];
-    }
-    else {
-        
-        CGRect frame1 = viewQuestion.frame;
-        frame1.origin.y = 396;
-        viewQuestion.frame = frame1;
-
-        viewInstruction.hidden = NO;
-        
-        CGSize screenSize = [UIScreen mainScreen].bounds.size;
-        [scrlMain setContentSize:CGSizeMake(screenSize.width, 658)];
-    }
+    
+    // ===============================================
     
     question=[arrQuestion objectAtIndex:questionCount];
     NSLog(@"%@",question.qCorrectOption);
     
+    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
+
     if (questionCount<20) {
         lblSectionHeading.text=[NSString stringWithFormat:@"Section 1:%@",question.qSection];
     }
@@ -261,16 +243,43 @@
         lblSectionHeading.text=[NSString stringWithFormat:@"Section 3:%@",question.qSection];
     }
 
-    lblQuestionCount.text=[NSString stringWithFormat:@"%d",questionCount+1];
     
     lblQuestion.text = question.qQuestion;
-    lblInstruction.text = question.qInstruction;
-
-    [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
-    [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
-    [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
-    [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
+    [self layoutQuestionView];
     
+    [btnOption1 setTitle:[NSString stringWithFormat:@"%@",question.qOption_1] forState:UIControlStateNormal];
+    btnOption1.titleLabel.numberOfLines=0;
+    btnOption1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+    [btnOption2 setTitle:[NSString stringWithFormat:@"%@",question.qOption_2] forState:UIControlStateNormal];
+    btnOption2.titleLabel.numberOfLines=0;
+    btnOption2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+    [btnOption3 setTitle:[NSString stringWithFormat:@"%@",question.qOption_3] forState:UIControlStateNormal];
+    btnOption3.titleLabel.numberOfLines=0;
+    btnOption3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+    [btnOption4 setTitle:[NSString stringWithFormat:@"%@",question.qOption_4] forState:UIControlStateNormal];
+    btnOption4.titleLabel.numberOfLines=0;
+    btnOption4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+    [self layoutOptionView];
+    
+    if (questionCount<40) {
+        viewInstruction.hidden = YES;
+    }
+    else {
+        viewInstruction.hidden = NO;
+        
+        lblInstruction.text = question.qInstruction;
+        [self layoutInstructionView];
+    }
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = viewQuestion.frame.origin.y+viewQuestion.frame.size.height;
+    [scrlMain setContentSize:CGSizeMake(width, height)];
+    
+    // ================================================
     
     NSString *selectedAnswer = [dictAnsweredQuestion objectForKey:[NSNumber numberWithInt:questionCount]];
     
@@ -329,6 +338,126 @@
     }
     
     // ====================================
+}
+
+- (void)layoutInstructionView
+{
+    //Calculate the expected size based on the font and linebreak mode of your label
+    // MAXFLOAT here simply means no constraint in height
+    
+    CGSize maximumLabelSize = CGSizeMake(KMAX_WIDTH, MAXFLOAT);
+    
+    CGSize expectedLabelSize = [lblInstruction.text boundingRectWithSize:maximumLabelSize
+                                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                                           attributes:@{NSFontAttributeName : lblInstruction.font}
+                                                              context:nil].size;
+    //adjust the label the the new height.
+    CGRect newFrame = KDEFAULT_RECT;
+    newFrame.size.height = expectedLabelSize.height;
+    lblInstruction.frame = newFrame;
+    [lblInstruction sizeToFit];
+    
+    CGRect bgFrame = bgInstruction.frame;
+    bgFrame.size.height = lblInstruction.frame.origin.y+lblInstruction.frame.size.height+8;
+    bgInstruction.frame = bgFrame;
+    
+    CGRect questionFrame = viewQuestion.frame;
+    questionFrame.origin.y = bgInstruction.frame.origin.y+bgInstruction.frame.size.height+16;
+    viewQuestion.frame = questionFrame;
+}
+
+- (void)layoutQuestionView
+{
+    //Calculate the expected size based on the font and linebreak mode of your label
+    // MAXFLOAT here simply means no constraint in height
+    
+    CGSize maximumLabelSize = CGSizeMake(KMAX_WIDTH, MAXFLOAT);
+    
+    CGSize expectedLabelSize = [lblQuestion.text boundingRectWithSize:maximumLabelSize
+                                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                                           attributes:@{NSFontAttributeName : lblQuestion.font}
+                                                              context:nil].size;
+    
+    //adjust the label the the new height.
+    CGRect newFrame = KDEFAULT_RECT;
+    newFrame.size.height = expectedLabelSize.height;
+    lblQuestion.frame = newFrame;
+    [lblQuestion sizeToFit];
+    
+    CGRect bgFrame = bgQuestion.frame;
+    bgFrame.size.height = lblQuestion.frame.origin.y+lblQuestion.frame.size.height+8;
+    bgQuestion.frame = bgFrame;
+    
+    CGRect optionFrame = viewOption.frame;
+    optionFrame.origin.y = bgQuestion.frame.origin.y+bgQuestion.frame.size.height+8;
+    viewOption.frame = optionFrame;
+    
+    CGRect questionFrame = viewQuestion.frame;
+    questionFrame.origin.y = 8;
+    viewQuestion.frame = questionFrame;
+}
+
+- (void)layoutOptionView
+{
+    //Calculate the expected size based on the font and linebreak mode of your label
+    // MAXFLOAT here simply means no constraint in height
+    
+    CGSize maximumLabelSize = CGSizeMake(240, MAXFLOAT);
+    
+    CGSize expectedLabelSize1 = [btnOption1.currentTitle boundingRectWithSize:maximumLabelSize
+                                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                                           attributes:@{NSFontAttributeName : btnOption1.titleLabel.font}
+                                                        context:nil].size;
+
+    CGSize expectedLabelSize2 = [btnOption2.currentTitle boundingRectWithSize:maximumLabelSize
+                                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                                   attributes:@{NSFontAttributeName : btnOption2.titleLabel.font}
+                                                                      context:nil].size;
+    
+    CGSize expectedLabelSize3 = [btnOption3.currentTitle boundingRectWithSize:maximumLabelSize
+                                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                                   attributes:@{NSFontAttributeName : btnOption3.titleLabel.font}
+                                                                      context:nil].size;
+    
+    CGSize expectedLabelSize4 = [btnOption4.currentTitle boundingRectWithSize:maximumLabelSize
+                                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                                   attributes:@{NSFontAttributeName : btnOption4.titleLabel.font}
+                                                                      context:nil].size;
+    
+    
+    //adjust the btnOption the the new height.
+    
+    CGRect newFrame1 = KOPTION_RECT;
+    newFrame1.origin.y = 12;
+    newFrame1.size.height = MAX(expectedLabelSize1.height, 24);
+    btnOption1.frame = newFrame1;
+    
+    CGRect newFrame2 = KOPTION_RECT;
+    newFrame2.origin.y = btnOption1.frame.origin.y+btnOption1.frame.size.height+12;
+    newFrame2.size.height = MAX(expectedLabelSize2.height, 24);
+    btnOption2.frame = newFrame2;
+    
+    CGRect newFrame3 = KOPTION_RECT;
+    newFrame3.origin.y = btnOption2.frame.origin.y+btnOption2.frame.size.height+12;
+    newFrame3.size.height = MAX(expectedLabelSize3.height, 24);
+    btnOption3.frame = newFrame3;
+
+    CGRect newFrame4 = KOPTION_RECT;
+    newFrame4.origin.y = btnOption3.frame.origin.y+btnOption3.frame.size.height+12;
+    newFrame4.size.height = MAX(expectedLabelSize4.height, 24);
+    btnOption4.frame = newFrame4;
+
+    CGRect bgFrame = bgOption.frame;
+    bgFrame.size.height = btnOption4.frame.origin.y+btnOption4.frame.size.height+12;
+    bgOption.frame = bgFrame;
+    
+    CGRect optionFrame = viewOption.frame;
+    optionFrame.size.height = btnOption4.frame.origin.y+btnOption4.frame.size.height+12;
+    viewOption.frame = optionFrame;
+    
+    CGRect questionFrame = viewQuestion.frame;
+    questionFrame.size.height = viewOption.frame.origin.y+viewOption.frame.size.height+20;
+    viewQuestion.frame = questionFrame;
 }
 
 @end

@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController">
             <connections>
+                <outlet property="bgInstruction" destination="Bdc-Bz-Z6d" id="U4s-3e-FO0"/>
+                <outlet property="bgOption" destination="lL6-1b-9h3" id="QyE-uX-6ve"/>
+                <outlet property="bgQuestion" destination="ijU-33-ixl" id="9Oj-m1-XBK"/>
                 <outlet property="btnBack" destination="D8B-y0-X76" id="oSK-Dv-pqZ"/>
                 <outlet property="btnNext" destination="qyU-E7-EOt" id="Pak-n1-VL2"/>
                 <outlet property="btnOption1" destination="hTF-n1-UBi" id="scE-Sj-pCo"/>
@@ -24,6 +27,7 @@
                 <outlet property="scrlMain" destination="G9A-UF-78H" id="ENp-oB-eGW"/>
                 <outlet property="view" destination="UQJ-va-BA7" id="36A-qH-ozu"/>
                 <outlet property="viewInstruction" destination="4GQ-wl-7Vf" id="dFu-VR-DDf"/>
+                <outlet property="viewOption" destination="mzr-rY-v0v" id="avE-Ys-xjE"/>
                 <outlet property="viewQuestion" destination="w8a-yb-EAH" id="zxR-tJ-0dv"/>
             </connections>
         </placeholder>
@@ -141,7 +145,7 @@
                     <subviews>
                         <view hidden="YES" contentMode="scaleToFill" id="4GQ-wl-7Vf" userLabel="ViewInstruction">
                             <rect key="frame" x="0.0" y="8" width="320" height="380"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Bdc-Bz-Z6d">
                                     <rect key="frame" x="7" y="0.0" width="306" height="380"/>
@@ -149,7 +153,7 @@
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Csm-Eo-jnK">
-                                    <rect key="frame" x="10" y="0.0" width="300" height="380"/>
+                                    <rect key="frame" x="20" y="0.0" width="280" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <string key="text">Directions for questions 1 to 3: Read the given information carefully and answer the questions that follow.
 Three brothers are married to three sisters. The brothers are Bhimsingh, Ramsingh and Mansingh. The sisters are Aparna, Bharti and Chandra.
@@ -172,88 +176,95 @@ IX. The sister in Mumbai is married to Mansingh.
                         </view>
                         <view contentMode="scaleToFill" id="w8a-yb-EAH" userLabel="ViewQuestion">
                             <rect key="frame" x="0.0" y="8" width="320" height="262"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ijU-33-ixl">
                                     <rect key="frame" x="7" y="0.0" width="306" height="79"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following automobile companies has bagged a 914-cr order from the Indian Army?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSe-9Z-k7H">
-                                    <rect key="frame" x="10" y="3" width="300" height="72"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following automobile companies has bagged a 914-cr order from the Indian Army?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSe-9Z-k7H">
+                                    <rect key="frame" x="20" y="8" width="280" height="63"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_large.png" id="lL6-1b-9h3">
+                                <view contentMode="scaleToFill" id="mzr-rY-v0v">
                                     <rect key="frame" x="6" y="87" width="305" height="155"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hTF-n1-UBi">
-                                    <rect key="frame" x="20" y="101" width="280" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Option 1" image="radio.png">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="radio_on.png">
-                                        <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="aWZ-38-kij"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lpg-CS-c5H">
-                                    <rect key="frame" x="20" y="136" width="280" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Option 2" image="radio.png">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="radio_on.png">
-                                        <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="zu2-Kf-nP7"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KfE-Jm-lqq">
-                                    <rect key="frame" x="20" y="172" width="280" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Option 3" image="radio.png">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="radio_on.png">
-                                        <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="s3h-v6-bov"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Xx-CJ-KGl">
-                                    <rect key="frame" x="20" y="205" width="280" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Option 4" image="radio.png">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="radio_on.png">
-                                        <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="JPY-AF-nD6"/>
-                                    </connections>
-                                </button>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_large.png" id="lL6-1b-9h3">
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="155"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="hTF-n1-UBi">
+                                            <rect key="frame" x="12" y="12" width="280" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Option 1" image="radio.png">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="radio_on.png">
+                                                <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="aWZ-38-kij"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="Lpg-CS-c5H">
+                                            <rect key="frame" x="12" y="48" width="280" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Option 2" image="radio.png">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="radio_on.png">
+                                                <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="zu2-Kf-nP7"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="KfE-Jm-lqq">
+                                            <rect key="frame" x="12" y="84" width="280" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Option 3" image="radio.png">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="radio_on.png">
+                                                <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="s3h-v6-bov"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="4Xx-CJ-KGl">
+                                            <rect key="frame" x="12" y="120" width="280" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Option 4" image="radio.png">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="radio_on.png">
+                                                <color key="titleColor" red="0.1019607843" green="0.10980392160000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="Select_Option:" destination="-1" eventType="touchUpInside" id="JPY-AF-nD6"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>

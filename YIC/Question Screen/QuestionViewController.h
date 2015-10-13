@@ -43,7 +43,12 @@
     
     IBOutlet UIView *viewInstruction;
     IBOutlet UIView *viewQuestion;
-    IBOutlet UIScrollView *scrlMain;    
+    IBOutlet UIView *viewOption;
+    IBOutlet UIScrollView *scrlMain;
+    
+    IBOutlet UIImageView *bgInstruction;
+    IBOutlet UIImageView *bgQuestion;
+    IBOutlet UIImageView *bgOption;
 }
 
 - (IBAction)Select_Option:(id)sender;

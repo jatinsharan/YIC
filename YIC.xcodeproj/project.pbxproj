@@ -147,6 +147,7 @@
 		CE8177361BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177301BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m */; };
 		CE8177371BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177321BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m */; };
 		CE8177381BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8177341BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		F90F2E901BCD87EC00A61BFD /* Autolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F2E8F1BCD87EC00A61BFD /* Autolayout.m */; };
 		F96837CF1BBC68EA00BD58D6 /* DBManagerYIC.m in Sources */ = {isa = PBXBuildFile; fileRef = F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */; };
 		F98460C21BC8650200F0F4A7 /* dropdown.png in Resources */ = {isa = PBXBuildFile; fileRef = F98460BC1BC8650200F0F4A7 /* dropdown.png */; };
 		F98460C31BC8650200F0F4A7 /* dropdown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98460BD1BC8650200F0F4A7 /* dropdown@2x.png */; };
@@ -351,6 +352,8 @@
 		CE8177321BC92FFF00E2CBB8 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		CE8177331BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		CE8177341BC92FFF00E2CBB8 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		F90F2E8E1BCD87EC00A61BFD /* Autolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autolayout.h; sourceTree = "<group>"; };
+		F90F2E8F1BCD87EC00A61BFD /* Autolayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autolayout.m; sourceTree = "<group>"; };
 		F96837CD1BBC68EA00BD58D6 /* DBManagerYIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerYIC.h; sourceTree = "<group>"; };
 		F96837CE1BBC68EA00BD58D6 /* DBManagerYIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerYIC.m; sourceTree = "<group>"; };
 		F98460BC1BC8650200F0F4A7 /* dropdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown.png; sourceTree = "<group>"; };
@@ -749,6 +752,8 @@
 		1D4A626E1BBC439500A15717 /* Question Screen */ = {
 			isa = PBXGroup;
 			children = (
+				F90F2E8E1BCD87EC00A61BFD /* Autolayout.h */,
+				F90F2E8F1BCD87EC00A61BFD /* Autolayout.m */,
 				1D4A62751BBC43C000A15717 /* QuestionViewController.h */,
 				1D4A62761BBC43C000A15717 /* QuestionViewController.m */,
 				1D4A62771BBC43C000A15717 /* QuestionViewController.xib */,
@@ -1013,6 +1018,7 @@
 				1D4575361BBC2EB6002BCDF8 /* HomeViewController.m in Sources */,
 				1D45758B1BBC2EB6002BCDF8 /* ASIHTTPRequest.m in Sources */,
 				1D45748A1BBC2BBE002BCDF8 /* main.m in Sources */,
+				F90F2E901BCD87EC00A61BFD /* Autolayout.m in Sources */,
 				CE8177361BC92FFF00E2CBB8 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1D4A62781BBC43C000A15717 /* QuestionViewController.m in Sources */,
 				1D4575A81BBC32E0002BCDF8 /* TestViewController.m in Sources */,

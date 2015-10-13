@@ -21,6 +21,10 @@
 #define KIS_TEST_ATTEMPTED @"IS_TEST_ATTEMPTED"
 #define KIS_TEST_SYNCED @"IS_TEST_SYNCED"
 
+#define KDEFAULT_RECT CGRectMake(20, 8, 280, 21)
+#define KOPTION_RECT CGRectMake(12, 8, 280, 24)
+#define KMAX_WIDTH 280
+
 #import <Foundation/Foundation.h>
 
 @interface GlobalDataPersistence : NSObject
